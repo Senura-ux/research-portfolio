@@ -1,0 +1,18 @@
+{
+  "documents": [
+    {"id": "charter", "title": "Project Charter", "description": "Initial project charter document", "status": "pending", "url": "", "category": "document"},
+    {"id": "proposal-main", "title": "Proposal Document — Main", "description": "Main group research proposal", "status": "pending", "url": "", "category": "document"},
+    {"id": "proposal-cataract", "title": "Individual Proposal — Cataract", "description": "Binuri Perera's individual proposal", "status": "pending", "url": "", "category": "document"},
+    {"id": "proposal-dme", "title": "Individual Proposal — DME", "description": "Sanduni Kahawevithana's individual proposal", "status": "pending", "url": "", "category": "document"},
+    {"id": "proposal-glaucoma", "title": "Individual Proposal — Glaucoma", "description": "Chavindee M.A.P.'s individual proposal", "status": "pending", "url": "", "category": "document"},
+    {"id": "proposal-dr", "title": "Individual Proposal — DR", "description": "Oshan Wijekoon's individual proposal", "status": "pending", "url": "", "category": "document"},
+    {"id": "pp1", "title": "Progress Presentation 1", "description": "PP1 presentation document", "status": "pending", "url": "", "category": "presentation"},
+    {"id": "pp2", "title": "Progress Presentation 2", "description": "PP2 presentation document", "status": "pending", "url": "", "category": "presentation"},
+    {"id": "final-report", "title": "Final Report — Main", "description": "Main group final research report", "status": "pending", "url": "", "category": "document"},
+    {"id": "research-paper", "title": "Research Paper", "description": "Published/submitted research paper", "status": "pending", "url": "", "category": "document"},
+    {"id": "user-guide", "title": "System User Guide", "description": "User guide for the AI EyeDx system", "status": "pending", "url": "", "category": "document"},
+    {"id": "proposal-presentation", "title": "Proposal Presentation", "description": "Slides for proposal presentation", "status": "pending", "url": "", "category": "presentation"},
+    {"id": "final-presentation", "title": "Final Presentation", "description": "Final project presentation slides", "status": "pending", "url": "", "category": "presentation"},
+    {"id": "viva", "title": "Viva Presentation", "description": "Viva voce presentation materials", "status": "pending", "url": "", "category": "presentation"}
+  ]
+}
