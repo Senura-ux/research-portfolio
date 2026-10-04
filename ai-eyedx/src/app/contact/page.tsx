@@ -4,10 +4,12 @@ import { useState } from "react";
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
+    setErrorMessage("");
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -18,9 +20,12 @@ export default function ContactPage() {
         setStatus("success");
         setForm({ name: "", email: "", subject: "", message: "" });
       } else {
+        const result = (await res.json()) as { error?: string };
+        setErrorMessage(result.error || "Something went wrong. Please try again later.");
         setStatus("error");
       }
     } catch {
+      setErrorMessage("Unable to reach the server. Please try again later.");
       setStatus("error");
     }
   };
@@ -82,7 +87,7 @@ export default function ContactPage() {
                     </svg>
                     <div>
                       <p className="text-xs font-medium text-gray-700">Group Email</p>
-                      <p className="text-xs text-gray-500">[ADD GROUP EMAIL]</p>
+                      <p className="text-xs text-gray-500">Use the contact form</p>
                     </div>
                   </div>
                 </div>
@@ -137,7 +142,7 @@ export default function ContactPage() {
 
                 {status === "error" && (
                   <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
-                    <p className="text-sm text-red-700">Something went wrong. Please try again later.</p>
+                    <p className="text-sm text-red-700">{errorMessage}</p>
                   </div>
                 )}
 

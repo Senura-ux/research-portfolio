@@ -51,8 +51,8 @@ export default function MilestonesPage() {
       id: 4,
       title: "Progress Presentation 1 (PP1)",
       status: "completed",
-      date: "[Confirm PP1 Date]",
-      marks: "[Confirm Marks]",
+      date: "Date to be announced",
+      marks: "Not published",
       items: [
         "Initial implementation demonstration",
         "Baseline model results",
@@ -80,8 +80,8 @@ export default function MilestonesPage() {
       id: 6,
       title: "Progress Presentation 2 (PP2)",
       status: "upcoming",
-      date: "[Confirm PP2 Date]",
-      marks: "[Confirm Marks]",
+      date: "Date to be announced",
+      marks: "Not published",
       items: [
         "Integrated system demonstration",
         "Experimental model results",
@@ -94,8 +94,8 @@ export default function MilestonesPage() {
       id: 7,
       title: "Final Stage",
       status: "upcoming",
-      date: "[Confirm Final Date]",
-      marks: "[Confirm Marks]",
+      date: "Date to be announced",
+      marks: "Not published",
       items: [
         "System testing and optimization",
         "Final validation",
@@ -110,7 +110,7 @@ export default function MilestonesPage() {
       id: 8,
       title: "Publication",
       status: "upcoming",
-      date: "[Confirm Date]",
+      date: "Date to be announced",
       marks: "—",
       items: [
         "Research paper submission",
@@ -166,7 +166,7 @@ export default function MilestonesPage() {
             />
 
             <div className="space-y-6">
-              {milestones.map((m, i) => {
+              {milestones.map((m) => {
                 const cfg = statusConfig[m.status];
                 return (
                   <div key={m.id} className="flex gap-6">

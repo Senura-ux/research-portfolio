@@ -5,7 +5,7 @@ const team = [
     role: "Explainable Cataract Severity & Visibility Degradation Assessment",
     initials: "BP",
     disease: "Cataract Module",
-    email: "[ADD EMAIL]",
+    email: null,
     responsibilities: [
       "Cataract dataset preparation",
       "Fundus image preprocessing",
@@ -30,7 +30,7 @@ const team = [
     role: "Diabetic Macular Edema Detection, Severity & Risk Assessment",
     initials: "SK",
     disease: "DME Module",
-    email: "[ADD EMAIL]",
+    email: null,
     responsibilities: [
       "OCT dataset preparation",
       "OCT image preprocessing",
@@ -55,7 +55,7 @@ const team = [
     role: "Explainable Glaucoma Detection & Risk Assessment",
     initials: "CM",
     disease: "Glaucoma Module",
-    email: "[ADD EMAIL]",
+    email: null,
     responsibilities: [
       "Glaucoma dataset preparation",
       "Fundus image preprocessing",
@@ -78,11 +78,11 @@ const team = [
   },
   {
     name: "Oshan Wijekoon",
-    id: "[Confirm ID]",
+    id: "ID not published",
     role: "Diabetic Retinopathy Detection & Severity Assessment + System Integration",
     initials: "OW",
     disease: "DR Module + Integration",
-    email: "[ADD EMAIL]",
+    email: null,
     responsibilities: [
       "DR dataset preparation",
       "Fundus image preprocessing",
@@ -179,12 +179,16 @@ export default function AboutPage() {
                       <span className="text-xs px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-100 mb-3">
                         {member.disease}
                       </span>
-                      <a
-                        href={`mailto:${member.email}`}
-                        className="text-xs text-gray-500 hover:text-blue-600 transition-colors"
-                      >
-                        {member.email}
-                      </a>
+                      {member.email ? (
+                        <a
+                          href={`mailto:${member.email}`}
+                          className="text-xs text-gray-500 hover:text-blue-600 transition-colors"
+                        >
+                          {member.email}
+                        </a>
+                      ) : (
+                        <span className="text-xs text-gray-500">Contact via group form</span>
+                      )}
                     </div>
 
                     {/* Right: Details */}

@@ -32,7 +32,7 @@ Official Academic Research Project Website for **Group R26-IT-043**, Sri Lanka I
 2. **Dynamic Admin Panel (`/admin`):**
    - Password-protected backend dashboard (`ADMIN_PASSWORD`).
    - Allows administrators to paste and update external links (Google Drive, OneDrive, PDFs, Slides, GitHub) for all 14 project documents and presentations without modifying code.
-   - Status toggles between *Available* and *Pending*.
+   - Status toggles between *Available* and *Pending* with durable Redis storage in production.
 3. **Full-Stack Next.js (App Router):**
    - Built-in Next.js REST API routes (`/api/links` and `/api/contact`).
    - Serverless and optimized for deployment on **Vercel**.
@@ -46,7 +46,7 @@ Official Academic Research Project Website for **Group R26-IT-043**, Sri Lanka I
 ## 🛠️ Tech Stack
 - **Frontend & Backend:** Next.js (App Router), React, TypeScript
 - **Styling:** Tailwind CSS with custom CSS variables & theme design tokens
-- **Data & APIs:** Next.js Serverless Route Handlers & JSON persistence with memory fallback
+- **Data & APIs:** Next.js Route Handlers, bundled JSON defaults, and optional Upstash Redis persistence
 - **Hosting:** Vercel
 
 ---
@@ -55,7 +55,7 @@ Official Academic Research Project Website for **Group R26-IT-043**, Sri Lanka I
 
 1. Install dependencies:
    ```bash
-   npm install
+   npm ci
    ```
 
 2. Run development server:
@@ -65,22 +65,30 @@ Official Academic Research Project Website for **Group R26-IT-043**, Sri Lanka I
 
 3. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
+Copy `.env.example` to `.env.local` and replace its example values before testing admin or contact-form features.
+
 ---
 
 ## 🌐 Deploying to Vercel
 
 1. Push this project repository to GitHub / GitLab / Bitbucket.
 2. Go to [Vercel](https://vercel.com) and import the repository.
+   - The repository-level `vercel.json` builds the nested `ai-eyedx` application automatically.
 3. In Project Settings > **Environment Variables**, add:
-   - `ADMIN_PASSWORD`: Your secret admin password (defaults to `admin123` if unset)
-4. Click **Deploy**.
+   - `ADMIN_PASSWORD`: A long, unique admin password (admin access is disabled when unset)
+   - `RESEND_API_KEY`: Resend API key used by the contact form
+   - `CONTACT_FROM_EMAIL`: Sender on a domain verified in Resend
+   - `CONTACT_TO_EMAIL`: Research-team inbox that receives enquiries
+   - `KV_REST_API_URL` and `KV_REST_API_TOKEN`: Upstash Redis REST credentials for durable admin edits
+4. Connect an Upstash Redis database from the Vercel Marketplace if the admin panel will be used in production.
+5. Click **Deploy**.
 
 ---
 
 ## 🔑 Admin Access & Uploading File Links
 
 1. Navigate to `/admin` (or click *Admin — Manage Links* on the Documents or Presentations page).
-2. Enter the admin password (`admin123` by default).
+2. Enter the password configured in `ADMIN_PASSWORD`.
 3. Paste public sharing links for documents (e.g. Google Drive, Dropbox, institutional repository).
 4. Switch status to **Available** and click **Save**.
 5. The Documents and Presentations pages will immediately reflect the new links!

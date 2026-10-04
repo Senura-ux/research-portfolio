@@ -13,12 +13,12 @@ interface PresentationItem {
 }
 
 const presentationDefs: PresentationItem[] = [
-  { id: "proposal-presentation", title: "Proposal Presentation", description: "Slides presented during the formal research proposal stage, covering research problem, gap, objectives and methodology.", date: "[Confirm Date]", status: "pending", url: "", category: "presentation" },
-  { id: "pp1", title: "Progress Presentation 1", description: "First formal progress presentation demonstrating initial model implementations and baseline results.", date: "[Confirm PP1 Date]", status: "pending", url: "", category: "presentation" },
-  { id: "pp2", title: "Progress Presentation 2", description: "Second progress presentation with complete integrated system and experimental validation results.", date: "[Confirm PP2 Date]", status: "pending", url: "", category: "presentation" },
-  { id: "final-presentation", title: "Final Presentation", description: "Final project presentation covering full system, all four modules, results, explainability and future work.", date: "[Confirm Final Date]", status: "pending", url: "", category: "presentation" },
-  { id: "viva", title: "Viva Voce Materials", description: "Materials and supplementary slides prepared for the viva voce examination.", date: "[Confirm Viva Date]", status: "pending", url: "", category: "presentation" },
-  { id: "research-paper-slides", title: "Research Paper Presentation", description: "Slides prepared for presenting the research paper findings at an academic conference.", date: "[Confirm Date]", status: "pending", url: "", category: "presentation" },
+  { id: "proposal-presentation", title: "Proposal Presentation", description: "Slides presented during the formal research proposal stage, covering research problem, gap, objectives and methodology.", date: "Date to be announced", status: "pending", url: "", category: "presentation" },
+  { id: "pp1", title: "Progress Presentation 1", description: "First formal progress presentation demonstrating initial model implementations and baseline results.", date: "Date to be announced", status: "pending", url: "", category: "presentation" },
+  { id: "pp2", title: "Progress Presentation 2", description: "Second progress presentation with complete integrated system and experimental validation results.", date: "Date to be announced", status: "pending", url: "", category: "presentation" },
+  { id: "final-presentation", title: "Final Presentation", description: "Final project presentation covering full system, all four modules, results, explainability and future work.", date: "Date to be announced", status: "pending", url: "", category: "presentation" },
+  { id: "viva", title: "Viva Voce Materials", description: "Materials and supplementary slides prepared for the viva voce examination.", date: "Date to be announced", status: "pending", url: "", category: "presentation" },
+  { id: "research-paper-slides", title: "Research Paper Presentation", description: "Slides prepared for presenting the research paper findings at an academic conference.", date: "Date to be announced", status: "pending", url: "", category: "presentation" },
 ];
 
 const presentationIcons = ["📊", "📈", "🎯", "🏆", "🎓", "📝"];

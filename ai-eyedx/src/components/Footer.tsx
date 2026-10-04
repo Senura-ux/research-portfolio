@@ -94,7 +94,7 @@ export default function Footer() {
               <li>
                 <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-100">
                   <p className="text-xs text-blue-700 font-medium">Group Email</p>
-                  <p className="text-xs text-gray-600 mt-0.5">[ADD GROUP EMAIL]</p>
+                  <p className="text-xs text-gray-600 mt-0.5">Use the contact form</p>
                 </div>
               </li>
             </ul>

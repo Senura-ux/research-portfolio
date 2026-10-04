@@ -25,10 +25,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [pathname]);
-
   return (
     <nav
       className={`sticky top-0 z-50 transition-all duration-300 ${
@@ -68,6 +64,7 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
+                  onClick={() => setMenuOpen(false)}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
                     active
                       ? "text-blue-600 bg-blue-50 font-semibold"
@@ -148,6 +145,7 @@ export default function Navbar() {
           })}
           <Link
             href="/domain"
+            onClick={() => setMenuOpen(false)}
             className="block mt-2 text-center text-sm font-semibold text-white px-4 py-2.5 rounded-lg"
             style={{ background: "linear-gradient(135deg, #1e3a8a, #3b82f6)" }}
           >

@@ -9,7 +9,7 @@ const modules = [
     accNum: 92.13,
     color: "#3b82f6",
     framework: "PyTorch",
-    dataset: "Fundus DR Dataset (confirm final dataset)",
+    dataset: "Project retinal fundus image dataset",
     classes: ["No DR", "Mild DR", "Moderate DR", "Severe DR", "Proliferative DR"],
     tasks: [
       "DR classification",
@@ -48,7 +48,7 @@ const modules = [
     accNum: 96.05,
     color: "#1d4ed8",
     framework: "PyTorch",
-    dataset: "Public glaucoma datasets (REFUGE / RIM-ONE / ODIR — confirm final)",
+    dataset: "Public glaucoma fundus datasets, including REFUGE, RIM-ONE, and ODIR",
     classes: ["Normal", "Early Glaucoma", "Advanced Glaucoma"],
     tasks: [
       "Optic disc segmentation (U-Net)",
@@ -392,7 +392,7 @@ export default function ResearchModulesPage() {
         <div className="max-w-5xl mx-auto px-4">
           <div className="text-center mb-10">
             <span className="text-xs font-semibold uppercase tracking-widest text-blue-600 bg-white px-3 py-1 rounded-full border border-blue-100">Reliability</span>
-            <h2 className="mt-4 text-2xl font-bold text-gray-900">"When the Model Should Say: I'm Not Sure"</h2>
+            <h2 className="mt-4 text-2xl font-bold text-gray-900">&ldquo;When the Model Should Say: I&apos;m Not Sure&rdquo;</h2>
             <p className="text-sm text-gray-600 mt-2 max-w-xl mx-auto">Out-of-Distribution (OOD) Detection</p>
           </div>
           <div className="bg-white rounded-2xl border border-gray-200 p-8">

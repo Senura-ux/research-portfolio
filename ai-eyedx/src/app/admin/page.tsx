@@ -14,31 +14,41 @@ export default function AdminPage() {
   const [authenticated, setAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [authenticating, setAuthenticating] = useState(false);
   const [links, setLinks] = useState<LinkItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState<string | null>(null);
   const [saveMsg, setSaveMsg] = useState<{ id: string; ok: boolean } | null>(null);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simple client-side check — the real validation is done in the API
-    if (password.length >= 4) {
-      localStorage.setItem("admin_pw", password);
+    setAuthenticating(true);
+    setError("");
+
+    try {
+      const response = await fetch("/api/links", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "authenticate", password }),
+      });
+
+      if (!response.ok) {
+        const result = (await response.json()) as { error?: string };
+        setError(result.error || "Invalid password");
+        return;
+      }
+
+      setLoading(true);
       setAuthenticated(true);
-      setError("");
-    } else {
-      setError("Invalid password");
+    } catch {
+      setError("Unable to reach the server. Please try again.");
+    } finally {
+      setAuthenticating(false);
     }
   };
 
   useEffect(() => {
-    const pw = localStorage.getItem("admin_pw");
-    if (pw && pw.length >= 4) setAuthenticated(true);
-  }, []);
-
-  useEffect(() => {
     if (!authenticated) return;
-    setLoading(true);
     fetch("/api/links")
       .then((r) => r.json())
       .then((data: { documents?: LinkItem[] }) => setLinks(data.documents || []))
@@ -48,12 +58,11 @@ export default function AdminPage() {
 
   const updateLink = async (item: LinkItem) => {
     setSaving(item.id);
-    const pw = localStorage.getItem("admin_pw") || "";
     try {
       const res = await fetch("/api/links", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password: pw, item }),
+        body: JSON.stringify({ password, item }),
       });
       setSaveMsg({ id: item.id, ok: res.ok });
       if (res.ok) {
@@ -102,10 +111,11 @@ export default function AdminPage() {
             </div>
             <button
               type="submit"
+              disabled={authenticating}
               className="w-full py-3 rounded-xl font-semibold text-white text-sm transition-all hover:opacity-90"
               style={{ background: "linear-gradient(135deg, #1e3a8a, #3b82f6)" }}
             >
-              Login
+              {authenticating ? "Checking..." : "Login"}
             </button>
           </form>
           <p className="text-xs text-gray-400 text-center mt-4">
@@ -132,7 +142,7 @@ export default function AdminPage() {
             </div>
           </div>
           <button
-            onClick={() => { localStorage.removeItem("admin_pw"); setAuthenticated(false); }}
+            onClick={() => { setPassword(""); setAuthenticated(false); }}
             className="text-xs text-blue-200 hover:text-white border border-white/20 px-3 py-1.5 rounded-lg hover:bg-white/10 transition-colors"
           >
             Logout
