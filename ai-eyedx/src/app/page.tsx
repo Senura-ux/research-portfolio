@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
@@ -623,18 +624,21 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
             {[
-              { name: "Binuri Perera", id: "IT22151292", role: "Cataract & Visibility Degradation", initials: "BP", disease: "Cataract" },
-              { name: "S.D Kahawevithana", id: "IT22191342", role: "DME Detection & Risk Assessment", initials: "SK", disease: "DME" },
-              { name: "Chavindee M.A.P.", id: "IT22127778", role: "Glaucoma Detection & Risk", initials: "CM", disease: "Glaucoma" },
-              { name: "Oshan Wijekoon", id: "IT22265388", role: "DR Detection & System Integration", initials: "OW", disease: "DR" },
+              { name: "Binuri Perera", id: "IT22151292", role: "Cataract & Visibility Degradation", initials: "BP", disease: "Cataract", photo: "/team/member-perera.png" },
+              { name: "S.D Kahawevithana", id: "IT22191342", role: "DME Detection & Risk Assessment", initials: "SK", disease: "DME", photo: "/team/member-kahawevithana.png" },
+              { name: "Chavindee M.A.P.", id: "IT22127778", role: "Glaucoma Detection & Risk", initials: "CM", disease: "Glaucoma", photo: "/team/member-chavindee.png" },
+              { name: "Oshan Wijekoon", id: "IT22265388", role: "DR Detection & System Integration", initials: "OW", disease: "DR", photo: "/team/member-wijekoon.png" },
             ].map((member) => (
               <RevealSection key={member.id}>
-                <div className="bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-lg hover:-translate-y-1 transition-all text-center">
-                  <div
-                    className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center text-white font-bold text-xl"
-                    style={{ background: "linear-gradient(135deg, #1e3a8a, #3b82f6)" }}
-                  >
-                    {member.initials}
+                <div className="home-team-card bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-lg hover:-translate-y-1 transition-all text-center">
+                  <div className="relative w-20 h-20 rounded-full mx-auto mb-4 overflow-hidden ring-4 ring-blue-100 shadow-lg">
+                    <Image
+                      src={member.photo}
+                      alt={`${member.name} profile portrait`}
+                      fill
+                      sizes="80px"
+                      className="object-cover"
+                    />
                   </div>
                   <h4 className="font-semibold text-gray-900 text-sm mb-0.5">{member.name}</h4>
                   <p className="text-xs text-gray-500 mb-2">{member.id}</p>

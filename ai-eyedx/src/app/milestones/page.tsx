@@ -64,7 +64,7 @@ export default function MilestonesPage() {
     {
       id: 5,
       title: "Model Development",
-      status: "in-progress",
+      status: "completed",
       date: "2025 — Semester 1",
       marks: "—",
       items: [
@@ -79,7 +79,7 @@ export default function MilestonesPage() {
     {
       id: 6,
       title: "Progress Presentation 2 (PP2)",
-      status: "upcoming",
+      status: "completed",
       date: "Date to be announced",
       marks: "Not published",
       items: [
