@@ -427,31 +427,31 @@ export default function HomePage() {
         <section id="system-architecture" className="home-architecture py-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mb-12 text-center">
-              <span className="inline-flex items-center gap-2 rounded-full border border-teal-100 bg-white px-4 py-2 text-[10px] font-bold uppercase tracking-[0.24em] text-teal-800 shadow-sm">
+              <span className="architecture-title-badge inline-flex items-center gap-2 rounded-full border border-teal-100 bg-white px-4 py-2 text-[10px] font-bold uppercase tracking-[0.24em] text-teal-800 shadow-sm">
                 <span className="h-2 w-2 rounded-full bg-teal-500" />
                 System Architecture
               </span>
-              <h2 className="mt-5 text-3xl font-black tracking-[-0.05em] text-slate-950 sm:text-4xl">
+              <h2 className="architecture-heading mt-5 text-3xl font-black tracking-[-0.05em] text-slate-950 sm:text-4xl">
                 From retinal image to explainable insight
               </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
+              <p className="architecture-intro mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
                 A modular workflow connects image intake, disease-specific inference, clinical assessment, and transparent visual evidence.
               </p>
             </div>
 
-            <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-5 shadow-[0_30px_90px_rgba(20,35,61,0.11)] sm:p-8">
-              <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+            <div className="architecture-canvas overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-5 shadow-[0_30px_90px_rgba(20,35,61,0.11)] sm:p-8">
+              <div className="architecture-canvas-header mb-6 flex flex-wrap items-center justify-between gap-3">
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-teal-800">AI EyeDx · Platform flow</p>
-                  <p className="mt-1 text-xs text-slate-500">Four focused models, one integrated experience</p>
+                  <p className="architecture-canvas-kicker text-[10px] font-bold uppercase tracking-[0.22em] text-teal-800">AI EyeDx · Platform flow</p>
+                  <p className="architecture-canvas-caption mt-1 text-xs text-slate-500">Four focused models, one integrated experience</p>
                 </div>
-                <span className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-emerald-800">
+                <span className="architecture-pipeline-badge rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-emerald-800">
                   Modular pipeline
                 </span>
               </div>
 
               <div className="grid gap-4 lg:grid-cols-[0.92fr_1fr_1.7fr_1fr] lg:items-stretch">
-                <div className="architecture-stage">
+                <div className="architecture-stage architecture-stage-experience">
                   <span className="architecture-step">01 · EXPERIENCE</span>
                   <div className="architecture-node architecture-node-primary">
                     <span className="architecture-icon">◉</span>
@@ -470,7 +470,7 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <div className="architecture-stage">
+                <div className="architecture-stage architecture-stage-preparation">
                   <span className="architecture-step">02 · PREPARATION</span>
                   <div className="architecture-node architecture-node-teal">
                     <span className="architecture-icon">⇧</span>
@@ -489,7 +489,7 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <div className="architecture-stage architecture-models">
+                <div className="architecture-stage architecture-stage-ai architecture-models">
                   <span className="architecture-step">03 · DISEASE-SPECIFIC AI</span>
                   <div className="architecture-model-grid">
                     {[
@@ -516,7 +516,7 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <div className="architecture-stage">
+                <div className="architecture-stage architecture-stage-decision">
                   <span className="architecture-step">04 · DECISION SUPPORT</span>
                   <div className="architecture-node architecture-node-violet">
                     <span className="architecture-icon">◫</span>
@@ -544,11 +544,11 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-2 border-t border-slate-100 pt-5 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">
-                <span className="rounded-full bg-slate-100 px-3 py-1.5">Fundus photography</span>
-                <span className="rounded-full bg-slate-100 px-3 py-1.5">OCT imaging</span>
-                <span className="rounded-full bg-slate-100 px-3 py-1.5">Explainable AI</span>
-                <span className="rounded-full bg-slate-100 px-3 py-1.5">Research decision support</span>
+              <div className="architecture-legend mt-6 flex flex-wrap items-center justify-center gap-2 border-t border-slate-100 pt-5 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+                <span className="architecture-legend-fundus rounded-full bg-slate-100 px-3 py-1.5">Fundus photography</span>
+                <span className="architecture-legend-oct rounded-full bg-slate-100 px-3 py-1.5">OCT imaging</span>
+                <span className="architecture-legend-xai rounded-full bg-slate-100 px-3 py-1.5">Explainable AI</span>
+                <span className="architecture-legend-support rounded-full bg-slate-100 px-3 py-1.5">Research decision support</span>
               </div>
             </div>
           </div>

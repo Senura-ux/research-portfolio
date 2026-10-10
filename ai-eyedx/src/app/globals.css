@@ -2505,3 +2505,271 @@ body {
     transition: none;
   }
 }
+
+.home-architecture {
+  background:
+    radial-gradient(ellipse at 4% 8%, rgba(36, 184, 177, 0.13), transparent 30rem),
+    radial-gradient(ellipse at 95% 80%, rgba(108, 91, 210, 0.12), transparent 32rem),
+    linear-gradient(180deg, #eaf2fb, #edf5f5);
+}
+
+.architecture-title-badge {
+  border-color: rgba(44, 176, 173, 0.32);
+  background: linear-gradient(110deg, #e2faf5, #edeaff);
+  color: #166c78;
+}
+
+.architecture-heading {
+  color: #122744;
+}
+
+.architecture-intro {
+  color: #526781;
+}
+
+.architecture-canvas {
+  border-color: rgba(150, 190, 226, 0.24);
+  background:
+    radial-gradient(ellipse at 5% 5%, rgba(29, 178, 174, 0.13), transparent 32%),
+    radial-gradient(ellipse at 96% 95%, rgba(120, 102, 226, 0.17), transparent 38%),
+    linear-gradient(135deg, #0c1c34, #142844 52%, #1d2c50);
+  box-shadow: 0 32px 90px rgba(14, 34, 62, 0.24);
+}
+
+.architecture-canvas-kicker {
+  color: #7ce0d5;
+}
+
+.architecture-canvas-caption {
+  color: #b1c4da;
+}
+
+.architecture-pipeline-badge {
+  border-color: rgba(101, 224, 188, 0.35);
+  background: rgba(27, 154, 133, 0.17);
+  color: #9af0d0;
+}
+
+.architecture-stage {
+  isolation: isolate;
+  border-color: rgba(164, 195, 226, 0.2);
+  background: linear-gradient(155deg, rgba(33, 57, 85, 0.95), rgba(23, 43, 69, 0.96));
+  box-shadow: 0 12px 30px rgba(3, 11, 27, 0.16), inset 0 1px rgba(255, 255, 255, 0.055);
+  transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.architecture-stage:hover {
+  transform: translateY(-3px);
+  border-color: rgba(129, 220, 219, 0.45);
+  box-shadow: 0 17px 35px rgba(3, 11, 27, 0.25), inset 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.architecture-stage-experience {
+  background: linear-gradient(155deg, rgba(25, 80, 105, 0.94), rgba(23, 48, 79, 0.98));
+}
+
+.architecture-stage-preparation {
+  background: linear-gradient(155deg, rgba(19, 91, 91, 0.92), rgba(22, 54, 78, 0.98));
+}
+
+.architecture-stage-ai {
+  background: linear-gradient(155deg, rgba(54, 61, 111, 0.94), rgba(33, 43, 79, 0.98));
+}
+
+.architecture-stage-decision {
+  background: linear-gradient(155deg, rgba(80, 55, 119, 0.88), rgba(38, 43, 82, 0.98));
+}
+
+.architecture-step {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+  padding: 0.4rem 0.55rem;
+  border: 1px solid rgba(206, 226, 247, 0.15);
+  border-radius: 0.5rem;
+  background: rgba(7, 17, 35, 0.25);
+  color: #c9d9ed;
+  font-size: 0.56rem;
+  letter-spacing: 0.12em;
+}
+
+.architecture-node {
+  border-color: rgba(213, 231, 251, 0.18);
+  background: linear-gradient(125deg, rgba(51, 78, 108, 0.9), rgba(38, 62, 93, 0.92));
+  box-shadow: 0 8px 18px rgba(3, 11, 27, 0.17), inset 0 1px rgba(255, 255, 255, 0.045);
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.architecture-node:hover,
+.architecture-model:hover {
+  transform: translateY(-2px);
+  border-color: rgba(162, 229, 225, 0.48);
+}
+
+.architecture-node strong,
+.architecture-model strong {
+  color: #f3f7ff;
+}
+
+.architecture-node small,
+.architecture-model small {
+  color: #c0cde0;
+}
+
+.architecture-icon {
+  background: linear-gradient(145deg, #38c7bb, #1685a0);
+  color: #f4ffff;
+  box-shadow: 0 5px 14px rgba(9, 181, 172, 0.25);
+}
+
+.architecture-node-teal .architecture-icon {
+  background: linear-gradient(145deg, #43d6b1, #148c91);
+  color: white;
+}
+
+.architecture-node-violet .architecture-icon {
+  background: linear-gradient(145deg, #b19aff, #7160dc);
+  color: white;
+  box-shadow: 0 5px 14px rgba(132, 106, 231, 0.26);
+}
+
+.architecture-node-primary {
+  border-color: rgba(76, 225, 205, 0.42);
+  background: linear-gradient(120deg, rgba(21, 122, 132, 0.9), rgba(57, 73, 139, 0.92));
+}
+
+.architecture-node-primary .architecture-icon {
+  background: linear-gradient(145deg, #f4cb73, #ee8c62);
+  color: #352a42;
+  box-shadow: 0 5px 14px rgba(239, 162, 96, 0.25);
+}
+
+.architecture-connector {
+  color: #79e1d6;
+  text-shadow: 0 0 14px rgba(91, 224, 211, 0.5);
+}
+
+.architecture-models {
+  background:
+    radial-gradient(circle at 95% 5%, rgba(171, 141, 255, 0.18), transparent 12rem),
+    linear-gradient(155deg, rgba(55, 57, 111, 0.97), rgba(32, 44, 82, 0.98));
+}
+
+.architecture-model {
+  border-color: rgba(223, 232, 255, 0.16);
+  background: linear-gradient(145deg, rgba(66, 75, 123, 0.88), rgba(45, 57, 99, 0.94));
+  box-shadow: 0 7px 16px rgba(3, 11, 27, 0.2), inset 0 1px rgba(255, 255, 255, 0.05);
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.architecture-model-rose {
+  background: linear-gradient(145deg, rgba(125, 62, 93, 0.74), rgba(68, 54, 101, 0.95));
+}
+
+.architecture-model-violet {
+  background: linear-gradient(145deg, rgba(98, 72, 154, 0.74), rgba(59, 57, 118, 0.95));
+}
+
+.architecture-model-amber {
+  background: linear-gradient(145deg, rgba(146, 104, 52, 0.7), rgba(76, 64, 91, 0.95));
+}
+
+.architecture-model-teal {
+  background: linear-gradient(145deg, rgba(28, 125, 128, 0.72), rgba(42, 63, 112, 0.95));
+}
+
+.architecture-model-dot {
+  background: #63e0d0;
+  box-shadow: 0 0 0 4px rgba(99, 224, 208, 0.15), 0 0 12px rgba(99, 224, 208, 0.55);
+}
+
+.architecture-model-violet .architecture-model-dot {
+  background: #b69bff;
+  box-shadow: 0 0 0 4px rgba(182, 155, 255, 0.15), 0 0 12px rgba(182, 155, 255, 0.45);
+}
+
+.architecture-model-amber .architecture-model-dot {
+  background: #ffd27d;
+  box-shadow: 0 0 0 4px rgba(255, 210, 125, 0.15), 0 0 12px rgba(255, 210, 125, 0.45);
+}
+
+.architecture-model-rose .architecture-model-dot {
+  background: #ff91a8;
+  box-shadow: 0 0 0 4px rgba(255, 145, 168, 0.15), 0 0 12px rgba(255, 145, 168, 0.45);
+}
+
+.architecture-modality {
+  border: 1px solid rgba(163, 233, 227, 0.2);
+  background: rgba(23, 157, 156, 0.18);
+  color: #a4f0e4;
+}
+
+.architecture-model-violet .architecture-modality {
+  border-color: rgba(192, 174, 255, 0.22);
+  background: rgba(136, 111, 222, 0.19);
+  color: #d1c3ff;
+}
+
+.architecture-model-amber .architecture-modality {
+  border-color: rgba(255, 217, 153, 0.22);
+  background: rgba(205, 145, 53, 0.2);
+  color: #ffe0a8;
+}
+
+.architecture-model-rose .architecture-modality {
+  border-color: rgba(255, 176, 192, 0.22);
+  background: rgba(208, 84, 121, 0.19);
+  color: #ffc0cd;
+}
+
+.architecture-legend {
+  border-color: rgba(193, 211, 237, 0.16);
+  color: #cad7e9;
+}
+
+.architecture-legend > span {
+  border: 1px solid rgba(201, 221, 244, 0.14);
+  background: rgba(229, 241, 255, 0.08);
+  color: #d9e6f7;
+}
+
+.architecture-legend-fundus {
+  box-shadow: inset 3px 0 #ff91a8;
+}
+
+.architecture-legend-oct {
+  box-shadow: inset 3px 0 #63e0d0;
+}
+
+.architecture-legend-xai {
+  box-shadow: inset 3px 0 #b69bff;
+}
+
+.architecture-legend-support {
+  box-shadow: inset 3px 0 #ffd27d;
+}
+
+@media (min-width: 1024px) {
+  .architecture-stage:not(:last-child)::after {
+    border-color: rgba(153, 226, 223, 0.38);
+    background: #193c58;
+    color: #91f0df;
+    box-shadow: 0 6px 18px rgba(3, 11, 27, 0.28), 0 0 18px rgba(57, 207, 195, 0.13);
+  }
+}
+
+@media (max-width: 640px) {
+  .architecture-canvas {
+    border-radius: 1.4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .architecture-stage,
+  .architecture-node,
+  .architecture-model {
+    transition: none;
+  }
+}
