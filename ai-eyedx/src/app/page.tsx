@@ -624,8 +624,8 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
             {[
-              { name: "Binuri Perera", id: "IT22151292", role: "Cataract & Visibility Degradation", initials: "BP", disease: "Cataract", photo: "/team/member-kahawevithana.png" },
-              { name: "S.D Kahawevithana", id: "IT22191342", role: "DME Detection & Risk Assessment", initials: "SK", disease: "DME", photo: "/team/member-perera.png" },
+              { name: "Binuri Perera", id: "IT22151292", role: "Cataract & Visibility Degradation", initials: "BP", disease: "Cataract", photo: "/team/member-perera.png" },
+              { name: "S.D Kahawevithana", id: "IT22191342", role: "DME Detection & Risk Assessment", initials: "SK", disease: "DME", photo: "/team/member-kahawevithana.png" },
               { name: "Chavindee M.A.P.", id: "IT22127778", role: "Glaucoma Detection & Risk", initials: "CM", disease: "Glaucoma", photo: "/team/member-chavindee.png" },
               { name: "Oshan Wijekoon", id: "IT22265388", role: "DR Detection & System Integration", initials: "OW", disease: "DR", photo: "/team/member-wijekoon.png" },
             ].map((member) => (

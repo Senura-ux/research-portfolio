@@ -6,7 +6,7 @@ const team = [
     id: "IT22151292",
     role: "Explainable Cataract Severity & Visibility Degradation Assessment",
     initials: "BP",
-    photo: "/team/member-kahawevithana.png",
+    photo: "/team/member-perera.png",
     disease: "Cataract Module",
     email: null,
     responsibilities: [
@@ -32,7 +32,7 @@ const team = [
     id: "IT22191342",
     role: "Diabetic Macular Edema Detection, Severity & Risk Assessment",
     initials: "SK",
-    photo: "/team/member-perera.png",
+    photo: "/team/member-kahawevithana.png",
     disease: "DME Module",
     email: null,
     responsibilities: [
