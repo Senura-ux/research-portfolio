@@ -370,6 +370,153 @@ export default function ResearchModulesPage() {
                     </div>
                   </div>
 
+                  {/* Lesion-Aware Analysis — DR module only */}
+                  {mod.id === "dr" && (
+                    <div className="lesion-section mb-8 overflow-hidden rounded-2xl border border-blue-100 bg-gradient-to-br from-slate-50 via-white to-blue-50/40">
+                      {/* Section header */}
+                      <div className="border-b border-blue-100 bg-gradient-to-r from-[#0b172b] to-[#12324d] px-5 py-4 sm:px-7">
+                        <div className="flex items-center gap-3">
+                          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/15 text-lg">🔬</span>
+                          <div>
+                            <h3 className="text-sm font-bold text-white tracking-wide">Lesion-Aware Analysis</h3>
+                            <p className="text-[10px] text-blue-200/80 mt-0.5 font-medium uppercase tracking-widest">Individual Research Contribution</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="px-5 py-6 sm:px-7 space-y-7">
+                        {/* Description */}
+                        <p className="text-sm leading-relaxed text-slate-600">
+                          My lesion-aware analysis component enhances diabetic retinopathy severity classification by combining explainable AI with retinal-region analysis. Grad-CAM highlights the retinal regions that influence the model&apos;s prediction. These regions can then be processed into candidate regions and examined using visual characteristics and filtering techniques to support the interpretation of potential diabetic retinopathy lesions. The system presents lesion-related information alongside the predicted severity and visual explanations, helping users better understand the retinal evidence associated with the prediction.
+                        </p>
+
+                        {/* Workflow Stepper */}
+                        <div>
+                          <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Lesion Analysis Workflow</h4>
+                          <div className="lesion-stepper">
+                            {[
+                              {
+                                step: 1,
+                                icon: "📷",
+                                title: "Retinal Image Input",
+                                desc: "The user uploads a retinal fundus image, which is prepared for processing using the model\u0027s required input dimensions.",
+                              },
+                              {
+                                step: 2,
+                                icon: "🧠",
+                                title: "Severity Classification",
+                                desc: "EfficientNetV2-S predicts one of the five diabetic retinopathy severity classes and provides class probabilities and prediction confidence.",
+                              },
+                              {
+                                step: 3,
+                                icon: "🔥",
+                                title: "Grad-CAM Visualization",
+                                desc: "Grad-CAM generates a heatmap highlighting the retinal regions that contributed to the model\u0027s predicted severity.",
+                              },
+                              {
+                                step: 4,
+                                icon: "🎯",
+                                title: "Candidate-Region Analysis",
+                                desc: "Highlighted regions are processed to identify candidate areas for further examination. Visual feature analysis and candidate filtering support the interpretation of relevant retinal abnormalities.",
+                              },
+                              {
+                                step: 5,
+                                icon: "📋",
+                                title: "Lesion-Aware Results",
+                                desc: "The system presents the severity prediction, visual explanation, and available lesion-related information, including potential lesion categories and counts where supported by the implementation.",
+                              },
+                            ].map((item, i) => (
+                              <div key={item.step} className="lesion-step-item">
+                                <div className="lesion-step-card">
+                                  <div className="flex items-center gap-2 mb-2">
+                                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-600 text-[10px] font-bold text-white flex-shrink-0">{item.step}</span>
+                                    <span className="text-base">{item.icon}</span>
+                                  </div>
+                                  <h5 className="text-xs font-bold text-slate-800 mb-1">{item.title}</h5>
+                                  <p className="text-[11px] leading-relaxed text-slate-500">{item.desc}</p>
+                                </div>
+                                {i < 4 && (
+                                  <div className="lesion-step-connector">
+                                    <svg className="w-4 h-4 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                  </div>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Potential Lesion Indicators */}
+                        <div>
+                          <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Potential Lesion Indicators</h4>
+                          <div className="flex flex-wrap gap-2 mb-3">
+                            {[
+                              { label: "Microaneurysms", icon: "🔴" },
+                              { label: "Retinal haemorrhages", icon: "🩸" },
+                              { label: "Hard exudates", icon: "🟡" },
+                              { label: "Cotton-wool spots", icon: "⚪" },
+                              { label: "Other DR-related abnormalities", icon: "🔍" },
+                            ].map((lesion) => (
+                              <span key={lesion.label} className="lesion-indicator-badge">
+                                <span>{lesion.icon}</span> {lesion.label}
+                              </span>
+                            ))}
+                          </div>
+                          <p className="text-[11px] leading-relaxed text-slate-400 italic">
+                            Lesion indicators represent potential retinal abnormalities considered during lesion-aware analysis. The availability and reliability of individual lesion interpretations depend on the implemented analysis pipeline and input image quality.
+                          </p>
+                        </div>
+
+                        {/* What the Analysis Provides + Reliability — side by side */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                          {/* What the Analysis Provides */}
+                          <div className="rounded-xl border border-slate-200 bg-white p-5">
+                            <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                              <span className="flex h-5 w-5 items-center justify-center rounded bg-blue-100 text-[10px]">📊</span>
+                              What the Analysis Provides
+                            </h4>
+                            <ul className="space-y-1.5">
+                              {[
+                                "Predicted diabetic retinopathy severity",
+                                "Class probabilities and prediction confidence",
+                                "Grad-CAM heatmap and overlay on the original fundus image",
+                                "Highlighted retinal regions that influenced the prediction",
+                                "Candidate-region evidence and visual feature analysis, where implemented",
+                                "Available lesion-related interpretations and counts",
+                                "Reliability information and warnings when applicable",
+                              ].map((item) => (
+                                <li key={item} className="flex items-start gap-2 text-xs text-gray-700">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-teal-500 mt-1.5 flex-shrink-0" />
+                                  {item}
+                                </li>
+                              ))}
+                            </ul>
+                            <p className="mt-3 text-[11px] leading-relaxed text-slate-400">
+                              Combining classification and visual explanations provides more interpretable information than displaying only a disease label.
+                            </p>
+                          </div>
+
+                          {/* Reliability Assessment */}
+                          <div className="rounded-xl border border-amber-200 bg-amber-50/50 p-5">
+                            <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                              <span className="flex h-5 w-5 items-center justify-center rounded bg-amber-100 text-[10px]">🛡️</span>
+                              Reliability Assessment
+                            </h4>
+                            <p className="text-xs leading-relaxed text-slate-600">
+                              The system assesses prediction confidence and checks whether the input&apos;s learned feature representation differs from the training distribution. Where applicable, reliability warnings indicate that the prediction or associated lesion information may require further verification.
+                            </p>
+                            <div className="mt-3 flex flex-wrap gap-2">
+                              <span className="text-[10px] px-2 py-0.5 rounded-full bg-white text-slate-600 border border-slate-200 font-medium">Confidence scoring</span>
+                              <span className="text-[10px] px-2 py-0.5 rounded-full bg-white text-slate-600 border border-slate-200 font-medium">OOD detection</span>
+                              <span className="text-[10px] px-2 py-0.5 rounded-full bg-white text-slate-600 border border-slate-200 font-medium">Reliability warnings</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
                   {/* Formula for Glaucoma and Cataract */}
                   {"formula" in mod && mod.formula && (
                     <div className="module-formula mb-8 overflow-hidden rounded-2xl border border-teal-100">
@@ -402,7 +549,7 @@ export default function ResearchModulesPage() {
                   )}
 
                   {/* Metrics + Limitations */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className={`grid grid-cols-1 ${mod.id !== "dr" ? "md:grid-cols-2" : ""} gap-6`}>
                     <div>
                       <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Evaluation Metrics</h3>
                       <div className="flex flex-wrap gap-2">
@@ -411,6 +558,7 @@ export default function ResearchModulesPage() {
                         ))}
                       </div>
                     </div>
+                    {mod.id !== "dr" && (
                     <div>
                       <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Current Limitations</h3>
                       <ul className="space-y-1.5">
@@ -422,6 +570,7 @@ export default function ResearchModulesPage() {
                         ))}
                       </ul>
                     </div>
+                    )}
                   </div>
                 </div>
               </div>
