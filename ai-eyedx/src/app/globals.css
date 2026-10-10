@@ -1,4 +1,4 @@
-@import "lenis/dist/lenis.css";
+@import "../../node_modules/lenis/dist/lenis.css";
 @import "tailwindcss";
 @source "../**/*.{js,ts,jsx,tsx,mdx}";
 
