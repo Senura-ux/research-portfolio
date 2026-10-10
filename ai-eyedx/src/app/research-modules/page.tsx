@@ -178,32 +178,75 @@ const comparisonData = [
 
 export default function ResearchModulesPage() {
   return (
-    <div>
+    <main className="modules-page">
       {/* Header */}
-      <section
-        className="py-20 text-white"
-        style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #2563eb 100%)" }}
-      >
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <span className="inline-block text-xs font-semibold uppercase tracking-widest text-blue-200 bg-white/10 px-3 py-1 rounded-full mb-4">AI Modules</span>
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4">Research Modules</h1>
-          <p className="text-blue-100 text-lg max-w-2xl mx-auto">
-            Four disease-specific deep learning modules, each designed for targeted diagnosis and assessment of diabetes-related eye disorders.
-          </p>
-          <p className="text-xs text-blue-300 mt-4">
-            ⚠️ All accuracy values are project-reported experimental validation results, not clinically validated performance.
-          </p>
+      <section className="modules-hero relative overflow-hidden text-white">
+        <div className="modules-hero-grid" />
+        <div className="modules-hero-orb modules-hero-orb-one" />
+        <div className="modules-hero-orb modules-hero-orb-two" />
+        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
+          <div className="grid items-center gap-10 lg:grid-cols-[1fr_0.72fr]">
+            <div>
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.24em] text-teal-100 backdrop-blur">
+                <span className="h-2 w-2 rounded-full bg-teal-300 shadow-[0_0_16px_rgba(94,234,212,0.9)]" />
+                Disease-specific intelligence
+              </span>
+              <h1 className="mt-7 max-w-3xl text-4xl font-black tracking-[-0.06em] sm:text-5xl lg:text-6xl">
+                Four focused models.
+                <span className="mt-2 block bg-gradient-to-r from-teal-200 via-cyan-100 to-violet-200 bg-clip-text text-transparent">
+                  One research platform.
+                </span>
+              </h1>
+              <p className="mt-5 max-w-2xl text-base leading-relaxed text-blue-100/90 sm:text-lg">
+                Explore the AI EyeDx modules for diabetic retinopathy, glaucoma, cataract, and diabetic macular edema—each designed around the imaging modality and assessment needs of its research task.
+              </p>
+              <p className="mt-5 max-w-2xl text-xs leading-relaxed text-blue-100/70">
+                Accuracy figures are project-reported experimental validation results, not clinically validated performance.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { value: "04", label: "Disease modules" },
+                { value: "02", label: "Imaging modalities" },
+                { value: "XAI", label: "Visual explanations" },
+                { value: "OOD", label: "Reliability research" },
+              ].map((item) => (
+                <div key={item.label} className="modules-stat">
+                  <span>{item.value}</span>
+                  <small>{item.label}</small>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
+      <nav aria-label="Research modules" className="modules-jumpbar">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-2 px-4 py-4 sm:px-6 lg:justify-start lg:px-8">
+          <span className="mr-2 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Jump to module</span>
+          {modules.map((mod) => (
+            <a key={mod.id} href={`#${mod.id}`} className="modules-jump-link">
+              <span style={{ backgroundColor: mod.color }} />
+              {mod.name}
+            </a>
+          ))}
+        </div>
+      </nav>
+
       {/* Comparison Table */}
-      <section className="py-12 bg-white border-b border-gray-100">
+      <section className="modules-comparison py-14">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 text-center">Module Comparison</h2>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+          <div className="mb-7 flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-teal-800">At a glance</span>
+              <h2 className="mt-2 text-2xl font-black tracking-[-0.04em] text-slate-950 sm:text-3xl">Module comparison</h2>
+            </div>
+            <p className="max-w-md text-xs leading-relaxed text-slate-500">A concise comparison of input modality, model family, purpose, and reported validation results.</p>
+          </div>
+          <div className="modules-table-wrap overflow-x-auto">
+            <table className="w-full min-w-[760px] text-sm">
               <thead>
-                <tr style={{ background: "linear-gradient(135deg, #1e3a8a, #3b82f6)" }}>
+                <tr className="modules-table-head">
                   <th className="text-left px-5 py-4 text-white font-semibold">Module</th>
                   <th className="text-center px-5 py-4 text-white font-semibold">Input</th>
                   <th className="text-left px-5 py-4 text-white font-semibold">Main Model</th>
@@ -213,14 +256,14 @@ export default function ResearchModulesPage() {
               </thead>
               <tbody>
                 {comparisonData.map((row, i) => (
-                  <tr key={row.module} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+                  <tr key={row.module} className={i % 2 === 0 ? "modules-table-row" : "modules-table-row modules-table-row-alt"}>
                     <td className="px-5 py-4 font-medium text-gray-900">{row.module}</td>
                     <td className="px-5 py-4 text-center">
                       <span className="text-xs px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-100">{row.input}</span>
                     </td>
                     <td className="px-5 py-4 text-gray-600 text-xs">{row.model}</td>
                     <td className="px-5 py-4 text-gray-600 text-xs">{row.function}</td>
-                    <td className="px-5 py-4 text-center font-bold" style={{ color: "#1e3a8a" }}>{row.accuracy}</td>
+                    <td className="px-5 py-4 text-center font-extrabold text-teal-800">{row.accuracy}</td>
                   </tr>
                 ))}
               </tbody>
@@ -231,23 +274,23 @@ export default function ResearchModulesPage() {
       </section>
 
       {/* Module Details */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 space-y-16">
+      <section className="modules-details py-20">
+        <div className="mx-auto max-w-7xl space-y-12 px-4 sm:px-6 lg:px-8">
           {modules.map((mod, idx) => (
             <div key={mod.id} id={mod.id} className="scroll-mt-20">
-              <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+              <div className="module-detail-card overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_75px_rgba(20,35,61,0.08)] transition-shadow hover:shadow-[0_30px_90px_rgba(15,88,106,0.13)]">
                 {/* Header stripe */}
                 <div
-                  className="p-8 text-white"
-                  style={{ background: `linear-gradient(135deg, #0f172a, ${mod.color})` }}
+                  className="module-detail-header relative overflow-hidden p-6 text-white sm:p-8"
+                  style={{ background: `radial-gradient(circle at 92% 12%, ${mod.color}88, transparent 36%), linear-gradient(125deg, #0b172b, #12324d 58%, #282d60)` }}
                 >
                   <div className="flex flex-wrap items-start justify-between gap-4">
                     <div>
                       <div className="flex items-center gap-3 mb-3">
                         <span className="text-4xl">{mod.icon}</span>
                         <div>
-                          <div className="text-xs text-blue-200 font-medium mb-1">Module {idx + 1}</div>
-                          <h2 className="text-2xl font-extrabold">{mod.name}</h2>
+                          <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-teal-200">Module {String(idx + 1).padStart(2, "0")}</div>
+                          <h2 className="mt-1 text-2xl font-black tracking-[-0.04em] sm:text-3xl">{mod.name}</h2>
                         </div>
                       </div>
                       <div className="flex flex-wrap gap-2">
@@ -257,8 +300,8 @@ export default function ResearchModulesPage() {
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="text-xs text-blue-200 mb-1">Experimental Validation Accuracy*</div>
-                      <div className="text-4xl font-black">{mod.accuracy}</div>
+                      <div className="text-[10px] font-bold uppercase tracking-[0.16em] text-blue-100/70">Experimental validation*</div>
+                      <div className="mt-1 text-4xl font-black tracking-[-0.05em]">{mod.accuracy}</div>
                       <div className="w-full h-2 bg-white/20 rounded-full mt-2" style={{ minWidth: 120 }}>
                         <div
                           className="h-full rounded-full bg-white/70"
@@ -269,11 +312,11 @@ export default function ResearchModulesPage() {
                   </div>
                 </div>
 
-                <div className="p-8">
+                <div className="p-6 sm:p-8">
                   {/* Dataset */}
                   <div className="mb-8">
                     <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Dataset</h3>
-                    <p className="text-sm text-gray-700 bg-gray-50 rounded-xl px-4 py-3 border border-gray-200">{mod.dataset}</p>
+                    <p className="module-dataset text-sm text-slate-700">{mod.dataset}</p>
                   </div>
 
                   {/* Classes */}
@@ -281,7 +324,7 @@ export default function ResearchModulesPage() {
                     <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Classification Classes</h3>
                     <div className="flex flex-wrap gap-2">
                       {mod.classes.map((c) => (
-                        <span key={c} className="text-xs px-3 py-1 rounded-full border border-gray-200 bg-gray-50 text-gray-700">{c}</span>
+                        <span key={c} className="module-class-pill">{c}</span>
                       ))}
                     </div>
                   </div>
@@ -329,8 +372,8 @@ export default function ResearchModulesPage() {
 
                   {/* Formula for Glaucoma and Cataract */}
                   {"formula" in mod && mod.formula && (
-                    <div className="mb-8 rounded-xl overflow-hidden border border-blue-100">
-                      <div className="px-5 py-3 bg-blue-50 border-b border-blue-100">
+                    <div className="module-formula mb-8 overflow-hidden rounded-2xl border border-teal-100">
+                      <div className="border-b border-teal-100 bg-teal-50 px-5 py-3">
                         <h3 className="text-xs font-bold text-blue-800">{mod.formula.label}</h3>
                       </div>
                       <div className="px-5 py-4 bg-white">
@@ -388,7 +431,7 @@ export default function ResearchModulesPage() {
       </section>
 
       {/* OOD Detection */}
-      <section className="py-16 bg-gray-50">
+      <section className="modules-reliability py-20">
         <div className="max-w-5xl mx-auto px-4">
           <div className="text-center mb-10">
             <span className="text-xs font-semibold uppercase tracking-widest text-blue-600 bg-white px-3 py-1 rounded-full border border-blue-100">Reliability</span>
@@ -429,7 +472,7 @@ export default function ResearchModulesPage() {
       </section>
 
       {/* Preprocessing Pipeline */}
-      <section className="py-16 bg-white">
+      <section className="modules-pipeline py-20">
         <div className="max-w-5xl mx-auto px-4">
           <div className="text-center mb-10">
             <span className="text-xs font-semibold uppercase tracking-widest text-blue-600 bg-blue-50 px-3 py-1 rounded-full">Data Pipeline</span>
@@ -459,6 +502,6 @@ export default function ResearchModulesPage() {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

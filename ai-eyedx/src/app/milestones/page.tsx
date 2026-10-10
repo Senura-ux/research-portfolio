@@ -122,120 +122,112 @@ export default function MilestonesPage() {
   ];
 
   const statusConfig: Record<string, { label: string; bg: string; text: string; dot: string }> = {
-    completed: { label: "Completed", bg: "#dcfce7", text: "#16a34a", dot: "#16a34a" },
-    "in-progress": { label: "In Progress", bg: "#fef9c3", text: "#854d0e", dot: "#eab308" },
-    upcoming: { label: "Upcoming", bg: "#f3f4f6", text: "#6b7280", dot: "#9ca3af" },
+    completed: { label: "Completed", bg: "rgba(34,197,94,0.14)", text: "#15803d", dot: "#22c55e" },
+    "in-progress": { label: "In Progress", bg: "rgba(59,130,246,0.12)", text: "#1d4ed8", dot: "#3b82f6" },
+    upcoming: { label: "Upcoming", bg: "rgba(148,163,184,0.16)", text: "#475569", dot: "#94a3b8" },
   };
 
   return (
-    <div>
-      {/* Header */}
-      <section
-        className="py-20 text-white"
-        style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #2563eb 100%)" }}
-      >
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <span className="inline-block text-xs font-semibold uppercase tracking-widest text-blue-200 bg-white/10 px-3 py-1 rounded-full mb-4">Project Milestones</span>
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4">Project Milestones</h1>
-          <p className="text-blue-100 text-lg max-w-xl mx-auto">
+    <div className="bg-slate-50 text-slate-800">
+      <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(96,165,250,0.25),_transparent_28%),linear-gradient(135deg,#020817_0%,#0f172a_17%,#172554_40%,#1d4ed8_72%,#2563eb_100%)] py-24 text-white">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.08)_1px,transparent_1px)] bg-[size:32px_32px] opacity-30" />
+        <div className="absolute -left-16 bottom-0 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl" />
+        <div className="absolute -right-16 top-8 h-72 w-72 rounded-full bg-blue-400/10 blur-3xl" />
+
+        <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.28em] text-blue-100 backdrop-blur-sm">
+            <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_18px_rgba(52,211,153,0.95)]" />
+            Roadmap
+          </span>
+          <h1 className="mt-7 text-4xl font-black tracking-[-0.06em] text-white sm:text-5xl lg:text-6xl">
+            Project Milestones
+          </h1>
+          <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-blue-100/90">
             Key stages in the development of the AI EyeDx research project — from initial proposal to final validation and publication.
           </p>
         </div>
       </section>
 
-      {/* Status Legend */}
-      <section className="py-6 bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 flex flex-wrap justify-center gap-4">
+      <section className="border-b border-slate-200 bg-white/80 py-6 backdrop-blur-sm">
+        <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-4 px-4 sm:px-6 lg:px-8">
           {Object.entries(statusConfig).map(([key, cfg]) => (
-            <div key={key} className="flex items-center gap-2 text-sm">
-              <span className="w-3 h-3 rounded-full" style={{ background: cfg.dot }} />
-              <span className="text-gray-600">{cfg.label}</span>
+            <div key={key} className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3.5 py-2 text-sm">
+              <span className="h-2.5 w-2.5 rounded-full" style={{ background: cfg.dot }} />
+              <span className="font-medium text-slate-700">{cfg.label}</span>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4">
+      <section className="py-20">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="relative">
-            {/* Vertical line */}
-            <div
-              className="absolute left-6 top-6 bottom-0 w-0.5"
-              style={{ background: "linear-gradient(to bottom, #3b82f6, #1e3a8a)" }}
-            />
+            <div className="absolute left-[25px] top-3 bottom-3 w-[2px] rounded-full bg-gradient-to-b from-blue-500 via-indigo-500 to-slate-200" />
 
-            <div className="space-y-6">
+            <div className="space-y-8">
               {milestones.map((m) => {
                 const cfg = statusConfig[m.status];
                 return (
-                  <div key={m.id} className="flex gap-6">
-                    {/* Circle */}
-                    <div className="flex-shrink-0 relative z-10">
-                      <div
-                        className="w-12 h-12 rounded-full flex items-center justify-center font-bold text-white text-sm shadow-md"
-                        style={{
-                          background:
-                            m.status === "completed"
-                              ? "linear-gradient(135deg, #16a34a, #15803d)"
-                              : m.status === "in-progress"
-                              ? "linear-gradient(135deg, #1e3a8a, #3b82f6)"
-                              : "#e5e7eb",
-                          color: m.status === "upcoming" ? "#6b7280" : "white",
-                        }}
-                      >
-                        {m.status === "completed" ? "✓" : m.id}
-                      </div>
+                  <div key={m.id} className="relative flex gap-6">
+                    <div className="relative z-10 flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-2xl border border-white shadow-[0_12px_30px_rgba(59,130,246,0.15)] text-base font-black text-white"
+                      style={{
+                        background:
+                          m.status === "completed"
+                            ? "linear-gradient(135deg, #22c55e, #16a34a)"
+                            : m.status === "in-progress"
+                            ? "linear-gradient(135deg, #3b82f6, #1d4ed8)"
+                            : "linear-gradient(135deg, #cbd5e1, #94a3b8)",
+                        color: m.status === "upcoming" ? "#334155" : "white",
+                      }}
+                    >
+                      {m.status === "completed" ? "✓" : m.id}
                     </div>
 
-                    {/* Card */}
                     <div
-                      className="flex-1 rounded-2xl border p-6 mb-1 hover:shadow-md transition-shadow"
+                      className="flex-1 rounded-[1.75rem] border p-6 shadow-[0_18px_40px_rgba(15,23,42,0.05)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(59,130,246,0.12)]"
                       style={{
                         borderColor:
                           m.status === "completed"
-                            ? "#bbf7d0"
+                            ? "rgba(34,197,94,0.24)"
                             : m.status === "in-progress"
-                            ? "#bfdbfe"
-                            : "#e5e7eb",
-                        backgroundColor:
+                            ? "rgba(59,130,246,0.2)"
+                            : "rgba(148,163,184,0.28)",
+                        background:
                           m.status === "completed"
-                            ? "#f0fdf4"
+                            ? "linear-gradient(135deg, rgba(240,253,244,0.95), rgba(255,255,255,1))"
                             : m.status === "in-progress"
-                            ? "#eff6ff"
-                            : "white",
+                            ? "linear-gradient(135deg, rgba(239,246,255,0.98), rgba(255,255,255,1))"
+                            : "linear-gradient(135deg, rgba(255,255,255,1), rgba(248,250,252,1))",
                       }}
                     >
-                      <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
+                      <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
                         <div>
-                          <h3 className="font-bold text-gray-900 text-lg">{m.title}</h3>
-                          <p className="text-xs text-gray-500 mt-0.5">📅 {m.date}</p>
+                          <h3 className="text-xl font-black tracking-[-0.04em] text-slate-900">{m.title}</h3>
+                          <p className="mt-1 text-xs font-medium uppercase tracking-[0.18em] text-slate-500">{m.date}</p>
                         </div>
+
                         <div className="flex flex-wrap gap-2">
                           <span
-                            className="text-xs font-semibold px-3 py-1 rounded-full"
+                            className="rounded-full px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em]"
                             style={{ background: cfg.bg, color: cfg.text }}
                           >
                             {cfg.label}
                           </span>
                           {m.marks !== "—" && (
-                            <span className="text-xs font-medium px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-100">
+                            <span className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-blue-700">
                               Marks: {m.marks}
                             </span>
                           )}
                         </div>
                       </div>
 
-                      <p className="text-sm text-gray-600 leading-relaxed mb-4">{m.desc}</p>
+                      <p className="text-sm leading-relaxed text-slate-600">{m.desc}</p>
 
-                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                      <ul className="mt-5 grid gap-2 sm:grid-cols-2">
                         {m.items.map((item) => (
-                          <li key={item} className="flex items-center gap-2 text-xs text-gray-600">
-                            <span
-                              className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                              style={{ background: cfg.dot }}
-                            />
-                            {item}
+                          <li key={item} className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white/70 px-3 py-2 text-sm text-slate-600">
+                            <span className="h-2 w-2 rounded-full" style={{ background: cfg.dot }} />
+                            <span>{item}</span>
                           </li>
                         ))}
                       </ul>
@@ -248,37 +240,37 @@ export default function MilestonesPage() {
         </div>
       </section>
 
-      {/* Assessment Marks Summary */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl font-bold text-gray-900">Assessment Summary</h2>
-            <p className="text-sm text-gray-500 mt-2">Formal assessment stages as per SLIIT research project guidelines.</p>
+      <section className="bg-white py-20">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 text-center">
+            <span className="rounded-full bg-blue-50 px-4 py-1 text-[10px] font-bold uppercase tracking-[0.24em] text-blue-700">Assessment Summary</span>
+            <h2 className="mt-4 text-3xl font-black tracking-[-0.04em] text-slate-900 sm:text-4xl">Progress and evaluation timeline</h2>
           </div>
-          <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
-            <table className="w-full text-sm">
+
+          <div className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-slate-50 shadow-[0_18px_40px_rgba(15,23,42,0.04)]">
+            <table className="w-full text-left text-sm">
               <thead>
-                <tr style={{ background: "linear-gradient(135deg, #1e3a8a, #3b82f6)" }}>
-                  <th className="text-left px-6 py-4 text-white font-semibold">Assessment Stage</th>
-                  <th className="text-center px-6 py-4 text-white font-semibold">Status</th>
-                  <th className="text-center px-6 py-4 text-white font-semibold">Date</th>
-                  <th className="text-center px-6 py-4 text-white font-semibold">Marks</th>
+                <tr className="bg-gradient-to-r from-slate-900 via-blue-900 to-blue-700 text-white">
+                  <th className="px-6 py-4 font-semibold">Assessment Stage</th>
+                  <th className="px-6 py-4 text-center font-semibold">Status</th>
+                  <th className="px-6 py-4 text-center font-semibold">Date</th>
+                  <th className="px-6 py-4 text-center font-semibold">Marks</th>
                 </tr>
               </thead>
               <tbody>
-                {milestones.filter(m => m.marks !== "—").map((m, i) => (
-                  <tr key={m.id} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                    <td className="px-6 py-4 font-medium text-gray-900">{m.title}</td>
+                {milestones.filter((m) => m.marks !== "—").map((m, i) => (
+                  <tr key={m.id} className={i % 2 === 0 ? "bg-white" : "bg-slate-50/70"}>
+                    <td className="px-6 py-4 font-semibold text-slate-800">{m.title}</td>
                     <td className="px-6 py-4 text-center">
                       <span
-                        className="text-xs font-semibold px-2.5 py-0.5 rounded-full"
+                        className="rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em]"
                         style={{ background: statusConfig[m.status].bg, color: statusConfig[m.status].text }}
                       >
                         {statusConfig[m.status].label}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-center text-gray-600">{m.date}</td>
-                    <td className="px-6 py-4 text-center text-gray-600">{m.marks}</td>
+                    <td className="px-6 py-4 text-center text-slate-600">{m.date}</td>
+                    <td className="px-6 py-4 text-center text-slate-600">{m.marks}</td>
                   </tr>
                 ))}
               </tbody>

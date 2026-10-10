@@ -1,0 +1,538 @@
+---PAGE 1---
+An Explainable Deep Learning Framework for
+Multi-Disease Diagnosis and Disease-Specific
+Assessment of Diabetes-Related Eye Disorders
+Abstract—Diabetes mellitus is associated with ocular com-
+plications such as Diabetic Retinopathy (DR), Diabetic Mac-
+ular Edema (DME), cataract, and glaucoma, creating a need
+for accessible and scalable diagnostic approaches. This paper
+presents an Artificial Intelligence (AI)-driven framework for
+the diagnosis of diabetes-related eye disorders. The framework
+integrates four independently optimized disease-specific modules
+within a unified web-based platform. Retinal fundus images are
+analyzed for cataract, DR, and glaucoma, while Optical Coher-
+ence Tomography (OCT) images are used for DME assessment.
+The modules employ disease-specific deep learning approaches
+and provide outputs including severity classification, risk as-
+sessment, structural analysis, and explainable visualizations. The
+cataract module additionally incorporates a visibility degradation
+score derived from vessel visibility, sharpness, contrast, and
+entropy. Experimental evaluation achieved validation accuracies
+of 88.19%, 92.13%, 92.67%, and 95.48% for the cataract, DR,
+DME, and glaucoma modules, respectively. These results demon-
+strate the feasibility of integrating independently optimized mod-
+els within a unified diagnostic workflow. By combining disease-
+specific analysis, multimodal ophthalmic imaging, explainability,
+and clinically oriented outputs, the proposed framework provides
+an accessible, scalable, and interpretable approach to support the
+diagnosis and assessment of diabetes-related eye disorders.
+Index Terms—Deep Learning, Diabetes-Related Eye Disorders,
+Multimodal Ophthalmic Imaging, Explainable Artificial Intelli-
+gence, Automated Ophthalmic Diagnosis.
+I. INTRODUCTION
+Diabetes mellitus represents a major and increasing global
+health burden, with its prevalence expected to continue rising
+in the coming decades [1]. Beyond its systemic effects, dia-
+betes is associated with several ocular complications that can
+progressively impair vision, including Diabetic Retinopathy
+(DR), Diabetic Macular Edema (DME), cataract, and glau-
+coma. Vision impairment and blindness remain significant
+global health concerns, highlighting the importance of early
+detection and timely management of ocular disorders [2].
+However, conventional ophthalmic screening relies heavily on
+specialized clinical expertise and medical image interpretation,
+which may limit the accessibility and scalability of large-scale
+screening programs.
+Recent advances in Artificial Intelligence (AI), particu-
+larly Machine Learning (ML) and Deep Learning (DL), have
+created new opportunities for automated ophthalmic image
+analysis. AI-based approaches have demonstrated the capa-
+bility to identify disease-related patterns from medical im-
+ages and support diagnostic decision-making processes [3].
+Retinal fundus photography provides valuable information on
+retinal and optic nerve structures for conditions such as DR,
+glaucoma, and cataract, whereas Optical Coherence Tomogra-
+phy (OCT) provides detailed cross-sectional information for
+assessing retinal abnormalities associated with DME. Recent
+developments in multimodal ophthalmic AI further highlight
+the potential of combining imaging modalities with disease-
+specific approaches [4].
+Existing studies have demonstrated promising DL-based ap-
+proaches for individual ophthalmic conditions. DL techniques
+have been investigated for DR detection and severity classifi-
+cation using fundus images [5], while explainable approaches
+have been proposed for cataract grading to improve model
+interpretability [6]. Similarly, Convolutional Neural Networks
+(CNNs) have been applied to DME detection and classification
+[7], and transfer learning has shown potential for automated
+glaucoma detection from fundus images [8]. Recent research
+has also explored multi-disease diagnosis using explainable
+visualization techniques such as Gradient-weighted Class Ac-
+tivation Mapping (Grad-CAM) [9].
+Despite these advances, existing approaches often focus
+on individual disease diagnosis or address multiple diseases
+through frameworks that may not fully accommodate their
+distinct pathological characteristics, imaging modalities, and
+clinical assessment requirements. Since DR, DME, cataract,
+and glaucoma require different diagnostic perspectives and
+severity evaluation strategies, a standardized approach may not
+provide optimal performance across all conditions. Therefore,
+this study proposes an AI-driven multi-disease diagnostic
+framework comprising four independently optimized disease-
+specific modules integrated into a unified web-based platform.
+The framework incorporates clinically oriented outputs, in-
+cluding lesion-aware analysis for DR, retinal visibility degra-
+dation assessment for cataract, risk-oriented outputs for DME
+and glaucoma, and glaucoma-related structural assessment. By
+integrating disease-specific AI models, multimodal ophthalmic
+imaging, severity-oriented predictions, risk assessment, and
+Grad-CAM-based visual explanations, the proposed frame-
+work aims to provide an accessible, scalable, and clinically
+interpretable solution for diabetes-related eye disorder diag-
+nosis and assessment.
+II. LITERATUREREVIEW
+Diabetes is associated with several ocular complications,
+including DR, DME, cataract, and glaucoma, which may
+contribute to visual impairment [10]. The need for early
+
+---PAGE 2---
+and scalable screening has encouraged the adoption of AI,
+particularly Deep Learning (DL), for automated ophthalmic
+image analysis [3], [11]. Retinal fundus photography provides
+information on retinal and optic nerve structures and has
+been widely investigated for the detection of DR, glaucoma,
+and cataract [10]. In contrast, OCT provides cross-sectional
+structural information that is particularly valuable for assessing
+retinal abnormalities associated with DME [3], [10]. Although
+AI-based systems have demonstrated promising diagnostic
+capabilities, many approaches focus on individual diseases or
+limited groups of conditions [10], [11]. This highlights the
+need for integrated frameworks that support multiple diabetes-
+related ocular conditions while preserving disease-specific
+diagnostic strategies.
+Cataract assessment is relevant to diabetes-related ocular
+screening because diabetes is associated with an increased risk
+of cataract development and earlier cataract onset [12]. DL
+techniques have been applied to automate cataract severity
+grading from fundus images. Xu et al. proposed a hybrid
+global-local CNN that combines global and fine-grained retinal
+features, achieving 86.24% accuracy [13], while Zhou, Li,
+and Li developed a discrete-state-transition neural network for
+four-class grading [14]. Their findings also showed that retinal
+structures, including blood vessels and the optic disc, become
+progressively less visible as cataract severity increases [14].
+Xu et al. further incorporated visual saliency, Grad-CAM, and
+RNN-based semantic descriptions to improve interpretability
+[6]. However, existing studies primarily emphasize severity
+classification and explanation, with limited assessment of
+cataract-related retinal visibility degradation and its impact on
+fundus image interpretation.
+DR is a major microvascular complication of diabetes that
+progresses through increasing levels of retinal abnormality
+[5]. CNN-based and transfer-learning approaches have demon-
+strated strong potential for automated DR severity classifica-
+tion. Recent lesion-based methods focus on clinically mean-
+ingful features, including microaneurysms, hemorrhages, hard
+exudates, and cotton-wool spots [15]. Jiang et al. proposed
+a ResNet-based multi-label model combined with Grad-CAM
+to support lesion classification and localization [16]. Similarly,
+Aouf et al. integrated transfer learning with Grad-CAM to pro-
+vide interpretable visual evidence for retinal disease diagnosis
+[9]. However, further research is needed to better integrate
+lesion-level information, multi-class severity prediction, and
+explainable outputs for clinical application.
+Recent studies have also demonstrated the effectiveness of
+DL for automated DME assessment. Keerthana and Kumar
+evaluated transfer-learning architectures, including Xception,
+NASNetMobile, and ConvNeXt, for DME classification [7].
+OCT-based analysis provides additional structural information
+for retinal disease assessment. Elsharkawy et al. demon-
+strated clinically explainable OCT analysis through abnormal-
+ity detection and hierarchical grading based on meaningful
+biomarkers [17]. However, existing studies often focus on
+specific classification or grading tasks. Integrating OCT-based
+recognition with severity or risk assessment and explainable
+visual evidence remains relevant for more comprehensive
+DME analysis within a diabetes-related eye disease diagnostic
+framework.
+AI-based fundus analysis has also been investigated for
+glaucoma screening and structural assessment. Karim et al.
+evaluated transfer-learned CNN models using cropped fundus
+images focused on the optic disc and cup regions [8]. Au-
+rangzeb et al. investigated automated glaucoma analysis using
+retinal-vessel segmentation and optic cup/disc localization,
+emphasizing structural biomarkers such as the cup-to-disc ratio
+[11]. These studies demonstrate the value of combining image-
+based learning with clinically relevant structural information.
+However, many existing studies primarily emphasize classi-
+fication or structural analysis, leaving scope for multi-stage
+assessment, risk-oriented outputs, and explainable visual evi-
+dence within a broader diabetes-related eye disease diagnostic
+workflow.
+Beyond diagnostic performance, transparency is increas-
+ingly important for the clinical adoption of AI-based oph-
+thalmic systems. Although DL models can achieve strong di-
+agnostic performance, their black-box nature can limit clinical
+trust and the interpretation of predictions [3]. Explainable AI
+(XAI) techniques, such as Grad-CAM, address this limitation
+by highlighting image regions that influence model predictions
+[9]. Explainable approaches have been applied to cataract
+assessment [6], DR analysis [9], and OCT-based retinal disease
+grading [17]. However, clinically relevant features and imaging
+characteristics differ across diseases, indicating the importance
+of disease-specific visual explanations.
+Despite advances in AI-based ophthalmic diagnosis, existing
+approaches vary considerably in their imaging modalities,
+diagnostic objectives, model architectures, and clinical outputs
+[3], [10]. Multimodal systems also often emphasize data fusion
+rather than maintaining disease-specific diagnostic strategies
+suited to different conditions and imaging characteristics. To
+address these limitations, this study proposes a modular AI-
+driven framework for four diabetes-related ocular conditions,
+namely cataract, DR, DME, and glaucoma. Each condition
+is addressed using an independent disease-specific model and
+appropriate imaging modality, while severity- or risk-related
+outputs and explainable visualizations are provided through
+a unified web-based platform. This approach combines a
+consistent interface with diagnostic strategies tailored to the
+characteristics of each disease.
+III. METHODOLOGY
+The proposed system is an explainable AI-driven framework
+designed for the diagnosis of multiple diabetes-related eye dis-
+orders through four independent diagnostic modules: cataract,
+DR, DME, and glaucoma. As illustrated in Fig. 1, users select
+the relevant disease module and upload the corresponding
+fundus or OCT image. The selected module then performs
+disease-specific analysis and generates the corresponding di-
+agnostic output.
+
+---PAGE 3---
+Fig. 1. Overall workflow of the proposed framework.
+Representative input images for the four disease-specific
+modules are shown in Fig. 2. Each module applies a disease-
+specific analysis pipeline to its corresponding image modality.
+Fig. 2. Representative input images for the four disease-specific modules: (a)
+cataract, (b) DR, (c) DME, and (d) glaucoma.
+A. Cataract Severity and Retinal Structure Visibility Assess-
+ment
+1) Dataset and Preprocessing:The cataract module utilized
+a public retinal fundus image dataset comprising 2,536 images
+categorized as No, Mild, Moderate, and Severe cataract. The
+dataset was divided into training (80%), validation (15%), and
+held-out test (5%) sets. All images were resized to350×350
+pixels. Contrast Limited Adaptive Histogram Equalization
+(CLAHE) was applied to the luminance channel in the LAB
+color space to enhance local contrast while preserving color
+information. Training images were augmented to improve
+model generalization, followed by ImageNet-based normaliza-
+tion before model training.
+2) Cataract Classification Model:Cataract severity was
+classified using a fine-tuned EfficientNet-B3 model based on
+transfer learning, with the original classifier replaced by a
+custom four-class classification head. The model was trained
+for 70 epochs using Focal Loss to improve learning from
+difficult samples. Mixup and CutMix were incorporated as
+regularization strategies to enhance robustness and reduce
+overfitting, while AdamW optimization and Exponential Mov-
+ing Average (EMA) were employed to support stable training
+and improved generalization.
+3) Visibility Degradation Assessment and Explainability:
+To complement CNN-based cataract severity prediction, retinal
+visibility degradation was assessed using four handcrafted
+image-quality measures related to vessel visibility, sharpness,
+contrast, and entropy, extracted from CLAHE-preprocessed
+fundus images. Vessel degradation was estimated using multi-
+scale Difference of Gaussians responses, sharpness degra-
+dation using Laplacian variance, contrast degradation using
+percentile-based Michelson contrast, and information degra-
+dation using local entropy. Ridge regression with standardized
+predictors and 5-fold cross-validation was employed to learn
+their relative contributions.
+The handcrafted visibility score was calculated as
+V S=w V V+w ShSh+w CC+w EE,(1)
+whereV,Sh,C, andEdenote vessel, sharpness, contrast,
+and entropy degradation scores, respectively, andw V ,w Sh,
+wC, andw E are normalized learned weights.
+The CNN output probabilities were converted into a nor-
+malized severity score. The final visibility degradation score
+was computed as
+V DS=αS+βV S,(2)
+whereSis the CNN-derived severity score,V Sis the hand-
+crafted visibility score, andαandβare fusion coefficients.
+Grad-CAM was used to highlight image regions contribut-
+ing to the CNN prediction.
+B. DR Severity Classification
+1) Dataset and Preprocessing:The DR classification
+dataset consisted of retinal fundus images representing five
+severity classes: No DR, Mild, Moderate, Severe, and Prolif-
+erative DR. To address class imbalance, 1,000 original images
+were selected from each class using a fixed random seed. An
+additional 2,000 augmented images per class were generated,
+resulting in a balanced dataset of 15,000 images. Augmenta-
+tion included horizontal and vertical flipping, random rotation
+within±15 ◦, brightness, contrast, and saturation adjustment,
+Gaussian blur, and Gaussian noise. Images were resized to
+384×384pixels, converted to tensors, and normalized. The
+dataset was divided using an 85:15 training and validation
+split.
+2) DR Classification Model:The DR severity classification
+model was developed using EfficientNetV2-S with ImageNet
+pretrained weights and transfer learning. Initially, the pre-
+trained backbone was frozen and only a custom classification
+
+---PAGE 4---
+head containing fully connected layers, SiLU activation, batch
+normalization, and dropout was trained. The last four back-
+bone blocks were subsequently unfrozen for fine-tuning. Dif-
+ferent learning rates were applied to the pretrained backbone
+and classification head. AdamW with CosineAnnealingWarm-
+Restarts was used for optimization, while OrdinalSmoothLoss,
+label smoothing, mixed-precision training, gradient clipping,
+and early stopping were applied to improve training stability
+and generalization.
+3) Lesion-Aware Explainability:Grad-CAM was integrated
+after classification to highlight retinal regions contributing to
+the predicted DR severity. The activation map was combined
+with the original fundus image to provide an interpretable
+visualization and support examination of lesion-related retinal
+regions.
+C. DME Detection and Classification
+1) Dataset and OCT Image Processing:The proposed
+DME module uses the publicly available Retinal OCT Images
+dataset from Kaggle, containing 84,495 OCT images classified
+into CNV , DME, DRUSEN, and NORMAL categories. Images
+are resized to224×224pixels and normalized to provide con-
+sistent model inputs. Data augmentation, including rotation,
+horizontal flipping, and brightness adjustment, is applied to
+increase data diversity and improve model generalization.
+2) DME Classification Model:An EfficientNet-B0 model
+is employed for OCT image classification due to its balance
+between predictive performance and computational efficiency.
+Transfer learning is applied using pretrained weights, followed
+by fine-tuning on the OCT dataset. The final classification
+layer is modified to distinguish the four retinal conditions:
+NORMAL, DRUSEN, DME, and CNV . The model learns
+disease-related retinal patterns, including fluid accumulation
+and structural abnormalities.
+3) Risk Assessment and Explainability:Classification prob-
+abilities are further utilized to provide risk-aware diagnostic
+information. Calibrated thresholds assign Low, Medium, or
+High risk levels based on prediction confidence. Grad-CAM
+generates heatmaps highlighting retinal regions that influence
+predictions, improving model interpretability. The final output
+presents the predicted condition, confidence score, risk level,
+and corresponding Grad-CAM visualization.
+D. Glaucoma Detection and Risk Assessment
+1) Dataset and Image Preprocessing:A total of 1,540 reti-
+nal fundus images representing Normal, Early Glaucoma, and
+Advanced Glaucoma were used to develop the classification
+module. The images were divided into training, validation,
+and test sets, resized to224×224pixels, and normalized
+using ImageNet statistics. Data augmentation, including flip-
+ping, rotation, affine transformations, color adjustments, and
+random erasing, was applied to improve generalization. Class
+imbalance was addressed using weighted random sampling.
+2) Glaucoma Classification Model:Transfer learning was
+implemented using EfficientNet-B0 with ImageNet-pretrained
+weights. The original classification head was replaced with a
+three-class classifier. Training was performed in two stages by
+initially freezing the feature-extraction backbone and subse-
+quently fine-tuning the entire network. AdamW optimization,
+learning-rate scheduling, class-weighted loss, label smoothing,
+MixUp, gradient clipping, and early stopping were used to im-
+prove training stability and reduce overfitting. The final model
+generated class probabilities, with the highest-probability class
+selected as the predicted glaucoma stage.
+3) Risk Prediction and Explainability:The predicted prob-
+abilities were used to report the glaucoma stage and confidence
+score, supporting severity-oriented assessment rather than bi-
+nary classification. Test-time augmentation was applied during
+inference to improve prediction robustness. Performance was
+evaluated using precision, recall, F1-score, confusion matrices,
+and one-versus-rest ROC-AUC analysis. Grad-CAM was used
+to visualize influential image regions, while out-of-distribution
+checking and cup-to-disc ratio analysis provided additional
+information for interpreting the model output.
+Fig. 3 illustrates a representative Grad-CAM visualization
+used to interpret the model’s image-based predictions.
+Fig. 3. Representative Grad-CAM visualization for model interpretation: (a)
+original fundus image, (b) activation heatmap, and (c) Grad-CAM overlay.
+E. Out-of-Distribution Detection
+To assess input reliability, each disease-specific module in-
+corporates Out-of-Distribution (OOD) detection. Deep feature
+embeddings are modeled using class-wise means and a shared
+covariance matrix, while the minimum Mahalanobis distance
+is used as the OOD score. A module-specific threshold is
+calibrated at the relevant validation-set percentile to identify
+inputs that differ substantially from the corresponding training
+distribution.
+F . Web-Based System Integration and Deployment
+The system was deployed as a web-based platform with a
+React frontend and independent Flask-based services for each
+disease module. Disease-specific pages allow users to upload
+the relevant images and send them to the corresponding back-
+end services for model inference. The resulting predictions,
+confidence scores, and visual explanations are then displayed
+within the respective disease interfaces.
+
+---PAGE 5---
+IV. RESULTS ANDDISCUSSION
+The proposed framework was evaluated through four in-
+dependently developed disease-specific modules for cataract,
+DR, DME, and glaucoma. Classification performance was
+assessed using validation accuracy, precision, recall, and F1-
+score, together with qualitative evaluation of disease-specific
+outputs and explainability components.
+The EfficientNet-B3 cataract classifier achieved 88.19% val-
+idation accuracy, with macro-average precision, recall, and F1-
+scores of 88.51%, 88.40%, and 88.39%, respectively. Severe
+cataract achieved the highest recall of 96.55%, with strong
+class discrimination shown in Fig. 4. Beyond classification, the
+proposed VDS combined CNN-derived severity with retinal
+image-quality measures. Ridge regression identified entropy
+(0.4426), contrast (0.2955), vessel visibility (0.2287), and
+sharpness (0.0332) as contributing factors for complementary
+retinal visibility assessment.
+Fig. 4. Confusion matrix of the EfficientNet-B3-based cataract severity
+classification model.
+The EfficientNetV2-S DR module achieved an overall val-
+idation accuracy of 92.13%, with weighted precision, recall,
+and F1-scores of 91.70%, 92.13%, and 92.14%, respectively.
+Proliferative DR achieved the highest F1-score of 94.74%,
+whereas Mild DR achieved 89.79%. As illustrated in Fig. 5,
+most predictions were correctly classified, although some
+confusion occurred between neighbouring severity stages.
+Fig. 5. Confusion matrix of the EfficientNetV2-S-based diabetic retinopathy
+severity classification model.
+The EfficientNet-B0 DME module achieved a best valida-
+tion accuracy of 92.67%, with precision, recall, and F1-scores
+of 92.77%, 92.67%, and 92.64%, respectively. The model
+successfully classified the four OCT categories: CNV , DME,
+DRUSEN, and NORMAL, with DME achieving the highest
+class-wise F1-score of 95.63%. Fig. 6 shows strong diagonal
+classification performance across the four categories. Predic-
+tion probabilities and Grad-CAM outputs further supported
+DME risk assessment and prediction interpretation.
+Fig. 6. Confusion matrix of the EfficientNet-B0-based diabetic macular edema
+classification model.
+The glaucoma module, based on EfficientNet-B0 transfer
+learning, achieved a best validation accuracy of 95.48% and
+demonstrated strong discrimination among Normal, Early, and
+Advanced Glaucoma, as shown in Fig. 7. Class-wise F1-scores
+ranged from 94.70% to 95.98%, while AUC values exceeded
+0.99 for all classes. Grad-CAM, out-of-distribution checking,
+and cup-to-disc ratio analysis further supported prediction
+interpretability and reliability.
+Fig. 7. Confusion matrix of the EfficientNet-B0-based glaucoma classification
+model.
+Overall, the four disease-specific modules demonstrated
+consistent predictive performance across their respective clas-
+sification tasks. The DR, DME, and glaucoma modules
+achieved validation accuracies above 92%, while the cataract
+module additionally incorporated retinal visibility degradation
+
+---PAGE 6---
+assessment. Table I summarizes the validation performance of
+the four disease-specific modules.
+TABLE I
+VALIDATIONPERFORMANCE OF THEDISEASE-SPECIFICMODULES
+Module Model Validation Accuracy
+Cataract EfficientNet-B3 88.19%
+DR EfficientNetV2-S 92.13%
+DME EfficientNet-B0 92.67%
+Glaucoma EfficientNet-B0 95.48%
+V. CONCLUSION
+This study presented an AI-driven multi-disease diagnostic
+framework for assessing four diabetes-related eye disorders:
+cataract, DR, DME, and glaucoma. The framework integrates
+disease-specific deep learning models with complementary
+outputs, including severity grading, risk assessment, prediction
+confidence, and explainable visual analysis, to support a more
+interpretable diagnostic workflow.
+Experimental results demonstrated strong performance
+across the individual disease-specific modules. The cataract
+module achieved a validation accuracy of 88.19% while ad-
+ditionally providing a visibility degradation score based on
+retinal image-quality measures. The DR, DME, and glau-
+coma modules achieved validation accuracies of 92.13%,
+92.67%, and 95.48% respectively, supporting disease classi-
+fication together with severity- and risk-oriented assessment.
+The glaucoma module also demonstrated strong class-wise
+performance, particularly in identifying Early and Advanced
+Glaucoma.
+Overall, the proposed framework demonstrates the feasi-
+bility of integrating multiple AI-based diagnostic functions
+into a unified and explainable workflow. Future work will
+focus on validating the framework using diverse external
+clinical datasets, further integrating the individual disease-
+specific modules, and evaluating the proposed decision-support
+workflow in clinical settings to improve its robustness, gener-
+alizability, and practical clinical usefulness.
+REFERENCES
+[1] K. L. Onget al., “Global, regional, and national burden of diabetes
+from 1990 to 2021, with projections of prevalence to 2050: A systematic
+analysis for the global burden of disease study 2021,”The Lancet, vol.
+402, pp. 203–234, 2023.
+[2] S. R. Flaxmanet al., “Global causes of blindness
+and distance vision impairment 1990–2020: a systematic
+review and meta-analysis,”The Lancet Global Health,
+vol. 5, no. 12, pp. e1221–e1234, 2017. [Online]. Available:
+https://www.sciencedirect.com/science/article/pii/S2214109X17303935
+[3] B. Schweisthal, D. D. Bonciog, M. Lascu, and V . L. Ordodi, “A survey
+on ai-powered ophthalmology: A revolution in eye care and disease
+management,” inProceedings - 6th International Conference on Bio-
+Engineering for Smart Technologies, BioSMART 2025. Institute of
+Electrical and Electronics Engineers Inc., 2025.
+[4] S. Wanget al., “Advances and prospects of multi-modal ophthalmic
+artificial intelligence based on deep learning: a review,” 12 2024.
+[5] B. R. Raghu and J. V . Krishna, “A comprehensive analysis of diabetic
+retinopathy using deep learning techniques,” in4th IEEE International
+Conference on Mobile Networks and Wireless Communications, ICM-
+NWC 2024. Institute of Electrical and Electronics Engineers Inc., 2024.
+[6] X. Xu, J. Li, Y . Guan, L. Zhao, L. Zhang, and L. Li, “Automatic cataract
+grading with visual-semantic interpretability,” inProceedings - 2021
+IEEE 45th Annual Computers, Software, and Applications Conference,
+COMPSAC 2021. Institute of Electrical and Electronics Engineers Inc.,
+7 2021, pp. 1260–1264.
+[7] I. P. Keerthana and R. S. Kumar, “Diabetic macular edema detection
+and classification using advanced convolutional neural networks,” in
+2025 IEEE International Conference on Interdisciplinary Approaches
+in Technology and Management for Social Innovation, IATMSI 2025.
+Institute of Electrical and Electronics Engineers Inc., 2025.
+[8] M. F. Karim, M. A. Hossain, A. Y . Srizon, and N. Haque, “Early
+detection of glaucoma from cropped fundus images using transfer-
+learned convolutional neural network,” in2024 IEEE International
+Conference on Power, Electrical, Electronics and Industrial Applications
+(PEEIACON), 2024, pp. 1–6.
+[9] M. Aouf, M. Eid, N. Sammara, and G. Gameel, “Diagnosis of diseases
+in color fundus images using deep learning algorithms with explainable
+visualization,” in2025 Twelfth International Conference on Intelligent
+Computing and Information Systems (ICICIS), 2025, pp. 158–163.
+[10] W. K.H, D. U.K.T, D. K.B.G.L, T. M.A.U, S. Kasthuriarachchi, and
+S. Rajapaksha, “Identification of diabetic related eye diseases using deep
+learning,” in2023 5th International Conference on Advancements in
+Computing (ICAC), 2023, pp. 786–791.
+[11] K. Aurangzeb, R. S. Alharthi, S. I. Haider, and M. Alhussein, “Sys-
+tematic development of ai-enabled diagnostic systems for glaucoma and
+diabetic retinopathy,”IEEE Access, vol. 11, pp. 105 069–105 081, 2023.
+[12] S. Nisha, “A review on association between diabetes mellitus and
+cataract formation,”Clinical Research Notes, vol. 3, pp. 01–05, 03 2022.
+[13] X. Xu, L. Zhang, J. Li, Y . Guan, and L. Zhang, “A hybrid global-local
+representation cnn model for automatic cataract grading,”IEEE Journal
+of Biomedical and Health Informatics, vol. 24, no. 2, pp. 556–567, 2020.
+[14] Y . Zhou, G. Li, and H. Li, “Automatic cataract classification using deep
+neural network with discrete state transition,”IEEE Transactions on
+Medical Imaging, vol. 39, pp. 436–446, 2 2020.
+[15] B. S. Keerthana, K. R. Kammar, B. S. Jhansi, J. R. Rao, and
+G. Gnanaguru, “Lesion-based diabetic retinopathy detection using hybrid
+deep learning models,” in2025 International Conference on Next
+Generation of Green Information and Emerging Technologies, GIET
+2025. Institute of Electrical and Electronics Engineers Inc., 2025.
+[16] H. Jianget al., “A multi-label deep learning model with interpretable
+grad-cam for diabetic retinopathy classification,” in2020 42nd Annual
+International Conference of the IEEE Engineering in Medicine Biology
+Society (EMBC), 2020, pp. 1560–1563.
+[17] M. Elsharkawyet al., “A clinically explainable ai-based grading system
+for age-related macular degeneration using optical coherence tomogra-
+phy,”IEEE Journal of Biomedical and Health Informatics, vol. 28, no. 4,
+pp. 2079–2090, 2024.

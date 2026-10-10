@@ -1,9 +1,12 @@
+import Image from "next/image";
+
 const team = [
   {
     name: "Binuri Perera",
     id: "IT22151292",
     role: "Explainable Cataract Severity & Visibility Degradation Assessment",
     initials: "BP",
+    photo: "/team/member-perera.png",
     disease: "Cataract Module",
     email: null,
     responsibilities: [
@@ -25,10 +28,11 @@ const team = [
     ],
   },
   {
-    name: "Sanduni D. Kahawevithana",
+    name: "S.D Kahawevithana",
     id: "IT22191342",
     role: "Diabetic Macular Edema Detection, Severity & Risk Assessment",
     initials: "SK",
+    photo: "/team/member-kahawevithana.png",
     disease: "DME Module",
     email: null,
     responsibilities: [
@@ -54,6 +58,7 @@ const team = [
     id: "IT22127778",
     role: "Explainable Glaucoma Detection & Risk Assessment",
     initials: "CM",
+    photo: "/team/member-chavindee.png",
     disease: "Glaucoma Module",
     email: null,
     responsibilities: [
@@ -81,6 +86,7 @@ const team = [
     id: "ID not published",
     role: "Diabetic Retinopathy Detection & Severity Assessment + System Integration",
     initials: "OW",
+    photo: "/team/member-wijekoon.png",
     disease: "DR Module + Integration",
     email: null,
     responsibilities: [
@@ -106,154 +112,143 @@ const team = [
 ];
 
 const supervisors = [
-  { name: "Dr. Sanvitha Kasthuriarachchi", role: "Research Supervisor", initials: "SK", dept: "SLIIT" },
-  { name: "Ms. Chathurya Prabhavi Kumarapperuma", role: "Co-Supervisor", initials: "CP", dept: "SLIIT" },
-  { name: "Dr. Sarath Deraniyagala", role: "External / Domain Supervisor", initials: "SD", dept: "External" },
+  { name: "Dr. Sanvitha Kasthuriarachchi", role: "Research Supervisor", initials: "SK", dept: "SLIIT", photo: "/team/supervisor-sanvitha.png" },
+  { name: "Ms. Chathurya Prabhavi Kumarapperuma", role: "Co-Supervisor", initials: "CP", dept: "SLIIT", photo: "/team/supervisor-chathurya.png" },
+  { name: "Dr. Sarath Deraniyagala", role: "External / Domain Supervisor", initials: "SD", dept: "External", photo: "/team/supervisor-sarath.png" },
 ];
 
 export default function AboutPage() {
   return (
-    <div>
+    <main className="about-page">
       {/* Header */}
-      <section
-        className="py-20 text-white"
-        style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #2563eb 100%)" }}
-      >
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <span className="inline-block text-xs font-semibold uppercase tracking-widest text-blue-200 bg-white/10 px-3 py-1 rounded-full mb-4">Research Team</span>
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4">About Us</h1>
-          <p className="text-blue-100 text-lg max-w-2xl mx-auto">
-            Group R26-IT-043 — B.Sc. (Hons) in Information Technology, Department of Information Technology, SLIIT.
-          </p>
+      <section className="about-hero relative isolate overflow-hidden text-white">
+        <div className="about-hero-grid" />
+        <div className="about-hero-orb about-hero-orb-one" />
+        <div className="about-hero-orb about-hero-orb-two" />
+        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+          <div className="max-w-4xl">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.24em] text-teal-100 backdrop-blur">
+              <span className="h-2 w-2 rounded-full bg-teal-300 shadow-[0_0_16px_rgba(94,234,212,0.9)]" />
+              The people behind the research
+            </span>
+            <h1 className="mt-7 text-5xl font-black tracking-[-0.07em] sm:text-6xl lg:text-7xl">
+              Research built
+              <span className="block bg-gradient-to-r from-teal-200 via-cyan-100 to-violet-200 bg-clip-text text-transparent">together.</span>
+            </h1>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-blue-100/90 sm:text-lg">
+              Meet the multidisciplinary team advancing explainable AI for diabetes-related eye disease screening.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-2">
+              {["4 student researchers", "3 academic supervisors", "1 integrated research project"].map((item) => (
+                <span key={item} className="rounded-full border border-white/15 bg-white/5 px-3.5 py-2 text-xs font-semibold text-blue-50 backdrop-blur">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Institution */}
-      <section className="py-12 bg-white border-b border-gray-100">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-blue-50 border border-blue-100">
+      <section className="about-institution">
+        <div className="mx-auto max-w-7xl px-4 py-7 sm:px-6 lg:px-8">
+          <div className="about-institution-card">
             <div
-              className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold text-sm"
-              style={{ background: "linear-gradient(135deg, #1e3a8a, #3b82f6)" }}
+              className="about-institution-mark"
             >
-              S
+              SLIIT
             </div>
-            <div className="text-left">
-              <div className="font-bold text-gray-900 text-sm">Sri Lanka Institute of Information Technology (SLIIT)</div>
-              <div className="text-xs text-gray-600">Department of Information Technology · Group R26-IT-043</div>
+            <div>
+              <div className="text-sm font-extrabold text-slate-900">Sri Lanka Institute of Information Technology</div>
+              <div className="mt-1 text-xs text-slate-500">Department of Information Technology · Group R26-IT-043</div>
             </div>
+            <span className="about-program-tag">B.Sc. (Hons) Information Technology</span>
           </div>
         </div>
       </section>
 
       {/* Team Members */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-14">
-            <span className="text-xs font-semibold uppercase tracking-widest text-blue-600 bg-blue-50 px-3 py-1 rounded-full">Team Members</span>
-            <h2 className="mt-4 text-3xl font-bold text-gray-900">Research Team</h2>
+      <section className="about-team-section py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+            <div>
+              <span className="about-section-kicker">Student researchers</span>
+              <h2 className="mt-3 text-3xl font-black tracking-[-0.05em] text-slate-950 sm:text-4xl">A team with a shared vision</h2>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600">Each researcher leads a disease-focused module while contributing to the integrated AI EyeDx platform.</p>
+            </div>
+            <span className="about-team-count"><strong>04</strong><span>Research members</span></span>
           </div>
 
-          <div className="space-y-8">
+          <div className="grid gap-6 xl:grid-cols-2">
             {team.map((member, i) => (
-              <div
+              <article
                 key={member.id}
-                className="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300"
+                className="about-member-card"
               >
-                <div
-                  className="h-2"
-                  style={{ background: "linear-gradient(135deg, #1e3a8a, #3b82f6)" }}
-                />
-                <div className="p-8">
-                  <div className="flex flex-col lg:flex-row gap-8">
-                    {/* Left: Profile */}
-                    <div className="flex flex-col items-center text-center lg:w-56 flex-shrink-0">
-                      <div
-                        className="w-24 h-24 rounded-2xl flex items-center justify-center text-white font-bold text-3xl mb-4 shadow-lg"
-                        style={{ background: `linear-gradient(135deg, #${["1e3a8a", "1d4ed8", "2563eb", "1e40af"][i]}, #3b82f6)` }}
-                      >
-                        {member.initials}
-                      </div>
-                      <h3 className="font-bold text-gray-900 text-lg mb-1">{member.name}</h3>
-                      <p className="text-xs text-gray-500 mb-2">{member.id}</p>
-                      <span className="text-xs px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-100 mb-3">
-                        {member.disease}
-                      </span>
-                      {member.email ? (
-                        <a
-                          href={`mailto:${member.email}`}
-                          className="text-xs text-gray-500 hover:text-blue-600 transition-colors"
-                        >
-                          {member.email}
-                        </a>
-                      ) : (
-                        <span className="text-xs text-gray-500">Contact via group form</span>
-                      )}
+                <div className={`about-member-cover about-member-cover-${i + 1}`}>
+                  <div className="about-member-portrait">
+                    <Image
+                      src={member.photo}
+                      alt={`${member.name} profile portrait`}
+                      fill
+                      sizes="(max-width: 1279px) 112px, 120px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <span className="about-member-number">RESEARCHER · 0{i + 1}</span>
+                    <h3 className="mt-2 text-xl font-black tracking-[-0.035em] text-white sm:text-2xl">{member.name}</h3>
+                    <p className="mt-1 text-xs text-blue-100/75">{member.id}</p>
+                    <span className="about-member-disease">{member.disease}</span>
+                  </div>
+                </div>
+
+                <div className="about-member-body">
+                  <p className="about-member-role">{member.role}</p>
+
+                  <div className="grid gap-6 sm:grid-cols-2">
+                    <div>
+                      <h4 className="about-detail-heading"><span>01</span> Responsibilities</h4>
+                      <ul className="about-detail-list">
+                        {member.responsibilities.map((r) => (
+                          <li key={r}><span className="about-list-dot" />{r}</li>
+                        ))}
+                      </ul>
                     </div>
 
-                    {/* Right: Details */}
-                    <div className="flex-1">
-                      <p className="text-sm font-semibold text-blue-700 mb-4 bg-blue-50 px-3 py-2 rounded-lg border border-blue-100">
-                        {member.role}
-                      </p>
-
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {/* Responsibilities */}
-                        <div>
-                          <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Responsibilities</h4>
-                          <ul className="space-y-1.5">
-                            {member.responsibilities.map((r) => (
-                              <li key={r} className="flex items-start gap-2 text-xs text-gray-700">
-                                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0" />
-                                {r}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        {/* Contributions */}
-                        <div>
-                          <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Key Contributions</h4>
-                          <ul className="space-y-1.5">
-                            {member.contributions.map((c) => (
-                              <li key={c} className="flex items-start gap-2 text-xs text-gray-700">
-                                <span className="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5 flex-shrink-0" />
-                                {c}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        {/* Skills */}
-                        <div>
-                          <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Technical Skills</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {member.skills.map((s) => (
-                              <span
-                                key={s}
-                                className="text-xs px-2.5 py-1 rounded-full bg-gray-100 text-gray-700 border border-gray-200"
-                              >
-                                {s}
-                              </span>
-                            ))}
-                          </div>
+                    <div>
+                      <h4 className="about-detail-heading"><span>02</span> Key contributions</h4>
+                      <ul className="about-detail-list">
+                        {member.contributions.map((c) => (
+                          <li key={c}><span className="about-list-dot about-list-dot-teal" />{c}</li>
+                        ))}
+                      </ul>
+                      <div className="mt-6">
+                        <h4 className="about-detail-heading"><span>03</span> Technical skills</h4>
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {member.skills.map((s) => (
+                            <span key={s} className="about-skill-pill">{s}</span>
+                          ))}
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
       {/* Team Role Summary Table */}
-      <section className="py-12 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-2xl font-bold text-gray-900 text-center mb-8">Team Role Summary</h2>
-          <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
-            <table className="w-full text-sm">
+      <section className="about-summary-section py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-8">
+            <span className="about-section-kicker">How we work</span>
+            <h2 className="mt-3 text-3xl font-black tracking-[-0.05em] text-slate-950">Team role summary</h2>
+          </div>
+          <div className="about-summary-table-wrap">
+            <table className="about-summary-table">
               <thead>
                 <tr style={{ background: "linear-gradient(135deg, #1e3a8a, #3b82f6)" }}>
                   <th className="text-left px-6 py-4 text-white font-semibold">Member</th>
@@ -266,17 +261,14 @@ export default function AboutPage() {
                   <tr key={m.id} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
-                        <div
-                          className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-xs"
-                          style={{ background: "linear-gradient(135deg, #1e3a8a, #3b82f6)" }}
-                        >
-                          {m.initials}
+                        <div className="about-summary-portrait">
+                          <Image src={m.photo} alt="" fill sizes="36px" className="object-cover" />
                         </div>
-                        <span className="font-medium text-gray-900">{m.name}</span>
+                        <span className="font-bold text-slate-900">{m.name}</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-center text-gray-600">{m.id}</td>
-                    <td className="px-6 py-4 text-gray-600">{m.disease}</td>
+                    <td className="px-6 py-4 text-center text-slate-600">{m.id}</td>
+                    <td className="px-6 py-4 text-slate-600">{m.disease}</td>
                   </tr>
                 ))}
               </tbody>
@@ -286,52 +278,53 @@ export default function AboutPage() {
       </section>
 
       {/* Supervisors */}
-      <section className="py-16 bg-white">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <span className="text-xs font-semibold uppercase tracking-widest text-blue-600 bg-blue-50 px-3 py-1 rounded-full">Supervision</span>
-            <h2 className="mt-4 text-3xl font-bold text-gray-900">Academic Supervisors</h2>
+      <section className="about-supervision-section py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 max-w-2xl">
+            <span className="about-section-kicker">Guidance &amp; mentorship</span>
+            <h2 className="mt-3 text-3xl font-black tracking-[-0.05em] text-slate-950 sm:text-4xl">Academic supervisors</h2>
+            <p className="mt-3 text-sm leading-relaxed text-slate-600">The project is supported by academic and domain expertise throughout its research and development.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
             {supervisors.map((s) => (
-              <div
+              <article
                 key={s.name}
-                className="bg-white rounded-2xl border border-gray-200 p-6 text-center hover:shadow-lg hover:-translate-y-1 transition-all"
+                className="about-supervisor-card"
               >
-                <div
-                  className="w-20 h-20 rounded-2xl mx-auto mb-4 flex items-center justify-center text-white font-bold text-2xl"
-                  style={{ background: "linear-gradient(135deg, #1e3a8a, #3b82f6)" }}
-                >
-                  {s.initials}
+                <div className="about-supervisor-portrait">
+                  <Image src={s.photo} alt={`${s.name} profile portrait`} fill sizes="88px" className="object-cover" />
                 </div>
-                <h3 className="font-bold text-gray-900 mb-1 text-sm">{s.name}</h3>
-                <p className="text-xs text-blue-600 font-medium mb-2">{s.role}</p>
-                <span className="text-xs px-2.5 py-1 rounded-full bg-gray-100 text-gray-600">{s.dept}</span>
-              </div>
+                <span className="about-supervisor-label">{s.role}</span>
+                <h3 className="mt-3 text-base font-extrabold leading-snug text-slate-900">{s.name}</h3>
+                <p className="mt-2 text-xs font-semibold text-slate-500">{s.dept} · AI EyeDx research project</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
       {/* Ethics Note */}
-      <section className="py-12 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6">
-            <h3 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <section className="about-ethics-section py-14">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="about-ethics-card">
+            <div className="about-ethics-icon">
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              Research Ethics
-            </h3>
-            <p className="text-sm text-blue-800 leading-relaxed">
-              This project uses publicly available and anonymized medical imaging datasets for research and educational purposes. 
-              The system is intended as a research and screening-support prototype and is not a replacement for professional medical diagnosis. 
+            </div>
+            <div>
+              <span className="about-section-kicker">Responsible research</span>
+              <h2 className="mt-2 text-xl font-black tracking-tight text-slate-950">Research ethics &amp; intended use</h2>
+              <p className="mt-3 text-sm leading-relaxed text-slate-600">
+              This project uses publicly available and anonymized medical imaging datasets for research and educational purposes.
+              The system is intended as a research and screening-support prototype and is not a replacement for professional medical diagnosis.
               All research activities are conducted in accordance with SLIIT academic guidelines and research ethics standards.
-            </p>
+              </p>
+            </div>
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }
