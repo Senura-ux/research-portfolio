@@ -624,14 +624,14 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
             {[
-              { name: "Binuri Perera", id: "IT22151292", role: "Cataract & Visibility Degradation", initials: "BP", disease: "Cataract", photo: "/team/member-perera.png" },
-              { name: "S.D Kahawevithana", id: "IT22191342", role: "DME Detection & Risk Assessment", initials: "SK", disease: "DME", photo: "/team/member-kahawevithana.png" },
-              { name: "Chavindee M.A.P.", id: "IT22127778", role: "Glaucoma Detection & Risk", initials: "CM", disease: "Glaucoma", photo: "/team/member-chavindee.png" },
-              { name: "Oshan Wijekoon", id: "IT22265388", role: "DR Detection & System Integration", initials: "OW", disease: "DR", photo: "/team/member-wijekoon.png" },
+              { name: "Binuri Perera", id: "IT22151292", role: "Cataract & Visibility Degradation", initials: "BP", disease: "Cataract", photo: "/team/portraits/member-perera.png" },
+              { name: "S.D Kahawevithana", id: "IT22191342", role: "DME Detection & Risk Assessment", initials: "SK", disease: "DME", photo: "/team/member-kahawevithana-new.png" },
+              { name: "Chavindee M.A.P.", id: "IT22127778", role: "Glaucoma Detection & Risk", initials: "CM", disease: "Glaucoma", photo: "/team/portraits/member-chavindee.png" },
+              { name: "Oshan Wijekoon", id: "IT22265388", role: "DR Detection & System Integration", initials: "OW", disease: "DR", photo: "/team/portraits/member-wijekoon.png" },
             ].map((member) => (
               <RevealSection key={member.id}>
                 <div className="home-team-card bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-lg hover:-translate-y-1 transition-all text-center">
-                  <div className="home-team-photo relative w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden ring-4 ring-blue-100 shadow-lg">
+                  <div className="home-team-photo relative w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden">
                     <Image
                       src={member.photo}
                       alt={`${member.name} profile portrait`}

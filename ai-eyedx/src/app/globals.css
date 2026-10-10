@@ -665,9 +665,8 @@ textarea {
 }
 
 .home-team-photo {
-  border-color: white;
-  background: linear-gradient(145deg, #dff6f4, #e9e6ff);
-  box-shadow: 0 0 0 1px rgba(34, 126, 151, 0.16), 0 12px 26px rgba(24, 57, 91, 0.16);
+  background: transparent;
+  box-shadow: 0 10px 24px rgba(24, 57, 91, 0.14);
 }
 
 .home-team-photo img {
@@ -1346,7 +1345,10 @@ textarea {
   z-index: 1;
   width: 7rem;
   height: 7rem;
-  border-radius: 1.15rem;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: 0 8px 22px rgba(4, 13, 32, 0.2);
 }
 
 .about-member-cover > div:not(.about-member-portrait) {

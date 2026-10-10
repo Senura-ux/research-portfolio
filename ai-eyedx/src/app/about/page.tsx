@@ -6,7 +6,7 @@ const team = [
     id: "IT22151292",
     role: "Explainable Cataract Severity & Visibility Degradation Assessment",
     initials: "BP",
-    photo: "/team/member-perera.png",
+    photo: "/team/portraits/member-perera.png",
     disease: "Cataract Module",
     email: null,
     responsibilities: [
@@ -32,7 +32,7 @@ const team = [
     id: "IT22191342",
     role: "Diabetic Macular Edema Detection, Severity & Risk Assessment",
     initials: "SK",
-    photo: "/team/member-kahawevithana.png",
+    photo: "/team/member-kahawevithana-new.png",
     disease: "DME Module",
     email: null,
     responsibilities: [
@@ -58,7 +58,7 @@ const team = [
     id: "IT22127778",
     role: "Explainable Glaucoma Detection & Risk Assessment",
     initials: "CM",
-    photo: "/team/member-chavindee.png",
+    photo: "/team/portraits/member-chavindee.png",
     disease: "Glaucoma Module",
     email: null,
     responsibilities: [
@@ -86,7 +86,7 @@ const team = [
     id: "IT22265388",
     role: "Diabetic Retinopathy Detection & Severity Assessment + System Integration",
     initials: "OW",
-    photo: "/team/member-wijekoon.png",
+    photo: "/team/portraits/member-wijekoon.png",
     disease: "DR Module + Integration",
     email: null,
     responsibilities: [
