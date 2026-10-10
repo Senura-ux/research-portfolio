@@ -6,7 +6,7 @@ const team = [
     id: "IT22151292",
     role: "Explainable Cataract Severity & Visibility Degradation Assessment",
     initials: "BP",
-    photo: "/team/member-perera.png",
+    photo: "/team/member-kahawevithana.png",
     disease: "Cataract Module",
     email: null,
     responsibilities: [
@@ -32,7 +32,7 @@ const team = [
     id: "IT22191342",
     role: "Diabetic Macular Edema Detection, Severity & Risk Assessment",
     initials: "SK",
-    photo: "/team/member-kahawevithana.png",
+    photo: "/team/member-perera.png",
     disease: "DME Module",
     email: null,
     responsibilities: [
@@ -192,6 +192,7 @@ export default function AboutPage() {
                       alt={`${member.name} profile portrait`}
                       fill
                       sizes="(max-width: 1279px) 112px, 120px"
+                      quality={95}
                       className="object-cover"
                     />
                   </div>
@@ -262,7 +263,7 @@ export default function AboutPage() {
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
                         <div className="about-summary-portrait">
-                          <Image src={m.photo} alt="" fill sizes="36px" className="object-cover" />
+                          <Image src={m.photo} alt="" fill sizes="36px" quality={90} className="object-cover" />
                         </div>
                         <span className="font-bold text-slate-900">{m.name}</span>
                       </div>
@@ -293,7 +294,7 @@ export default function AboutPage() {
                 className="about-supervisor-card"
               >
                 <div className="about-supervisor-portrait">
-                  <Image src={s.photo} alt={`${s.name} profile portrait`} fill sizes="88px" className="object-cover" />
+                  <Image src={s.photo} alt={`${s.name} profile portrait`} fill sizes="88px" quality={95} className="object-cover" />
                 </div>
                 <span className="about-supervisor-label">{s.role}</span>
                 <h3 className="mt-3 text-base font-extrabold leading-snug text-slate-900">{s.name}</h3>
