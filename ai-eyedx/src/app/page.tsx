@@ -626,7 +626,7 @@ export default function HomePage() {
               { name: "Binuri Perera", id: "IT22151292", role: "Cataract & Visibility Degradation", initials: "BP", disease: "Cataract" },
               { name: "S.D Kahawevithana", id: "IT22191342", role: "DME Detection & Risk Assessment", initials: "SK", disease: "DME" },
               { name: "Chavindee M.A.P.", id: "IT22127778", role: "Glaucoma Detection & Risk", initials: "CM", disease: "Glaucoma" },
-              { name: "Oshan Wijekoon", id: "ID not published", role: "DR Detection & System Integration", initials: "OW", disease: "DR" },
+              { name: "Oshan Wijekoon", id: "IT22265388", role: "DR Detection & System Integration", initials: "OW", disease: "DR" },
             ].map((member) => (
               <RevealSection key={member.id}>
                 <div className="bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-lg hover:-translate-y-1 transition-all text-center">

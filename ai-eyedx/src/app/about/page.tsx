@@ -83,7 +83,7 @@ const team = [
   },
   {
     name: "Oshan Wijekoon",
-    id: "ID not published",
+    id: "IT22265388",
     role: "Diabetic Retinopathy Detection & Severity Assessment + System Integration",
     initials: "OW",
     photo: "/team/member-wijekoon.png",
