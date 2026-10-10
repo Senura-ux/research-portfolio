@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-slate-950 text-slate-200">
-      <div className="bg-gradient-to-r from-blue-950 via-blue-900 to-indigo-950 px-4 py-2.5">
+    <footer className="site-footer text-slate-200">
+      <div className="site-footer-disclaimer px-4 py-2.5">
         <div className="mx-auto max-w-7xl text-center">
           <p className="mx-auto max-w-5xl text-[10px] leading-snug text-blue-100">
             <span className="font-semibold text-white">⚠️ Research Prototype Disclaimer:</span> This system is developed
@@ -14,7 +14,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <div className="site-footer-content relative z-10 mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         <div className="mb-5 grid grid-cols-2 gap-x-5 gap-y-4 lg:grid-cols-4 lg:gap-8">
           <div className="col-span-2 lg:col-span-2">
             <div className="mb-2.5 flex items-center gap-2">
