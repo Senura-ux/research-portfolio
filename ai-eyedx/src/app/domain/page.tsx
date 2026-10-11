@@ -729,6 +729,626 @@ export default function DomainPage() {
         </div>
       </section>
 
+      <section id="research-objectives" className="scroll-mt-24 bg-slate-50 py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <header className="mx-auto mb-12 max-w-4xl text-center">
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-sky-700">
+              RESEARCH OBJECTIVES
+            </p>
+            <h2 className="mt-4 text-3xl font-black tracking-[-0.05em] text-slate-900 sm:text-4xl lg:text-5xl">
+              Developing an Explainable AI Framework for Multi-Disease Eye Assessment
+            </h2>
+            <p className="mt-5 text-base leading-relaxed text-slate-600 sm:text-lg">
+              The primary objective of AI EyeDx is to develop an explainable deep learning framework that integrates disease-specific assessment modules for diabetic retinopathy, glaucoma, cataract, and diabetic macular edema. The framework aims to combine appropriate image-analysis methods, disease-specific outputs, and visual explanations within a unified web-based platform to support AI-assisted ophthalmic screening.
+            </p>
+          </header>
+
+          <section aria-labelledby="primary-objective-heading">
+            <div className="rounded-3xl border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-6 shadow-sm sm:p-8">
+              <div className="flex items-start gap-4 sm:gap-5">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-md" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8">
+                    <circle cx="12" cy="12" r="8.5" />
+                    <circle cx="12" cy="12" r="4.5" />
+                    <circle cx="12" cy="12" r="1" fill="currentColor" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-700">Main Research Objective</p>
+                  <h3 id="primary-objective-heading" className="mt-2 text-2xl font-black tracking-tight text-slate-900">
+                    Primary Objective
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-slate-700 sm:text-base">
+                    To design and develop an explainable, multi-disease deep learning framework for the assessment of selected diabetes-related eye disorders by integrating disease-specific models, appropriate retinal imaging modalities, and interpretable assessment outputs within a unified web-based platform.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section aria-labelledby="specific-objectives-heading" className="mt-14">
+            <div className="mb-6">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">Specific Objectives</p>
+              <h3 id="specific-objectives-heading" className="mt-2 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
+                What This Research Aims to Achieve
+              </h3>
+            </div>
+            <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+              {[
+                {
+                  title: "Develop Disease-Specific Deep Learning Modules",
+                  text: "Implement separate AI pipelines for diabetic retinopathy, glaucoma, cataract, and diabetic macular edema, using models and assessment methods appropriate to each condition.",
+                },
+                {
+                  title: "Implement Disease-Specific Image Analysis",
+                  text: "Process retinal fundus images for diabetic retinopathy, glaucoma, and cataract, and OCT images for diabetic macular edema. Apply preprocessing and analysis procedures appropriate to each module.",
+                },
+                {
+                  title: "Assess Disease Severity and Relevant Indicators",
+                  text: "Provide disease-specific outputs, including five-class diabetic retinopathy severity classification, four-class cataract severity classification, glaucoma-related optic-cup and optic-disc measurements with risk assessment, and OCT-based DME classification.",
+                },
+                {
+                  title: "Integrate Explainable AI",
+                  text: "Incorporate Grad-CAM visualizations into relevant model pipelines to highlight image regions that influence predictions and help users interpret model outputs.",
+                },
+                {
+                  title: "Incorporate Visibility and Reliability Assessment",
+                  text: "Implement the Cataract Visibility Degradation Score (VDS) using relevant image features and include Mahalanobis-distance-based out-of-distribution assessment in the diabetic retinopathy pipeline.",
+                },
+                {
+                  title: "Integrate the Models into a Web-Based Platform",
+                  text: "Connect disease-specific services to a common web interface so users can select a disease module, submit the appropriate image, and view corresponding assessment results and supported visual explanations.",
+                },
+              ].map((objective, index) => (
+                <article key={objective.title} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-colors hover:border-sky-200 sm:p-6">
+                  <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-sm font-extrabold text-white" aria-hidden="true">
+                    {String(index + 1).padStart(2, "0")}
+                  </div>
+                  <h4 className="text-lg font-bold text-slate-900">{objective.title}</h4>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{objective.text}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section aria-labelledby="objective-mapping-heading" className="mt-14">
+            <div className="mb-6">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">Objective-to-Implementation Mapping</p>
+              <h3 id="objective-mapping-heading" className="mt-2 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
+                How Each Objective Is Addressed
+              </h3>
+            </div>
+            <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
+              <table className="w-full min-w-[760px] text-left text-sm">
+                <thead className="bg-slate-100 text-slate-800">
+                  <tr>
+                    <th scope="col" className="px-5 py-4 font-bold">Objective</th>
+                    <th scope="col" className="px-5 py-4 font-bold">Implementation Approach</th>
+                    <th scope="col" className="px-5 py-4 font-bold">Expected Output</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 text-slate-600">
+                  {[
+                    ["Disease-specific modeling", "Separate disease-specific models and assessment pipelines as described in the project modules.", "Predictions and assessment results tailored to the selected disease."],
+                    ["Image analysis", "Fundus image inputs for DR, glaucoma, and cataract; OCT image inputs for DME, with module-appropriate preparation.", "Images prepared for the corresponding disease-specific analysis."],
+                    ["Severity and indicator assessment", "Classification and relevant structural or visibility analysis, including the outputs described for each module.", "Severity classes and additional disease-specific measurements where supported."],
+                    ["Explainable AI", "Grad-CAM visualizations are specified for supported classification modules; the glaucoma module describes segmentation visualizations.", "Visual explanation heatmaps or structural overlays, as applicable."],
+                    ["Reliability assessment", "The DR module description specifies Mahalanobis-distance-based out-of-distribution assessment.", "An indication of potentially unfamiliar inputs for further review."],
+                    ["Web integration", "The existing Next.js/React website presents the disease modules through a shared interface; model-service execution is dependent on the project integration.", "A common interface for navigating and reviewing disease-specific assessment information."],
+                  ].map(([objective, approach, output]) => (
+                    <tr key={objective} className="align-top">
+                      <th scope="row" className="px-5 py-4 font-semibold text-slate-800">{objective}</th>
+                      <td className="px-5 py-4 leading-relaxed">{approach}</td>
+                      <td className="px-5 py-4 leading-relaxed">{output}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section aria-labelledby="scope-objectives-heading" className="mt-14 grid gap-6 lg:grid-cols-2">
+            <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-7">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">Research Scope</p>
+              <h3 id="scope-objectives-heading" className="mt-3 text-2xl font-black tracking-tight text-slate-900">
+                Scope of the Objectives
+              </h3>
+              <p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+                The research focuses on the development and integration of four disease-specific modules within an explainable AI-based screening-support platform. The modules use their respective imaging modalities and assessment approaches. The study also investigates the use of visual explanations, disease-specific outputs, cataract visibility assessment, and reliability-related checks.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+                The scope is limited to the conditions, datasets, model architectures, and evaluation procedures used in this project. Further external and clinical validation may be required before practical clinical deployment.
+              </p>
+            </div>
+
+            <div className="rounded-3xl border border-indigo-100 bg-gradient-to-br from-indigo-50 via-white to-blue-50 p-6 shadow-sm sm:p-7">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-indigo-700">Expected Outcomes</p>
+              <h3 className="mt-3 text-2xl font-black tracking-tight text-slate-900">
+                Expected Research Outcomes
+              </h3>
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                {[
+                  ["Integrated Platform", "A common web interface for accessing four disease-specific AI modules."],
+                  ["Disease-Specific Predictions", "Model outputs tailored to the selected eye condition and its imaging modality."],
+                  ["Interpretable Results", "Visual explanations that help users understand which image regions influenced model predictions."],
+                  ["Additional Assessment Information", "Relevant severity, structural, visibility, or reliability-related outputs supported by the individual modules."],
+                ].map(([title, text]) => (
+                  <article key={title} className="rounded-xl border border-white bg-white/90 p-4 shadow-sm">
+                    <h4 className="text-sm font-bold text-slate-900">{title}</h4>
+                    <p className="mt-1.5 text-xs leading-relaxed text-slate-600">{text}</p>
+                  </article>
+                ))}
+              </div>
+              <p className="mt-4 text-xs leading-relaxed text-slate-500">
+                These outcomes describe the intended research contributions. Actual performance and successful implementation should be established using the project&apos;s evaluation results.
+              </p>
+            </div>
+          </section>
+
+          <section aria-labelledby="objectives-closing-heading" className="mt-8 rounded-3xl bg-slate-950 p-6 text-white shadow-lg sm:p-8">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-300">Closing Statement</p>
+            <h3 id="objectives-closing-heading" className="mt-3 text-2xl font-black tracking-tight sm:text-3xl">
+              From Objectives to Implementation
+            </h3>
+            <p className="mt-4 max-w-4xl text-sm leading-relaxed text-slate-300 sm:text-base">
+              The research objectives guide the development of AI EyeDx from disease-specific image analysis to explainable assessment and web-based integration. Together, they establish a structured approach to investigating how multiple deep learning models can be combined into a unified screening-support platform without losing the individual requirements of each disease.
+            </p>
+          </section>
+        </div>
+      </section>
+
+      <section id="methodology" className="scroll-mt-24 bg-white py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <header className="mx-auto mb-12 max-w-4xl text-center">
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-sky-700">RESEARCH METHODOLOGY</p>
+            <h2 className="mt-4 text-3xl font-black tracking-[-0.05em] text-slate-900 sm:text-4xl lg:text-5xl">
+              A Modular and Explainable Deep Learning Framework for Eye Disease Assessment
+            </h2>
+            <p className="mt-5 text-base leading-relaxed text-slate-600 sm:text-lg">
+              AI EyeDx follows a modular research methodology that combines disease-specific image processing, deep learning models, assessment procedures, explainability techniques, and web-based integration. Each disease module is developed according to its imaging requirements and diagnostic task, while the overall platform provides a unified interface for accessing the results.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-2 text-xs font-semibold text-slate-700 sm:gap-3 sm:text-sm">
+              {["Prepare data", "Develop pipelines", "Assess & explain", "Integrate results"].map((stage, index) => (
+                <div key={stage} className="flex items-center gap-2 sm:gap-3">
+                  <span className="rounded-full border border-blue-100 bg-blue-50 px-3 py-2">{stage}</span>
+                  {index < 3 && <span className="text-blue-500" aria-hidden="true">→</span>}
+                </div>
+              ))}
+            </div>
+          </header>
+
+          <section aria-labelledby="methodology-framework-heading">
+            <div className="mb-6">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">Overall Methodological Framework</p>
+              <h3 id="methodology-framework-heading" className="mt-2 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
+                End-to-End Research Workflow
+              </h3>
+            </div>
+            <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {[
+                ["Dataset Selection and Preparation", "Select datasets appropriate to each disease module. Organize images and labels, verify the class structure, and prepare the data for model development."],
+                ["Image Preprocessing", "Apply preprocessing required by the selected dataset and model, such as resizing, normalization, and appropriate image preparation. Keep procedures consistent between training, validation, and inference."],
+                ["Disease-Specific Model Development", "Develop or fine-tune individual deep learning pipelines for diabetic retinopathy, glaucoma, cataract, and diabetic macular edema, using the model and analysis strategy suited to each task."],
+                ["Disease-Specific Assessment", "Generate the appropriate output for each module, including disease classification, severity categories, structural measurements, or visibility-related assessment where implemented."],
+                ["Explainability and Reliability Assessment", "Use Grad-CAM to visualize image regions influencing supported model predictions. Apply Mahalanobis-distance-based out-of-distribution assessment within the diabetic retinopathy pipeline."],
+                ["Web Integration and Results Presentation", "Connect disease-specific services to the React frontend and display model outputs and relevant visualizations through the existing website interface."],
+              ].map(([title, description], index) => (
+                <li key={title} className="relative rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-sm">
+                  <div className="mb-4 flex items-center gap-3">
+                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-sm font-extrabold text-white">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <h4 className="text-base font-bold text-slate-900">{title}</h4>
+                  </div>
+                  <p className="text-sm leading-relaxed text-slate-600">{description}</p>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          <section aria-labelledby="disease-pipelines-heading" className="mt-14">
+            <div className="mb-6">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">Disease-Specific Methodology</p>
+              <h3 id="disease-pipelines-heading" className="mt-2 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
+                Four Independent AI Pipelines
+              </h3>
+            </div>
+            <div className="grid gap-5 lg:grid-cols-2">
+              {[
+                {
+                  title: "Diabetic Retinopathy (DR)",
+                  modality: "Retinal fundus images",
+                  model: "EfficientNetV2-S",
+                  steps: [
+                    "Prepare and preprocess the fundus images.",
+                    "Fine-tune the model for five-class DR severity classification: No DR, Mild, Moderate, Severe, and Proliferative DR.",
+                    "Apply Grad-CAM to visualize regions influencing predictions.",
+                    "Separately, the lesion-aware pipeline localizes candidate regions, extracts and analyzes features, filters candidates, then performs candidate-level classification or counting for lesions such as microaneurysms, hemorrhages, and hard exudates.",
+                    "Apply Mahalanobis-distance-based out-of-distribution assessment to identify potentially unfamiliar inputs.",
+                  ],
+                  output: "Predicted DR severity, supported lesion-analysis outputs, and relevant explanation and reliability information.",
+                },
+                {
+                  title: "Glaucoma",
+                  modality: "Retinal fundus images",
+                  model: "U-Net-based optic-disc and optic-cup segmentation",
+                  steps: [
+                    "Prepare the fundus image.",
+                    "Apply the segmentation pipeline to identify the optic disc and optic cup.",
+                    "Derive the cup-to-disc ratio from the relevant segmentation measurements.",
+                    "Use the implemented assessment criteria to generate the corresponding glaucoma-related risk output.",
+                    "Present relevant measurements and supported visual outputs; the cup-to-disc ratio alone does not confirm glaucoma.",
+                  ],
+                  output: "Optic-disc/cup segmentation, cup-to-disc ratio, and glaucoma-related risk assessment.",
+                },
+                {
+                  title: "Cataract",
+                  modality: "Retinal fundus images",
+                  model: "EfficientNet-B3",
+                  steps: [
+                    "Prepare the images for the classification model.",
+                    "Predict one of four cataract categories: No, Mild, Moderate, or Severe.",
+                    "Calculate the Visibility Degradation Score (VDS) using entropy, contrast, vessel visibility, and sharpness.",
+                    "Apply Grad-CAM to visualize regions influencing the classification result.",
+                  ],
+                  output: "Predicted cataract severity, visibility degradation assessment, and supported visual explanation.",
+                },
+                {
+                  title: "Diabetic Macular Edema (DME)",
+                  modality: "Optical coherence tomography (OCT) images",
+                  model: "EfficientNet-B0",
+                  steps: [
+                    "Prepare OCT images according to the model's input requirements.",
+                    "Apply the trained classification model to the OCT image and generate its supported disease classification result.",
+                    "Apply Grad-CAM to highlight regions influencing the prediction.",
+                    "Present the model output and corresponding visualization.",
+                  ],
+                  output: "OCT-based classification and supported visual explanation.",
+                },
+              ].map((pipeline) => (
+                <article key={pipeline.title} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-colors hover:border-sky-200 sm:p-6">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <h4 className="text-lg font-bold text-slate-900">{pipeline.title}</h4>
+                    <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-800">{pipeline.modality}</span>
+                  </div>
+                  <p className="mt-3 text-sm text-slate-600"><span className="font-semibold text-slate-800">Model / method:</span> {pipeline.model}</p>
+                  <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm leading-relaxed text-slate-600">
+                    {pipeline.steps.map((step) => <li key={step} className="pl-1">{step}</li>)}
+                  </ol>
+                  <p className="mt-4 rounded-xl bg-slate-50 p-3 text-sm leading-relaxed text-slate-700">
+                    <span className="font-semibold text-slate-900">Output: </span>{pipeline.output}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section aria-labelledby="model-development-heading" className="mt-14">
+            <div className="mb-6">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">Data Preparation and Model Training</p>
+              <h3 id="model-development-heading" className="mt-2 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
+                Dataset Preparation and Model Development
+              </h3>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+              {[
+                ["Data Organization", "Organize images and labels according to the relevant disease dataset and classification or segmentation task."],
+                ["Preprocessing", "Apply the image dimensions, normalization, and preprocessing operations required by each model. Preprocessing may differ between disease modules."],
+                ["Training and Validation", "Train or fine-tune each model using corresponding training data, and use validation data to monitor performance and guide model selection."],
+                ["Performance Evaluation", "Evaluate using task-appropriate metrics. Classification may use accuracy, precision, recall, F1-score, and a confusion matrix; segmentation should use suitable metrics when available in the evaluation results."],
+              ].map(([title, text], index) => (
+                <article key={title} className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                  <span className="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-sm font-extrabold text-blue-700 shadow-sm" aria-hidden="true">{index + 1}</span>
+                  <h4 className="text-base font-bold text-slate-900">{title}</h4>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{text}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section aria-labelledby="explainability-heading" className="mt-14">
+            <div className="mb-6">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">Explainability and Reliability</p>
+              <h3 id="explainability-heading" className="mt-2 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
+                Making Model Outputs More Interpretable
+              </h3>
+            </div>
+            <div className="grid gap-5 lg:grid-cols-2">
+              <article className="rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white p-6">
+                <h4 className="text-lg font-bold text-slate-900">Explainable AI — Grad-CAM</h4>
+                <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                  Grad-CAM generates a heatmap that highlights image regions contributing to a model&apos;s prediction. In AI EyeDx, this visualization is used in relevant disease modules to provide additional context for interpreting classification results.
+                </p>
+                <p className="mt-3 text-sm font-medium leading-relaxed text-slate-700">
+                  Grad-CAM indicates model-sensitive regions; it does not prove that the model identified the correct clinical features.
+                </p>
+              </article>
+              <article className="rounded-2xl border border-indigo-100 bg-gradient-to-br from-indigo-50 to-white p-6">
+                <h4 className="text-lg font-bold text-slate-900">Out-of-Distribution Assessment</h4>
+                <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                  The diabetic retinopathy pipeline uses Mahalanobis-distance-based assessment to identify inputs that may differ from the model&apos;s learned training distribution. This can provide a reliability-related warning for potentially unfamiliar inputs.
+                </p>
+                <p className="mt-3 text-sm font-medium leading-relaxed text-slate-700">
+                  This assessment does not guarantee that a prediction is correct or incorrect.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section aria-labelledby="vds-heading" className="mt-14">
+            <div className="mb-6">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">Cataract Assessment</p>
+              <h3 id="vds-heading" className="mt-2 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
+                Visibility Degradation Score (VDS)
+              </h3>
+              <p className="mt-3 max-w-4xl text-sm leading-relaxed text-slate-600 sm:text-base">
+                The cataract module includes a Visibility Degradation Score designed to summarize image characteristics relevant to retinal visibility. Its project-specific approach considers the following image features:
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+              {[
+                ["Entropy", "Represents the distribution and complexity of image intensity information."],
+                ["Contrast", "Represents differences in image intensity."],
+                ["Vessel Visibility", "Represents the visibility of retinal vessels."],
+                ["Sharpness", "Represents the clarity of image details."],
+              ].map(([title, text], index) => (
+                <article key={title} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                  <div className="mb-3 h-1.5 w-12 rounded-full bg-gradient-to-r from-blue-600 to-indigo-500" aria-hidden="true" />
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-blue-700">Feature {index + 1}</p>
+                  <h4 className="mt-2 text-lg font-bold text-slate-900">{title}</h4>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{text}</p>
+                </article>
+              ))}
+            </div>
+            <p className="mt-4 text-sm leading-relaxed text-slate-600">
+              These features contribute to the visibility assessment. VDS is a project-specific metric and should not be interpreted as an established or clinically validated measurement.
+            </p>
+          </section>
+
+          <section aria-labelledby="integration-heading" className="mt-14">
+            <div className="mb-6">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">Web-Based System Integration</p>
+              <h3 id="integration-heading" className="mt-2 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
+                From Model Development to an Integrated Application
+              </h3>
+            </div>
+            <div className="flex flex-col items-stretch gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
+              {["React Frontend", "Disease-Specific Backend Service", "Selected AI Pipeline", "Assessment Results", "Frontend Visualization"].map((step, index) => (
+                <div key={step} className="flex items-center gap-3 sm:min-w-0 sm:flex-1 sm:flex-col sm:text-center">
+                  <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 text-sm font-bold text-white">{index + 1}</span>
+                  <span className="text-sm font-semibold text-slate-800">{step}</span>
+                  {index < 4 && <span className="ml-auto text-blue-600 sm:hidden" aria-hidden="true">↓</span>}
+                  {index < 4 && <span className="hidden text-blue-600 sm:block" aria-hidden="true">→</span>}
+                </div>
+              ))}
+            </div>
+            <p className="mt-5 text-sm leading-relaxed text-slate-600">
+              The intended workflow is for a user to select a disease module, provide its corresponding image, and have the relevant service invoke that disease-specific pipeline. The application then returns supported predictions and assessment information for presentation alongside available visual explanations. This describes the integration workflow without introducing new services or routes.
+            </p>
+          </section>
+
+          <section aria-labelledby="methodology-summary-heading" className="mt-14 rounded-3xl bg-slate-950 p-6 text-white shadow-lg sm:p-8">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-300">Methodological Summary</p>
+            <h3 id="methodology-summary-heading" className="mt-3 text-2xl font-black tracking-tight sm:text-3xl">
+              A Disease-Specific Approach Within One Framework
+            </h3>
+            <p className="mt-4 max-w-4xl text-sm leading-relaxed text-slate-300 sm:text-base">
+              The methodology combines four separate AI pipelines through a common web interface. Each pipeline uses its appropriate image modality and assessment technique, while Grad-CAM and the implemented reliability-related assessment provide additional information where supported.
+            </p>
+            <p className="mt-3 max-w-4xl text-sm leading-relaxed text-slate-300 sm:text-base">
+              This modular design enables the project to investigate the integration of disease-specific predictions and assessment outputs without treating all eye disorders as an identical classification problem.
+            </p>
+            <p className="mt-5 border-t border-white/10 pt-4 text-sm font-medium leading-relaxed text-sky-100">
+              AI EyeDx is an academic research prototype for screening support. Its outputs require appropriate interpretation and do not replace professional ophthalmic examination or diagnosis.
+            </p>
+          </section>
+        </div>
+      </section>
+
+      <section id="technologies" className="scroll-mt-24 bg-slate-50 py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <header className="relative mb-12 overflow-hidden rounded-3xl border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-6 shadow-sm sm:p-9 lg:p-10">
+            <div className="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full bg-blue-200/30 blur-3xl" aria-hidden="true" />
+            <div className="relative">
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-blue-700">TECHNOLOGY STACK</p>
+              <h2 className="mt-3 text-3xl font-black tracking-[-0.05em] text-slate-900 sm:text-4xl lg:text-5xl">
+                The Technologies Powering AI EyeDx
+              </h2>
+              <p className="mt-4 max-w-4xl text-base leading-relaxed text-slate-600 sm:text-lg">
+                AI EyeDx combines deep learning, image analysis, explainable AI, and web development technologies to investigate multi-disease assessment of diabetes-related eye disorders. The stack supports disease-specific model development and presentation of assessment information through a unified web interface.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {["Deep learning", "Fundus + OCT", "Explainable AI", "Web platform"].map((item) => (
+                  <span key={item} className="rounded-full border border-blue-100 bg-white/90 px-3 py-1.5 text-xs font-semibold text-blue-800">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </header>
+
+          <section aria-labelledby="technology-ecosystem-heading">
+            <div className="mb-6">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">Technology Overview</p>
+              <h3 id="technology-ecosystem-heading" className="mt-2 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
+                Our Technology Ecosystem
+              </h3>
+            </div>
+            <div className="space-y-8">
+              {[
+                {
+                  group: "Deep Learning and AI",
+                  items: [
+                    ["PyTorch", "Deep learning framework", "Listed as the framework for the disease-specific model modules."],
+                    ["EfficientNetV2-S", "DR architecture", "Used for the diabetic retinopathy severity classification module."],
+                    ["EfficientNet-B3", "Cataract architecture", "Used for cataract severity classification."],
+                    ["EfficientNet-B0", "Glaucoma and DME architecture", "Listed for glaucoma assessment alongside U-Net segmentation, and for OCT-based DME classification."],
+                    ["U-Net", "Image segmentation architecture", "Used for optic-disc and optic-cup segmentation in the glaucoma module."],
+                  ],
+                },
+                {
+                  group: "Computer Vision and Image Processing",
+                  items: [
+                    ["Image Preprocessing", "Image preparation", "Prepares fundus and OCT images for their corresponding disease-specific model requirements."],
+                    ["Grad-CAM", "Explainable AI", "Produces heatmaps that highlight image regions influencing supported model predictions."],
+                    ["Lesion-Aware Analysis", "DR image analysis", "A separate diabetic retinopathy pipeline component for candidate-region lesion analysis."],
+                    ["Mahalanobis Distance", "Reliability assessment", "Supports out-of-distribution assessment in the diabetic retinopathy pipeline."],
+                    ["Visibility Degradation Score (VDS)", "Image-quality assessment", "Summarizes cataract-related visibility characteristics using entropy, contrast, vessel visibility, and sharpness."],
+                  ],
+                },
+                {
+                  group: "Web Application and API",
+                  items: [
+                    ["Next.js Route Handlers", "Application API layer", "Provide the website's existing API routes. They are distinct from the disease-specific model pipelines."],
+                  ],
+                },
+                {
+                  group: "Frontend Technologies",
+                  items: [
+                    ["React", "UI library", "Renders the interactive user interface for the website."],
+                    ["Next.js", "React framework", "Provides the existing App Router application structure, pages, and route handlers."],
+                    ["TypeScript", "Programming language", "Adds typed application code across the frontend and route handlers."],
+                    ["Tailwind CSS", "Styling", "Provides utility classes for responsive layouts and visual presentation."],
+                  ],
+                },
+                {
+                  group: "Development and Version Control",
+                  items: [
+                    ["Git and GitHub", "Version control and collaboration", "The project is maintained in a Git repository hosted on GitHub."],
+                  ],
+                },
+              ].map((category) => (
+                <div key={category.group}>
+                  <h4 className="mb-4 text-lg font-bold text-slate-900">{category.group}</h4>
+                  <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                    {category.items.map(([name, type, role]) => (
+                      <article key={name} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-colors hover:border-sky-200">
+                        <div className="flex items-start gap-3">
+                          <span className="inline-flex h-10 min-w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 px-2 text-xs font-extrabold text-white" aria-hidden="true">
+                            {name === "PyTorch" ? "PT" : name === "React" ? "R" : name === "Next.js" ? "N" : name === "TypeScript" ? "TS" : name === "U-Net" ? "U" : name === "Git and GitHub" ? "Git" : "AI"}
+                          </span>
+                          <div>
+                            <h5 className="font-bold text-slate-900">{name}</h5>
+                            <p className="mt-0.5 text-xs font-semibold text-blue-700">{type}</p>
+                          </div>
+                        </div>
+                        <p className="mt-3 text-sm leading-relaxed text-slate-600">{role}</p>
+                      </article>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section aria-labelledby="technology-mapping-heading" className="mt-14">
+            <div className="mb-6">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">Disease-Specific Stack</p>
+              <h3 id="technology-mapping-heading" className="mt-2 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
+                Which Technologies Support Each Disease?
+              </h3>
+            </div>
+            <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
+              <table className="w-full min-w-[820px] text-left text-sm">
+                <thead className="bg-slate-100 text-slate-800">
+                  <tr>
+                    <th scope="col" className="px-5 py-4 font-bold">Disease Module</th>
+                    <th scope="col" className="px-5 py-4 font-bold">Input</th>
+                    <th scope="col" className="px-5 py-4 font-bold">Main Model or Method</th>
+                    <th scope="col" className="px-5 py-4 font-bold">Additional Techniques</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 text-slate-600">
+                  {[
+                    ["Diabetic Retinopathy", "Fundus image", "EfficientNetV2-S", "Grad-CAM, lesion-aware analysis, and Mahalanobis-distance-based OOD assessment"],
+                    ["Glaucoma", "Fundus image", "U-Net segmentation; EfficientNet-B0 is also listed in the project module overview", "Optic-disc/cup segmentation, cup-to-disc ratio extraction"],
+                    ["Cataract", "Fundus image", "EfficientNet-B3", "Grad-CAM and Visibility Degradation Score"],
+                    ["Diabetic Macular Edema", "OCT image", "EfficientNet-B0", "Grad-CAM"],
+                  ].map(([disease, input, model, techniques]) => (
+                    <tr key={disease} className="align-top">
+                      <th scope="row" className="px-5 py-4 font-semibold text-slate-800">{disease}</th>
+                      <td className="px-5 py-4">{input}</td>
+                      <td className="px-5 py-4 leading-relaxed">{model}</td>
+                      <td className="px-5 py-4 leading-relaxed">{techniques}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-3 text-xs leading-relaxed text-slate-500">
+              The glaucoma module overview lists EfficientNet-B0 as its model while describing U-Net for optic-disc and optic-cup segmentation; these are presented as separate components.
+            </p>
+          </section>
+
+          <section aria-labelledby="technology-architecture-heading" className="mt-14">
+            <div className="mb-6">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">Technology Architecture</p>
+              <h3 id="technology-architecture-heading" className="mt-2 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
+                How the Technologies Work Together
+              </h3>
+            </div>
+            <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {[
+                ["User Interface", "React application structured with Next.js."],
+                ["Website API Layer", "Existing Next.js route handlers support website APIs; disease-model inference services are not identified as these routes."],
+                ["Disease-Specific AI Layer", "Separate module-specific architectures: DR, glaucoma, cataract, and DME use their respective models and analysis methods."],
+                ["Explainability and Assessment", "Grad-CAM and relevant disease-specific outputs; Mahalanobis-distance-based OOD assessment is associated with the DR module."],
+                ["Results Presentation", "The web application presents project module information and existing website outputs."],
+              ].map(([title, detail], index) => (
+                <li key={title} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                  <div className="mb-3 flex items-center gap-3">
+                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-blue-50 text-sm font-extrabold text-blue-700">{index + 1}</span>
+                    <h4 className="font-bold text-slate-900">{title}</h4>
+                  </div>
+                  <p className="text-sm leading-relaxed text-slate-600">{detail}</p>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          <section aria-labelledby="technology-benefits-heading" className="mt-14">
+            <div className="mb-6">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">Technology Rationale</p>
+              <h3 id="technology-benefits-heading" className="mt-2 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
+                Designed for Modularity and Explainability
+              </h3>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+              {[
+                ["Modular AI Development", "Independent disease-specific pipelines allow each condition to use an appropriate model and analysis method."],
+                ["Multimodal Image Support", "The framework accommodates fundus imaging and OCT through their respective disease-specific modules."],
+                ["Explainable Assessment", "Grad-CAM visualizations provide additional context about image regions influencing supported predictions."],
+                ["Web-Based Integration", "The existing web application provides a common interface for accessing information about the individual disease modules."],
+              ].map(([title, text], index) => (
+                <article key={title} className="rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white p-5 shadow-sm">
+                  <span className="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white text-sm font-extrabold text-blue-700 shadow-sm" aria-hidden="true">
+                    {index + 1}
+                  </span>
+                  <h4 className="font-bold text-slate-900">{title}</h4>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{text}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section aria-labelledby="technology-summary-heading" className="mt-14 rounded-3xl bg-slate-950 p-6 text-white shadow-lg sm:p-8">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-300">Technology Summary</p>
+            <h3 id="technology-summary-heading" className="mt-3 text-2xl font-black tracking-tight sm:text-3xl">
+              From Image Input to Interpretable Results
+            </h3>
+            <p className="mt-4 max-w-4xl text-sm leading-relaxed text-slate-300 sm:text-base">
+              The AI EyeDx technology stack combines deep learning architectures, image-analysis techniques, disease-specific assessment methods, and web development technologies. These components are described as supporting image analysis, model predictions, and presentation of relevant outputs through the research platform.
+            </p>
+            <p className="mt-3 max-w-4xl text-sm leading-relaxed text-slate-300 sm:text-base">
+              The architecture emphasizes modularity: each disease pipeline maintains its own input requirements and assessment logic while contributing to the same research platform.
+            </p>
+            <p className="mt-5 border-t border-white/10 pt-4 text-sm font-medium leading-relaxed text-sky-100">
+              The technologies and model capabilities presented here describe the academic research implementation. Their outputs are intended for screening support and do not replace professional ophthalmic examination or diagnosis.
+            </p>
+          </section>
+        </div>
+      </section>
+
       <section id="contribution" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="rounded-3xl border border-sky-200 bg-gradient-to-br from-sky-50 to-white p-8 shadow-[0_20px_45px_rgba(14,116,144,0.08)]">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-700">I. Research Contribution</p>
