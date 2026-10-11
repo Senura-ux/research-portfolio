@@ -1,369 +1,496 @@
 "use client";
 
-const reasons = [
-  {
-    num: "01",
-    title: "Multi-condition burden",
-    desc: "Diabetes is linked with several ocular complications—DR, DME, glaucoma, and cataract—often requiring coordinated screening rather than isolated disease detection.",
-    icon: "🧠",
-  },
-  {
-    num: "02",
-    title: "Access and scalability",
-    desc: "Conventional ophthalmic evaluation depends heavily on specialist interpretation and imaging expertise, which limits the reach of large-scale screening programs.",
-    icon: "📡",
-  },
-  {
-    num: "03",
-    title: "Clinical complexity",
-    desc: "Each disease requires a different diagnostic lens: retinal lesions for DR, structural features for glaucoma, visibility changes for cataract, and retinal layer analysis for DME.",
-    icon: "🔬",
-  },
-  {
-    num: "04",
-    title: "Interpretability gap",
-    desc: "Many black-box systems produce a class label without explaining which regions influenced the result, reducing trust for medical decision support.",
-    icon: "🛡️",
-  },
+const diseaseNav = [
+  { id: "dr", label: "Diabetic Retinopathy", caption: "Lesion-aware grading and visual explanations" },
+  { id: "dme", label: "DME", caption: "OCT-based structural assessment" },
+  { id: "cataract", label: "Cataract", caption: "Severity and visibility degradation" },
+  { id: "glaucoma", label: "Glaucoma", caption: "Optic disc/cup and risk assessment" },
 ];
 
-const datasets = [
+const overviewPoints = [
+  "Deep learning for ophthalmic image analysis",
+  "Disease severity and risk-oriented assessment",
+  "Explainable AI for clinician-facing evidence",
+  "Multimodal fundus and OCT screening workflow",
+];
+
+const comparisonRows = [
   {
-    name: "Diabetic Retinopathy",
+    study: "Identification of Diabetic Related Eye Diseases Using Deep Learning",
+    year: "2023",
+    disease: "Diabetic eye diseases",
     modality: "Fundus imaging",
-    focus: "Severity classification from lesion presence and retinal abnormalities",
-    detail: "No DR, Mild, Moderate, Severe, Proliferative DR",
-    color: "from-rose-500 to-orange-400",
+    model: "Deep learning-based classification approaches",
+    dataset: "Not reported in the reviewed source",
+    performance: "Not reported in the reviewed source",
+    contribution: "Explores deep learning for multi-disease diabetic eye diagnosis using fundus images.",
+    limitations: "Broad disease coverage without a clearly unified workflow or disease-specific explanation layer.",
   },
   {
-    name: "Diabetic Macular Edema",
-    modality: "OCT imaging",
-    focus: "Retinal fluid and structural disorder assessment",
-    detail: "NORMAL, DRUSEN, DME, CNV",
-    color: "from-emerald-500 to-teal-400",
-  },
-  {
-    name: "Glaucoma",
+    study: "Systematic Development of AI-Enabled Diagnostic Systems for Glaucoma and Diabetic Retinopathy",
+    year: "2023",
+    disease: "Glaucoma and diabetic retinopathy",
     modality: "Fundus imaging",
-    focus: "Optic disc/cup analysis and risk-oriented glaucoma staging",
-    detail: "Normal, Early Glaucoma, Advanced Glaucoma",
-    color: "from-indigo-500 to-blue-400",
+    model: "Systematic AI diagnostic pipeline with disease-specific models",
+    dataset: "Not reported in the reviewed source",
+    performance: "Not reported in the reviewed source",
+    contribution: "Highlights the need for systematic AI design in ophthalmic diagnosis and disease-specific assessment.",
+    limitations: "Not primarily structured around combined disease modules, multimodal outputs, and explainability.",
   },
   {
-    name: "Cataract",
+    study: "An Automated Detection and Multi-stage Classification of Diabetic Retinopathy Using Convolutional Neural Networks",
+    year: "2023",
+    disease: "Diabetic retinopathy",
     modality: "Fundus imaging",
-    focus: "Severity grading and visibility degradation assessment",
-    detail: "No, Mild, Moderate, Severe cataract",
-    color: "from-violet-500 to-fuchsia-400",
+    model: "Convolutional neural networks",
+    dataset: "Not reported in the reviewed source",
+    performance: "Not reported in the reviewed source",
+    contribution: "Demonstrates CNN-based DR detection and multi-stage classification approaches.",
+    limitations: "Severity grading and interpretability remain constrained by limited lesion-level explanation and workflow integration.",
+  },
+  {
+    study: "A Comprehensive Analysis of Diabetic Retinopathy Using Deep Learning Techniques",
+    year: "2024",
+    disease: "Diabetic retinopathy",
+    modality: "Fundus imaging",
+    model: "Deep learning review and CNN-based techniques",
+    dataset: "Not reported in the reviewed source",
+    performance: "Not reported in the reviewed source",
+    contribution: "Summarizes deep learning methods for retina lesion analysis and disease severity assessment.",
+    limitations: "Review-oriented rather than a unified, disease-specific medical decision-support workflow.",
+  },
+  {
+    study: "Prediction of Diabetic Eye Disease in Type 2 Diabetes Using Hybridization of Deep Neural Network-Based Approaches",
+    year: "2024",
+    disease: "Diabetic eye disease",
+    modality: "Fundus imaging",
+    model: "Hybrid deep neural network approaches",
+    dataset: "Not reported in the reviewed source",
+    performance: "Not reported in the reviewed source",
+    contribution: "Investigates hybrid models for diabetic eye disease prediction in Type 2 diabetes cohorts.",
+    limitations: "The focus is primarily predictive rather than a modular, explainable, multi-disease platform.",
+  },
+  {
+    study: "A Survey on AI-Powered Ophthalmology: A Revolution in Eye Care and Disease Management",
+    year: "2025",
+    disease: "Ophthalmic disease screening",
+    modality: "Multimodal ophthalmic imaging",
+    model: "Review of AI-powered ophthalmology methods",
+    dataset: "Not reported in the reviewed source",
+    performance: "Not reported in the reviewed source",
+    contribution: "Provides a broad review of AI in ophthalmology, including disease screening and decision support.",
+    limitations: "High-level overview; does not provide a single integrated implementation for disease-specific assessment and visual explanation.",
+  },
+  {
+    study: "A Review on Eye Disease Prediction and Detection Using AI/ML",
+    year: "2025",
+    disease: "Multiple eye diseases",
+    modality: "Fundus and general ophthalmic imaging",
+    model: "AI/ML review of eye disease detection methods",
+    dataset: "Not reported in the reviewed source",
+    performance: "Not reported in the reviewed source",
+    contribution: "Reinforces the breadth of AI-based eye disease prediction research across multiple conditions.",
+    limitations: "Does not fully address explainability, disease-specific severity/risk outputs, or unified clinical workflows.",
+  },
+  {
+    study: "Leveraging Deep Learning with Automated Fundus Imaging for Early Detection and Diagnosis of Eye Diseases",
+    year: "2025",
+    disease: "Eye disease detection",
+    modality: "Automated fundus imaging",
+    model: "Deep learning with fundus imaging",
+    dataset: "Not reported in the reviewed source",
+    performance: "Not reported in the reviewed source",
+    contribution: "Emphasizes early detection and automated diagnosis using fundus imaging and deep learning.",
+    limitations: "Early detection alone does not guarantee explainable, multi-disease, or disease-specific assessment outputs.",
   },
 ];
 
-const objectives = [
-  "Develop disease-specific deep learning models for DR, DME, glaucoma, and cataract detection.",
-  "Integrate multimodal retinal imaging inputs, combining fundus photography and OCT analysis within a unified framework.",
-  "Deliver severity classification, risk level estimation, and clinically relevant biomarkers to support screening decisions.",
-  "Incorporate explainable AI techniques such as Grad-CAM and segmentation overlays to make model outputs more interpretable.",
-  "Design and implement a user-friendly web platform that allows image upload, processing, and result display.",
-  "Evaluate model performance using validation metrics and clinically meaningful outputs beyond simple labels.",
+const referenceList = [
+  "Identification of Diabetic Related Eye Diseases Using Deep Learning (2023)",
+  "Systematic Development of AI-Enabled Diagnostic Systems for Glaucoma and Diabetic Retinopathy (2023)",
+  "An Automated Detection and Multi-stage Classification of Diabetic Retinopathy Using Convolutional Neural Networks (2023)",
+  "A Comprehensive Analysis of Diabetic Retinopathy Using Deep Learning Techniques (2024)",
+  "Prediction of Diabetic Eye Disease in Type 2 Diabetes Using Hybridization of Deep Neural Network-Based Approaches (2024)",
+  "A Survey on AI-Powered Ophthalmology: A Revolution in Eye Care and Disease Management (2025)",
+  "A Review on Eye Disease Prediction and Detection Using AI/ML (2025)",
+  "Leveraging Deep Learning with Automated Fundus Imaging for Early Detection and Diagnosis of Eye Diseases (2025)",
 ];
 
-const litThemes = [
+const gapCards = [
   {
-    title: "Diabetic Retinopathy",
-    desc: "CNN-based and transfer-learning approaches classify retina lesions and severity using fundus images.",
-    icon: "🩺",
+    title: "Single-disease orientation",
+    text: "Many systems are designed around one condition, so clinicians still need separate tools for retinal lesions, structural eye disease, and image-quality issues.",
   },
   {
-    title: "Cataract Assessment",
-    desc: "Research has investigated cataract grading and visibility degradation, with vessel and optic-disc visibility declining as severity increases.",
-    icon: "👁️",
+    title: "Limited multimodal integration",
+    text: "Fundus and OCT workflows are often developed independently, despite their complementary value in diabetic eye disease assessment.",
   },
   {
-    title: "DME Analysis",
-    desc: "OCT image analysis has been used to detect fluid accumulation and retinal abnormalities related to diabetic macular edema.",
-    icon: "📈",
+    title: "Weak explainability",
+    text: "Classification labels alone do not usually show how the model interpreted retinal structures, optic disc regions, or lesion patterns.",
   },
   {
-    title: "Glaucoma Detection",
-    desc: "Optic disc and cup segmentation, along with Cup-to-Disc Ratio, are essential biomarkers in glaucoma assessment.",
-    icon: "🎯",
+    title: "Insufficient disease-specific assessment",
+    text: "Several studies emphasize disease presence but do not consistently include grading, risk assessment, or output formats relevant to screening decisions.",
   },
   {
-    title: "Explainability",
-    desc: "Grad-CAM and segmentation overlays provide visual evidence of the anatomy and features driving model predictions.",
-    icon: "✨",
+    title: "Cataract visibility degradation",
+    text: "Existing cataract work often focuses on severity labels rather than explicitly quantifying how optical opacity affects retinal visibility and downstream interpretation.",
   },
   {
-    title: "Clinical Trust",
-    desc: "AI systems are more valuable when they communicate severity, risk, and confidence in ways clinicians can interpret consistently.",
-    icon: "🤝",
+    title: "Glaucoma structural analysis",
+    text: "Glaucoma studies benefit from optic disc and cup analysis, but not all systems make such structural biomarkers interpretable to clinicians.",
   },
-];
-
-const methodology = [
-  { phase: "01", title: "Problem and literature analysis", desc: "Reviewed diabetes-related eye disease challenges, current ophthalmic AI trends, and unresolved gaps in multimodal screening." },
-  { phase: "02", title: "Dataset preparation", desc: "Collected disease-specific datasets, resized images, normalized inputs, and applied augmentation to improve generalizability." },
-  { phase: "03", title: "Disease-specific model design", desc: "Developed specialized backbones such as EfficientNet variants and U-Net-based segmentation-driven glaucoma analysis." },
-  { phase: "04", title: "Assessment outputs", desc: "Produced disease-level severity, risk, confidence, structural biomarkers, and cataract visibility metrics." },
-  { phase: "05", title: "Explainability", desc: "Integrated Grad-CAM and segmentation-based overlays to visualize the retinal regions influencing classifications." },
-  { phase: "06", title: "System deployment", desc: "Connected independently optimized modules through Flask services and a React-based interface into a unified web platform." },
-];
-
-const technologies = [
-  { category: "AI / DL", items: ["Python", "PyTorch", "CNN", "Transfer Learning", "EfficientNet", "EfficientNetV2", "U-Net"] },
-  { category: "Imaging", items: ["Fundus Photography", "OCT", "Image Normalization", "Contrast Enhancement", "Noise Reduction"] },
-  { category: "Explainability", items: ["Grad-CAM", "Segmentation Maps", "Heatmap Overlays", "Clinical Visualization"] },
-  { category: "Platform", items: ["React.js", "Flask", "REST APIs", "Web Interface", "Model Integration"] },
-  { category: "Analysis", items: ["Confusion Matrix", "Precision", "Recall", "F1-score", "OOD Detection", "Mahalanobis Score"] },
 ];
 
 export default function DomainPage() {
   return (
-    <main className="domain-page bg-slate-50 text-slate-800">
-      <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(96,165,250,0.25),_transparent_30%),linear-gradient(135deg,#020817_0%,#0f172a_18%,#172554_42%,#1d4ed8_72%,#2563eb_100%)] text-white">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.08)_1px,transparent_1px)] bg-[size:32px_32px] opacity-40" />
-        <div className="absolute -top-32 right-[-5rem] h-[30rem] w-[30rem] rounded-full border border-white/10 bg-white/5 blur-3xl" />
-        <div className="absolute bottom-[-8rem] left-[-5rem] h-[24rem] w-[24rem] rounded-full border border-white/10 bg-blue-400/10 blur-3xl" />
+    <main className="bg-slate-50 text-slate-800">
+      <section id="literature-survey" className="relative overflow-hidden bg-slate-950 text-white">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.08)_1px,transparent_1px)] bg-[size:30px_30px] opacity-35" />
+        <div className="absolute inset-y-0 right-0 w-1/2 bg-[radial-gradient(circle_at_center,_rgba(59,130,246,0.24),transparent_55%)]" />
 
-        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-          <div className="max-w-4xl">
-            <span className="inline-flex items-center gap-2 rounded-full border border-blue-200/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-blue-100 backdrop-blur-sm">
-              <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_18px_rgba(52,211,153,0.95)]" />
-              Research Domain
+        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
+          <div className="mb-8 flex flex-wrap items-center gap-3 text-sm text-slate-200">
+            <span className="rounded-full border border-slate-700 bg-slate-900/80 px-3 py-1 font-medium tracking-[0.16em] uppercase text-sky-300">
+              Literature Review
             </span>
-            <h1 className="mt-8 text-4xl font-black tracking-[-0.06em] text-white sm:text-5xl lg:text-7xl">
-              Explainable Multi-Disease
-              <span className="mt-2 block bg-gradient-to-r from-blue-200 via-sky-100 to-blue-400 bg-clip-text text-transparent">
-                Ophthalmic AI
-              </span>
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-blue-100/90">
-              An AI-driven research framework for diabetes-related eye disorders, combining multimodal imaging, disease-specific models, and explainability for clinically meaningful screening support.
-            </p>
+            <span className="text-slate-400">Academic synthesis</span>
           </div>
 
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {[
-              { label: "Cataract", value: "88.19%", note: "EfficientNet-B3 validation accuracy" },
-              { label: "DR", value: "92.13%", note: "EfficientNetV2-S validation accuracy" },
-              { label: "DME", value: "92.67%", note: "EfficientNet-B0 validation accuracy" },
-              { label: "Glaucoma", value: "95.48%", note: "EfficientNet-B0 validation accuracy" },
-            ].map((metric) => (
-              <div key={metric.label} className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-lg shadow-[0_25px_60px_rgba(15,23,42,0.25)]">
-                <div className="text-sm uppercase tracking-[0.18em] text-blue-100/80">{metric.label}</div>
-                <div className="mt-3 text-3xl font-black text-white">{metric.value}</div>
-                <div className="mt-1 text-xs text-blue-100/70">{metric.note}</div>
+          <div className="grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-end">
+            <div>
+              <h1 className="text-4xl font-black tracking-[-0.06em] text-white sm:text-5xl lg:text-6xl">
+                Literature Review
+              </h1>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
+                This review synthesizes deep learning research in diabetic retinopathy, diabetic macular edema, cataract assessment, glaucoma screening, and explainable ophthalmic AI. The aim is to evaluate how prior work informs the design of a unified, disease-specific, and clinically interpretable framework.
+              </p>
+            </div>
+
+            <div className="rounded-3xl border border-slate-700 bg-white/5 p-6 backdrop-blur-sm">
+              <div className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-300">Scope</div>
+              <p className="mt-4 text-sm leading-relaxed text-slate-200">
+                The review focuses on deep learning, multimodal retinal imaging, severity and risk assessment, and visual explainability in ophthalmology, with emphasis on evidence relevant to the project’s disease-specific modules.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            {overviewPoints.map((point) => (
+              <div key={point} className="rounded-2xl border border-slate-700 bg-slate-900/70 p-4 text-sm text-slate-200 shadow-[0_20px_35px_rgba(2,6,23,0.2)]">
+                {point}
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="research-gap" className="scroll-mt-24 py-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <span className="rounded-full bg-blue-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-blue-700">Problem Statement</span>
-            <h2 className="mt-5 text-3xl font-black tracking-[-0.04em] text-slate-900 sm:text-4xl">
-              Why this research domain matters
+      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="mb-8 flex flex-wrap gap-3">
+          {diseaseNav.map((item) => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-sky-200 hover:text-sky-700"
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_15px_38px_rgba(2,6,23,0.04)] sm:p-8">
+          <div className="mb-6 text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-700">Overview</p>
+            <h2 className="mt-3 text-3xl font-black tracking-[-0.04em] text-slate-900 sm:text-4xl">
+              Purpose and scope of the review
             </h2>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {reasons.map((item) => (
-              <div key={item.num} className="group rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-[0_20px_45px_rgba(15,23,42,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-[0_26px_60px_rgba(37,99,235,0.12)]">
-                <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 text-2xl shadow-[0_12px_30px_rgba(59,130,246,0.25)]">
-                  {item.icon}
-                </div>
-                <div className="mb-3 text-[10px] font-bold uppercase tracking-[0.22em] text-blue-600">{item.num}</div>
-                <h3 className="mb-3 text-xl font-bold text-slate-900">{item.title}</h3>
-                <p className="text-sm leading-relaxed text-slate-600">{item.desc}</p>
-              </div>
-            ))}
+          <div className="grid gap-6 lg:grid-cols-2">
+            <div>
+              <p className="text-base leading-relaxed text-slate-600">
+                The literature on retinal AI has grown substantially across diabetic eye disease, glaucoma, cataract, and OCT-based assessment. Much of the recent work demonstrates that convolutional neural networks, transfer learning, and hybrid architectures can classify retinal pathology with high accuracy when trained on curated image collections.
+              </p>
+            </div>
+            <div>
+              <p className="text-base leading-relaxed text-slate-600">
+                However, a clear pattern remains: many studies are disease-specific, image-modality-specific, and focused on classification labels rather than a complete screening workflow. This review therefore examines both methodological progress and the practical gaps that motivate a more unified, explainable, and disease-aware framework.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="research-problem-solution" className="scroll-mt-24 bg-white py-20">
+      <section id="dr" className="scroll-mt-24 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mb-8 text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-700">A. Research on Diabetic Retinopathy</p>
+          <h2 className="mt-3 text-3xl font-black tracking-[-0.04em] text-slate-900 sm:text-4xl">
+            Diabetic retinopathy remains the most established deep-learning application in retinal screening
+          </h2>
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_15px_38px_rgba(2,6,23,0.04)]">
+            <p className="text-base leading-relaxed text-slate-600">
+              Traditional retinal screening for diabetic retinopathy relied heavily on lesion-based examination and clinician interpretation of microaneurysms, haemorrhages, exudates, and vascular abnormalities. In the reviewed literature, this problem has increasingly been addressed through CNN-based approaches, transfer learning, and hybrid architectures that learn hierarchical retinal patterns directly from fundus images.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-slate-600">
+              The literature consistently emphasizes five-class grading as a more clinically relevant objective than binary disease detection, because severity stratification supports earlier referral and monitoring decisions. Although these systems can achieve strong classification performance, their usefulness depends on lesion awareness, external validation, and the ability to explain which retinal regions contributed to the prediction.
+            </p>
+          </div>
+
+          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+            <h3 className="text-lg font-bold text-slate-900">Strengths and limitations</h3>
+            <ul className="mt-4 space-y-3 text-sm leading-relaxed text-slate-600">
+              <li><span className="font-semibold text-slate-800">Strength:</span> Strong performance on fundus-based DR classification and severity grading.</li>
+              <li><span className="font-semibold text-slate-800">Strength:</span> Transfer learning and pretrained CNNs reduce the burden of training from scratch.</li>
+              <li><span className="font-semibold text-slate-800">Limitation:</span> Many systems remain tied to single-disease classification rather than integrated screening workflows.</li>
+              <li><span className="font-semibold text-slate-800">Limitation:</span> Model explanations are often limited to heatmaps and may not provide clinically grounded lesion-level reasoning.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="dme" className="scroll-mt-24 bg-slate-900 py-16 text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <div>
-              <span className="rounded-full bg-blue-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-blue-700">Abstract Summary</span>
-              <h2 className="mt-5 text-3xl font-black tracking-[-0.04em] text-slate-900 sm:text-4xl">
-                A unified platform for diabetic eye disease screening
-              </h2>
-              <p className="mt-5 text-lg leading-relaxed text-slate-600">
-                Diabetes mellitus is associated with multiple ocular complications, including diabetic retinopathy, diabetic macular edema, cataract, and glaucoma. This research proposes an explainable AI framework that integrates four disease-specific deep learning modules into a shared web-based diagnosis platform.
+          <div className="mb-8 text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-300">B. Research on Diabetic Macular Edema</p>
+            <h2 className="mt-3 text-3xl font-black tracking-[-0.04em] text-white sm:text-4xl">
+              OCT is particularly appropriate for DME because it captures retinal layers and fluid changes directly
+            </h2>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-2">
+            <div className="rounded-3xl border border-slate-700 bg-slate-800/80 p-6">
+              <p className="text-base leading-relaxed text-slate-200">
+                DME is closely associated with retinal thickening and intraretinal fluid accumulation. OCT is therefore a highly relevant modality because it provides cross-sectional retinal structure and allows clinicians to examine fluid distribution, layer disruption, and macular changes with far greater detail than standard colour fundus imaging alone.
+              </p>
+              <p className="mt-4 text-base leading-relaxed text-slate-200">
+                The reviewed literature shows that CNNs and transfer-learning pipelines can classify OCT volumes or B-scans into disease or severity categories, often using retinal structural patterns as discriminative evidence. This is particularly useful for systems that need to distinguish DME from other OCT findings such as drusen or choroidal neovascularization.
+              </p>
+            </div>
+
+            <div className="rounded-3xl border border-slate-700 bg-slate-800/80 p-6">
+              <h3 className="text-lg font-bold text-white">Why OCT matters</h3>
+              <ul className="mt-4 space-y-3 text-sm leading-relaxed text-slate-300">
+                <li>It captures retinal layer morphology not visible on a 2D fundus image.</li>
+                <li>It supports fluid localization and severity-oriented interpretation.</li>
+                <li>It complements fundus-based DR, cataract, and glaucoma assessment within a multimodal framework.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="cataract" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mb-8 text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-700">C. Research on Cataract Detection and Severity Assessment</p>
+          <h2 className="mt-3 text-3xl font-black tracking-[-0.04em] text-slate-900 sm:text-4xl">
+            Cataract research has moved beyond simple grading toward visibility-aware assessment
+          </h2>
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_15px_38px_rgba(2,6,23,0.04)]">
+            <p className="text-base leading-relaxed text-slate-600">
+              Cataract detection commonly uses deep learning and transfer learning to classify severity into categories such as no cataract, mild, moderate, and severe. The literature also shows that increased opacity reduces retinal visibility, affecting vessel contrast, optic disc clarity, and the ability to assess deeper retinal structures.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-slate-600">
+              This is important because not all cataract studies distinguish between a simple classification outcome and the practical issue of how much image degradation affects the interpretability of the retinal image itself. The project addresses this gap by investigating cataract-related visibility degradation as a separate assessment problem rather than only predicting severity labels.
+            </p>
+          </div>
+
+          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+            <h3 className="text-lg font-bold text-slate-900">Important distinction</h3>
+            <p className="mt-3 text-sm leading-relaxed text-slate-600">
+              A system may correctly classify cataract severity while still failing to quantify the extent to which lens opacity reduces retinal visibility. The proposed work therefore evaluates both the disease label and the visibility condition, which is more meaningful for downstream retinal interpretation.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="glaucoma" className="bg-slate-50 py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-700">D. Research on Glaucoma Detection</p>
+            <h2 className="mt-3 text-3xl font-black tracking-[-0.04em] text-slate-900 sm:text-4xl">
+              Glaucoma assessment depends strongly on structural cues and optic-nerve geometry
+            </h2>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-2">
+            <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_15px_38px_rgba(2,6,23,0.04)]">
+              <p className="text-base leading-relaxed text-slate-600">
+                Fundus-based glaucoma research often focuses on optic disc and optic cup localization, retinal vessel pattern analysis, and structural biomarkers such as the cup-to-disc ratio. These features are clinically relevant because glaucomatous damage is reflected in changes to the optic nerve head geometry and surrounding retinal architecture.
               </p>
               <p className="mt-4 text-base leading-relaxed text-slate-600">
-                Retinal fundus images are used for cataract, DR, and glaucoma assessment, while OCT images support DME analysis. Each module provides clinically useful outputs such as disease severity, confidence, risk classification, structural biomarkers, and visual explanations. The system aims to improve screening accessibility, scalability, and interpretability in real-world ophthalmic workflows.
+                The challenge is that glaucoma can be subtle, image quality varies across acquisition settings, and structural abnormalities may not be obvious without careful segmentation or expert interpretation. This is why explainable structures such as optic disc and cup masks are especially valuable for clinical trust and validation.
               </p>
             </div>
 
-            <div className="rounded-[2rem] border border-slate-200 bg-gradient-to-br from-slate-900 via-blue-950 to-blue-800 p-7 text-white shadow-[0_30px_80px_rgba(15,23,42,0.18)]">
-              <div className="mb-5 text-xs font-semibold uppercase tracking-[0.22em] text-blue-200">Framework focus</div>
-              <div className="space-y-4">
-                {[
-                  "Disease-specific neural models",
-                  "Multimodal retinal image analysis",
-                  "Explainable AI-driven outputs",
-                  "Clinically meaningful decision support",
-                ].map((item) => (
-                  <div key={item} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-                    <span className="h-2.5 w-2.5 rounded-full bg-cyan-300" />
-                    <span className="text-sm font-medium text-blue-50">{item}</span>
-                  </div>
-                ))}
-              </div>
+            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+              <h3 className="text-lg font-bold text-slate-900">Relevant challenges</h3>
+              <ul className="mt-4 space-y-3 text-sm leading-relaxed text-slate-600">
+                <li>Variability in image capture quality and illumination.</li>
+                <li>Subtle structural differences during early-stage glaucoma.</li>
+                <li>Need for external validation and clinically meaningful biomarkers.</li>
+                <li>Importance of segmentation-based and risk-oriented interpretation.</li>
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-slate-50 py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <span className="rounded-full bg-white px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-blue-700 shadow-sm ring-1 ring-slate-200">Disease Modules</span>
-            <h2 className="mt-5 text-3xl font-black tracking-[-0.04em] text-slate-900 sm:text-4xl">Coverage of the multi-disease system</h2>
-          </div>
-
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {datasets.map((disease) => (
-              <div key={disease.name} className="group rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-[0_18px_45px_rgba(15,23,42,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_25px_55px_rgba(59,130,246,0.10)]">
-                <div className={`inline-flex rounded-full bg-gradient-to-r ${disease.color} px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-white`}>
-                  {disease.modality}
-                </div>
-                <h3 className="mt-5 text-xl font-bold text-slate-900">{disease.name}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">{disease.focus}</p>
-                <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-3 text-xs font-medium text-slate-700">
-                  {disease.detail}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="research-objectives" className="scroll-mt-24 bg-white py-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <span className="rounded-full bg-blue-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-blue-700">Goals</span>
-            <h2 className="mt-5 text-3xl font-black tracking-[-0.04em] text-slate-900 sm:text-4xl">Research objectives</h2>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-2">
-            {objectives.map((objective, index) => (
-              <div key={objective} className="flex gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-sm">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-indigo-500 text-sm font-black text-white">
-                  {index + 1}
-                </div>
-                <p className="text-sm leading-relaxed text-slate-700">{objective}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="literature-survey" className="scroll-mt-24 bg-gradient-to-b from-slate-50 to-white py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <span className="rounded-full bg-white px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-blue-700 shadow-sm ring-1 ring-slate-200">Literature Review</span>
-            <h2 className="mt-5 text-3xl font-black tracking-[-0.04em] text-slate-900 sm:text-4xl">Major research themes</h2>
-          </div>
-
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {litThemes.map((theme) => (
-              <div key={theme.title} className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-[0_18px_35px_rgba(15,23,42,0.04)]">
-                <div className="mb-4 text-3xl">{theme.icon}</div>
-                <h3 className="text-xl font-bold text-slate-900">{theme.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">{theme.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="methodology" className="scroll-mt-24 bg-white py-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <span className="rounded-full bg-blue-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-blue-700">Methodology</span>
-            <h2 className="mt-5 text-3xl font-black tracking-[-0.04em] text-slate-900 sm:text-4xl">Research pipeline</h2>
-          </div>
-
-          <div className="space-y-5">
-            {methodology.map((step) => (
-              <div key={step.phase} className="flex flex-col gap-4 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 shadow-sm md:flex-row md:items-center">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-500 text-lg font-black text-white shadow-[0_12px_25px_rgba(59,130,246,0.22)]">
-                  {step.phase}
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-bold text-slate-900">{step.title}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-slate-600">{step.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="technologies" className="scroll-mt-24 bg-slate-900 py-20 text-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <span className="rounded-full bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-blue-200">Technology Stack</span>
-            <h2 className="mt-5 text-3xl font-black tracking-[-0.04em] text-white sm:text-4xl">Core research and engineering tools</h2>
-          </div>
-
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-5">
-            {technologies.map((group) => (
-              <div key={group.category} className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
-                <h3 className="mb-4 text-sm font-bold uppercase tracking-[0.18em] text-blue-200">{group.category}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {group.items.map((item) => (
-                    <span key={item} className="rounded-full border border-white/10 bg-slate-800/70 px-2.5 py-1 text-xs text-slate-100">
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-slate-50 py-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <span className="rounded-full bg-white px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-blue-700 shadow-sm ring-1 ring-slate-200">Results</span>
-            <h2 className="mt-5 text-3xl font-black tracking-[-0.04em] text-slate-900 sm:text-4xl">Validation outcomes</h2>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {[
-              { label: "Cataract", value: "88.19%", detail: "Severity classification performance" },
-              { label: "DR", value: "92.13%", detail: "Retinal severity classification" },
-              { label: "DME", value: "92.67%", detail: "OCT-based disease classification" },
-              { label: "Glaucoma", value: "95.48%", detail: "Classification and risk support" },
-            ].map((item) => (
-              <div key={item.label} className="rounded-[1.6rem] border border-slate-200 bg-white p-6 text-center shadow-[0_18px_35px_rgba(15,23,42,0.03)]">
-                <div className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">{item.label}</div>
-                <div className="mt-4 text-4xl font-black tracking-[-0.05em] text-slate-900">{item.value}</div>
-                <div className="mt-2 text-sm text-slate-600">{item.detail}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-gradient-to-r from-blue-600 to-indigo-700 py-16 text-white">
-        <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-100">Clinical significance</p>
-          <h2 className="mt-5 text-3xl font-black tracking-[-0.04em] text-white sm:text-4xl">
-            A more interpretable and scalable approach to diabetic eye disease screening
+      <section id="xai" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mb-8 text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-700">E. Explainable Artificial Intelligence in Ophthalmology</p>
+          <h2 className="mt-3 text-3xl font-black tracking-[-0.04em] text-slate-900 sm:text-4xl">
+            Explainable AI helps connect a prediction to clinically relevant retinal regions
           </h2>
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-blue-50/90">
-            By combining multimodal imaging, disease-specific modeling, risk-oriented assessment, and explainability, this research contributes toward more accessible and clinically useful AI-assisted ophthalmic screening.
+        </div>
+
+        <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_15px_38px_rgba(2,6,23,0.04)] sm:p-8">
+          <p className="text-base leading-relaxed text-slate-600">
+            Grad-CAM and similar methods are frequently used in ophthalmic AI to highlight image regions that contribute to a model prediction. In retinal disease screening, this can help show whether the network is focusing on lesion regions, optic disc structures, retinal vasculature, or image-quality-related artifacts. Such visualizations are useful because they allow users to inspect whether the model is attending to medically meaningful areas instead of background noise or confounding patterns.
+          </p>
+          <p className="mt-4 text-base leading-relaxed text-slate-600">
+            However, heatmaps must be interpreted carefully. They are not proof of clinical correctness. A high-activation region may still reflect a spurious pattern or a confounder. For this reason, explainability is best treated as supporting evidence within a broader diagnostic workflow, not as a replacement for expert assessment.
           </p>
         </div>
       </section>
+
+      <section id="multimodal" className="bg-slate-900 py-16 text-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-300">F. Existing Multi-Disease and Multimodal Diagnostic Frameworks</p>
+            <h2 className="mt-3 text-3xl font-black tracking-[-0.04em] text-white sm:text-4xl">
+              Unified platforms differ from single-model cross-disease approaches
+            </h2>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-2">
+            <div className="rounded-3xl border border-slate-700 bg-slate-800/80 p-6">
+              <p className="text-base leading-relaxed text-slate-200">
+                The literature contains several disease-specific systems for DR, glaucoma, cataract, and DME. These studies demonstrate the value of specialized modeling for each condition, yet they often remain separated by disease, imaging modality, and workflow. In contrast, a unified web platform integrates multiple disease modules into a single environment, allowing common image upload, shared interpretation, and disease-specific outputs to be displayed together.
+              </p>
+            </div>
+            <div className="rounded-3xl border border-slate-700 bg-slate-800/80 p-6">
+              <p className="text-base leading-relaxed text-slate-200">
+                This distinction is important. A single model that attempts to classify every disease from the same input space is structurally different from a framework that uses separate disease-specific modules built for different retinal modalities and assessment goals. The latter is more aligned with how real ophthalmic screening often operates: fundus images for DR, cataract, and glaucoma; OCT for DME; and disease-specific explainability for each output.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="comparison" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mb-8 text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-700">G. Critical Comparison of Existing Research</p>
+          <h2 className="mt-3 text-3xl font-black tracking-[-0.04em] text-slate-900 sm:text-4xl">
+            Comparative synthesis of recent ophthalmic AI studies
+          </h2>
+        </div>
+
+        <div className="overflow-x-auto rounded-3xl border border-slate-200 bg-white shadow-[0_15px_38px_rgba(2,6,23,0.04)]">
+          <table className="min-w-[1100px] text-left text-sm">
+            <thead className="bg-slate-100 text-slate-800">
+              <tr>
+                <th className="px-4 py-3 font-semibold">Study / Author</th>
+                <th className="px-4 py-3 font-semibold">Year</th>
+                <th className="px-4 py-3 font-semibold">Target disease</th>
+                <th className="px-4 py-3 font-semibold">Imaging modality</th>
+                <th className="px-4 py-3 font-semibold">Model / technique</th>
+                <th className="px-4 py-3 font-semibold">Dataset</th>
+                <th className="px-4 py-3 font-semibold">Reported performance</th>
+                <th className="px-4 py-3 font-semibold">Main contribution</th>
+                <th className="px-4 py-3 font-semibold">Limitations or needs</th>
+              </tr>
+            </thead>
+            <tbody>
+              {comparisonRows.map((row) => (
+                <tr key={`${row.study}-${row.year}`} className="border-t border-slate-200 align-top">
+                  <td className="px-4 py-3 font-medium text-slate-800">{row.study}</td>
+                  <td className="px-4 py-3 text-slate-600">{row.year}</td>
+                  <td className="px-4 py-3 text-slate-600">{row.disease}</td>
+                  <td className="px-4 py-3 text-slate-600">{row.modality}</td>
+                  <td className="px-4 py-3 text-slate-600">{row.model}</td>
+                  <td className="px-4 py-3 text-slate-600">{row.dataset}</td>
+                  <td className="px-4 py-3 text-slate-600">{row.performance}</td>
+                  <td className="px-4 py-3 text-slate-600">{row.contribution}</td>
+                  <td className="px-4 py-3 text-slate-600">{row.limitations}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="references" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-[0_20px_45px_rgba(15,23,42,0.04)] sm:p-10 lg:p-12">
+          <div className="mb-10 text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.26em] text-sky-700">J. References</p>
+            <h2 className="mt-5 text-4xl font-black tracking-[-0.05em] text-slate-900 sm:text-5xl">
+              Verified references used in this review
+            </h2>
+          </div>
+
+          <ol className="mx-auto max-w-5xl list-none space-y-5 text-xl leading-relaxed text-slate-700">
+            {referenceList.map((ref, index) => (
+              <li key={ref} className="flex gap-4">
+                <span className="mt-1 inline-flex min-w-[2.25rem] items-center justify-center text-base font-bold text-sky-700">[{index + 1}]</span>
+                <span>{ref}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section id="research-gap" className="bg-slate-50 py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-700">Research Gaps</p>
+            <h2 className="mt-3 text-3xl font-black tracking-[-0.04em] text-slate-900 sm:text-4xl">
+              Evidence gaps that motivate the proposed framework
+            </h2>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {gapCards.map((card) => (
+              <div key={card.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_15px_38px_rgba(2,6,23,0.04)]">
+                <div className="mb-4 text-sm font-bold uppercase tracking-[0.18em] text-sky-700">Gap</div>
+                <h3 className="text-lg font-bold text-slate-900">{card.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-slate-600">{card.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contribution" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="rounded-3xl border border-sky-200 bg-gradient-to-br from-sky-50 to-white p-8 shadow-[0_20px_45px_rgba(14,116,144,0.08)]">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-700">I. Research Contribution</p>
+          <h2 className="mt-3 text-3xl font-black tracking-[-0.04em] text-slate-900 sm:text-4xl">
+            How the proposed framework responds to the reviewed literature
+          </h2>
+
+          <div className="mt-8 grid gap-6 lg:grid-cols-2">
+            <div>
+              <p className="text-base leading-relaxed text-slate-600">
+                The proposed framework addresses the main limitations identified in the reviewed studies by combining four disease-specific modules into a single web-based platform. Rather than treating diabetic eye disease as a single isolated classification problem, the design respects the fact that different conditions require different image modalities and diagnostic interpretation strategies.
+              </p>
+            </div>
+            <div>
+              <p className="text-base leading-relaxed text-slate-600">
+                DR, DME, cataract, and glaucoma each receive appropriate modality-aware disease modeling, while the system also includes severity or risk-oriented outputs and Grad-CAM-based visual explanations. This creates a more coherent and clinically interpretable screening workflow than a single black-box classifier that produces only a disease label.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
   );
 }
