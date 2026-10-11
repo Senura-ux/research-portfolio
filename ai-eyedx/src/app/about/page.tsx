@@ -168,12 +168,12 @@ export default function AboutPage() {
       </section>
 
       {/* Team Members */}
-      <section className="about-team-section py-20">
+      <section id="research-members" className="about-team-section scroll-mt-24 py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
             <div>
               <span className="about-section-kicker">Student researchers</span>
-              <h2 className="mt-3 text-3xl font-black tracking-[-0.05em] text-slate-950 sm:text-4xl">A team with a shared vision</h2>
+              <h2 className="mt-3 text-3xl font-black tracking-[-0.05em] text-slate-950 sm:text-4xl">Research members</h2>
               <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600">Each researcher leads a disease-focused module while contributing to the integrated AI EyeDx platform.</p>
             </div>
             <span className="about-team-count"><strong>04</strong><span>Research members</span></span>
@@ -279,7 +279,7 @@ export default function AboutPage() {
       </section>
 
       {/* Supervisors */}
-      <section className="about-supervision-section py-20">
+      <section id="academic-supervisors" className="about-supervision-section scroll-mt-24 py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 max-w-2xl">
             <span className="about-section-kicker">Guidance &amp; mentorship</span>

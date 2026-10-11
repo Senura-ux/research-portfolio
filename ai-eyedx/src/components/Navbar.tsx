@@ -18,16 +18,19 @@ const navLinks = [
   { href: "/presentations", label: "Presentations" },
   { href: "/achievements", label: "Achievements" },
   { href: "/research-modules", label: "Modules" },
-  { href: "/about", label: "About Us" },
+  { href: "/about", label: "About Us", dropdown: [
+    { href: "/about#research-members", label: "Research members" },
+    { href: "/about#academic-supervisors", label: "Academic supervisors" },
+  ] },
   { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [domainOpen, setDomainOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  const domainMenuRef = useRef<HTMLDivElement>(null);
+  const navDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -36,26 +39,26 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const closeDomainMenu = (event: PointerEvent) => {
-      if (!domainMenuRef.current?.contains(event.target as Node)) {
-        setDomainOpen(false);
+    const closeNavDropdown = (event: PointerEvent) => {
+      if (!navDropdownRef.current?.contains(event.target as Node)) {
+        setOpenDropdown(null);
       }
     };
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setDomainOpen(false);
+      if (event.key === "Escape") setOpenDropdown(null);
     };
 
-    document.addEventListener("pointerdown", closeDomainMenu);
+    document.addEventListener("pointerdown", closeNavDropdown);
     document.addEventListener("keydown", handleEscape);
     return () => {
-      document.removeEventListener("pointerdown", closeDomainMenu);
+      document.removeEventListener("pointerdown", closeNavDropdown);
       document.removeEventListener("keydown", handleEscape);
     };
   }, []);
 
   return (
     <nav
-      ref={domainMenuRef}
+      ref={navDropdownRef}
       className={`sticky top-0 z-50 -mb-16 transition-all duration-300 ${
         scrolled
           ? "bg-slate-950/75 backdrop-blur-xl shadow-[0_12px_40px_rgba(15,23,42,0.18)] border-b border-white/10"
@@ -98,24 +101,24 @@ export default function Navbar() {
                   >
                     <button
                       type="button"
-                      onClick={() => setDomainOpen((prev) => !prev)}
-                      aria-expanded={domainOpen}
+                      onClick={() => setOpenDropdown((prev) => prev === link.label ? null : link.label)}
+                      aria-expanded={openDropdown === link.label}
                       aria-haspopup="true"
                       className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                        active || domainOpen
+                        active || openDropdown === link.label
                           ? "text-white bg-white/10 font-semibold shadow-[0_0_0_1px_rgba(255,255,255,0.08)]"
                           : "text-slate-200 hover:text-white hover:bg-white/5"
                       }`}
                     >
                       {link.label}
-                      <svg className={`h-4 w-4 transition-transform ${domainOpen ? "rotate-180" : ""}`} viewBox="0 0 20 20" fill="currentColor">
+                      <svg className={`h-4 w-4 transition-transform ${openDropdown === link.label ? "rotate-180" : ""}`} viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
                       </svg>
                     </button>
 
                     <div
                       className={`absolute left-0 top-full z-50 w-72 pt-2 transition-all duration-150 ${
-                        domainOpen
+                        openDropdown === link.label
                           ? "visible translate-y-0 opacity-100"
                           : "invisible -translate-y-1 opacity-0"
                       }`}
@@ -126,7 +129,7 @@ export default function Navbar() {
                             key={item.href}
                             href={item.href}
                             onClick={() => {
-                              setDomainOpen(false);
+                              setOpenDropdown(null);
                               setMenuOpen(false);
                             }}
                             className="block rounded-xl px-3 py-2.5 text-sm text-slate-200 transition-colors hover:bg-white/5 hover:text-white focus:bg-white/10 focus:text-white focus:outline-none"
@@ -146,7 +149,7 @@ export default function Navbar() {
                   href={link.href}
                   onClick={() => {
                     setMenuOpen(false);
-                    setDomainOpen(false);
+                    setOpenDropdown(null);
                   }}
                   className={`px-3 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                     active
@@ -160,19 +163,8 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* CTA + Hamburger */}
+          {/* Hamburger */}
           <div className="flex items-center gap-3">
-            <Link
-              href="/domain"
-              className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-blue-300/30 bg-gradient-to-r from-blue-500 to-indigo-500 px-4 py-2 text-sm font-semibold text-white shadow-[0_10px_25px_rgba(59,130,246,0.35)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_30px_rgba(59,130,246,0.4)]"
-            >
-              Explore Research
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
-
-            {/* Hamburger */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               className="lg:hidden rounded-full border border-white/10 bg-white/5 p-2 text-slate-200 transition-colors hover:bg-white/10"
@@ -217,24 +209,24 @@ export default function Navbar() {
                 <div key={link.href} className="rounded-xl border border-white/10 bg-white/5 p-2">
                   <button
                     type="button"
-                    onClick={() => setDomainOpen((prev) => !prev)}
-                    aria-expanded={domainOpen}
+                    onClick={() => setOpenDropdown((prev) => prev === link.label ? null : link.label)}
+                    aria-expanded={openDropdown === link.label}
                     aria-haspopup="true"
                     className="flex w-full items-center justify-between rounded-lg px-2 py-2 text-sm font-semibold text-white"
                   >
                     <span>{link.label}</span>
-                    <svg className={`h-4 w-4 text-slate-300 transition-transform ${domainOpen ? "rotate-180" : ""}`} viewBox="0 0 20 20" fill="currentColor">
+                    <svg className={`h-4 w-4 text-slate-300 transition-transform ${openDropdown === link.label ? "rotate-180" : ""}`} viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
                     </svg>
                   </button>
-                  <div className={`${domainOpen ? "mt-1 space-y-1" : "hidden"}`}>
+                  <div className={`${openDropdown === link.label ? "mt-1 space-y-1" : "hidden"}`}>
                     {link.dropdown.map((item) => (
                       <Link
                         key={item.href}
                         href={item.href}
                         onClick={() => {
                           setMenuOpen(false);
-                          setDomainOpen(false);
+                          setOpenDropdown(null);
                         }}
                         className="block rounded-lg px-3 py-2 text-sm text-slate-200 transition-colors hover:bg-white/5 hover:text-white"
                       >
@@ -252,7 +244,7 @@ export default function Navbar() {
                 href={link.href}
                 onClick={() => {
                   setMenuOpen(false);
-                  setDomainOpen(false);
+                  setOpenDropdown(null);
                 }}
                 className={`block rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
                   active
@@ -264,16 +256,6 @@ export default function Navbar() {
               </Link>
             );
           })}
-          <Link
-            href="/domain"
-            onClick={() => {
-              setMenuOpen(false);
-              setDomainOpen(false);
-            }}
-            className="mt-2 block rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 px-4 py-2.5 text-center text-sm font-semibold text-white shadow-[0_10px_25px_rgba(59,130,246,0.35)]"
-          >
-            Explore Research →
-          </Link>
         </div>
       </div>
     </nav>
