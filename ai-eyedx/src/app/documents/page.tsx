@@ -117,11 +117,11 @@ export default function DocumentsPage() {
           ) : (
             <div className="space-y-12">
               {documentGroups.map(({ name, documents: groupDocuments }) => (
-                <section key={name} aria-labelledby={`documents-${name.toLowerCase()}`}>
-                  <div className="mb-5 flex items-center gap-3">
-                    <h3 id={`documents-${name.toLowerCase()}`} className="text-xl font-bold text-slate-100">{name}</h3>
-                    <span className="h-px flex-1 bg-white/10" />
-                    <span className="text-xs text-slate-400">{String(groupDocuments.length).padStart(2, "0")} documents</span>
+                <section key={name} className="document-group" aria-labelledby={`documents-${name.toLowerCase()}`}>
+                  <div className="documents-group-heading mb-5 flex items-center gap-3">
+                    <h3 id={`documents-${name.toLowerCase()}`} className="text-xl font-bold">{name}</h3>
+                    <span className="documents-group-rule h-px flex-1" />
+                    <span className="documents-group-count">{String(groupDocuments.length).padStart(2, "0")} documents</span>
                   </div>
                   <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
                     {groupDocuments.map((doc, i) => (
