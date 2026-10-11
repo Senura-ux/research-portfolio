@@ -27,7 +27,9 @@ interface SaveMessage {
 function mergeSavedLinks(savedLinks: LinkItem[]): LinkItem[] {
   return [
     ...mergeDocumentDefinitions(savedLinks),
-    ...savedLinks.filter((item) => item.category === "presentation"),
+    ...savedLinks
+      .filter((item) => item.category === "presentation")
+      .map((item) => item.id === "viva" ? { ...item, title: "PP2 Demo presentation" } : item),
   ];
 }
 

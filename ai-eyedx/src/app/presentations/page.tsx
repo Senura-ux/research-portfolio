@@ -17,7 +17,7 @@ const presentationDefs: PresentationItem[] = [
   { id: "pp1", title: "Progress Presentation 1", description: "First formal progress presentation demonstrating initial model implementations and baseline results.", date: "Date to be announced", status: "pending", url: "", category: "presentation" },
   { id: "pp2", title: "Progress Presentation 2", description: "Second progress presentation with complete integrated system and experimental validation results.", date: "Date to be announced", status: "pending", url: "", category: "presentation" },
   { id: "final-presentation", title: "Final Presentation", description: "Final project presentation covering full system, all four modules, results, explainability and future work.", date: "Date to be announced", status: "pending", url: "", category: "presentation" },
-  { id: "viva", title: "Viva Voce Materials", description: "Materials and supplementary slides prepared for the viva voce examination.", date: "Date to be announced", status: "pending", url: "", category: "presentation" },
+  { id: "viva", title: "PP2 Demo presentation", description: "Materials and supplementary slides prepared for the viva voce examination.", date: "Date to be announced", status: "pending", url: "", category: "presentation" },
   { id: "research-paper-slides", title: "Research Paper Presentation", description: "Slides prepared for presenting the research paper findings at an academic conference.", date: "Date to be announced", status: "pending", url: "", category: "presentation" },
 ];
 
@@ -34,7 +34,7 @@ export default function PresentationsPage() {
       .then((data: { documents?: PresentationItem[] }) => {
         const merged = presentationDefs.map((def) => {
           const found = data.documents?.find((d: PresentationItem) => d.id === def.id);
-          return found ? { ...def, ...found } : def;
+          return found ? { ...def, status: found.status, url: found.url, date: found.date || def.date } : def;
         });
         setPresentations(merged);
       })
