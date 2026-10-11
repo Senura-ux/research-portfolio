@@ -1,51 +1,128 @@
 {
   "documents": [
     {
+      "id": "checklist-1",
+      "title": "Checklist 1",
+      "description": "Research project checklist — item 1.",
+      "status": "available",
+      "url": "https://drive.google.com/file/d/1PgNkhI_pdRcf9AlhrIcpKfMJ2tDn-qNx/view?usp=sharing",
+      "category": "document",
+      "group": "Checklist"
+    },
+    {
+      "id": "checklist-2",
+      "title": "Checklist 2",
+      "description": "Research project checklist — item 2.",
+      "status": "pending",
+      "url": "",
+      "category": "document",
+      "group": "Checklist"
+    },
+    {
+      "id": "proposal-main",
+      "title": "TAF",
+      "description": "Team Assessment Form for the research project.",
+      "status": "available",
+      "url": "https://drive.google.com/file/d/1xntzTy9QPjcrfv410DOsnhvkwPKoyyJi/view?usp=sharing",
+      "category": "document",
+      "group": "Proposal"
+    },
+    {
+      "id": "proposal-cataract",
+      "title": "Individual Proposal — Cataract",
+      "description": "Binuri Perera's individual research proposal for the cataract severity module.",
+      "status": "available",
+      "url": "https://drive.google.com/file/d/1KzQ7KkFYhdRkayYaSHdivUijM5KZexLl/view?usp=sharing",
+      "category": "document",
+      "group": "Proposal"
+    },
+    {
+      "id": "proposal-dme",
+      "title": "Individual Proposal — DME",
+      "description": "S.D Kahawevithana's individual proposal for DME detection and risk assessment.",
+      "status": "available",
+      "url": "https://drive.google.com/file/d/1fVRPHSubBLNDCI22SSlrGLfbXmEKnv8m/view?usp=sharing",
+      "category": "document",
+      "group": "Proposal"
+    },
+    {
+      "id": "proposal-glaucoma",
+      "title": "Individual Proposal — Glaucoma",
+      "description": "Chavindee M.A.P.'s individual proposal for glaucoma detection and risk assessment.",
+      "status": "available",
+      "url": "https://drive.google.com/file/d/1sgQWS3TLFuCVzpg9UCqeAICEa4rYuLbh/view?usp=sharing",
+      "category": "document",
+      "group": "Proposal"
+    },
+    {
+      "id": "proposal-dr",
+      "title": "Individual Proposal — DR",
+      "description": "Oshan Wijekoon's individual proposal for diabetic retinopathy detection.",
+      "status": "available",
+      "url": "https://drive.google.com/file/d/1b8iV-RkdldSoN7F_E3ve2GO-kqPBFhRc/view?usp=sharing",
+      "category": "document",
+      "group": "Proposal"
+    },
+    {
+      "id": "final-report",
+      "title": "Common Thesis",
+      "description": "The shared final thesis for the AI EyeDx research project.",
+      "status": "pending",
+      "url": "",
+      "category": "document",
+      "group": "Final"
+    },
+    {
+      "id": "final-cataract",
+      "title": "Individual Thesis — Cataract",
+      "description": "Binuri Perera's individual final thesis for the cataract severity module.",
+      "status": "pending",
+      "url": "",
+      "category": "document",
+      "group": "Final"
+    },
+    {
+      "id": "final-dme",
+      "title": "Individual Thesis — DME",
+      "description": "S.D Kahawevithana's individual final thesis for DME detection and risk assessment.",
+      "status": "pending",
+      "url": "",
+      "category": "document",
+      "group": "Final"
+    },
+    {
+      "id": "final-glaucoma",
+      "title": "Individual Thesis — Glaucoma",
+      "description": "Chavindee M.A.P.'s individual final thesis for glaucoma detection and risk assessment.",
+      "status": "pending",
+      "url": "",
+      "category": "document",
+      "group": "Final"
+    },
+    {
+      "id": "final-dr",
+      "title": "Individual Thesis — DR",
+      "description": "Oshan Wijekoon's individual final thesis for diabetic retinopathy detection.",
+      "status": "pending",
+      "url": "",
+      "category": "document",
+      "group": "Final"
+    },
+    {
+      "id": "research-paper",
+      "title": "Research Paper",
+      "description": "The AI EyeDx research paper for academic submission or publication.",
+      "status": "available",
+      "url": "https://drive.google.com/file/d/10ATTDsl3P6_HPC7dHTwqw6uJLoO2TEzR/view?usp=sharing",
+      "category": "document",
+      "group": "Final"
+    },
+    {
       "id": "charter",
       "title": "Project Charter",
       "description": "Initial project charter document",
       "status": "pending",
       "url": "",
-      "category": "document"
-    },
-    {
-      "id": "proposal-main",
-      "title": "Proposal Document — Main",
-      "description": "Main group research proposal",
-      "status": "pending",
-      "url": "",
-      "category": "document"
-    },
-    {
-      "id": "proposal-cataract",
-      "title": "Individual Proposal — Cataract",
-      "description": "Binuri Perera's individual proposal",
-      "status": "available",
-      "url": "https://drive.google.com/file/d/1KzQ7KkFYhdRkayYaSHdivUijM5KZexLl/view?usp=sharing",
-      "category": "document"
-    },
-    {
-      "id": "proposal-dme",
-      "title": "Individual Proposal — DME",
-      "description": "S.D Kahawevithana's individual proposal",
-      "status": "available",
-      "url": "https://drive.google.com/file/d/1fVRPHSubBLNDCI22SSlrGLfbXmEKnv8m/view?usp=sharing",
-      "category": "document"
-    },
-    {
-      "id": "proposal-glaucoma",
-      "title": "Individual Proposal — Glaucoma",
-      "description": "Chavindee M.A.P.'s individual proposal",
-      "status": "available",
-      "url": "https://drive.google.com/file/d/1sgQWS3TLFuCVzpg9UCqeAICEa4rYuLbh/view?usp=sharing",
-      "category": "document"
-    },
-    {
-      "id": "proposal-dr",
-      "title": "Individual Proposal — DR",
-      "description": "Oshan Wijekoon's individual proposal",
-      "status": "available",
-      "url": "https://drive.google.com/file/d/1b8iV-RkdldSoN7F_E3ve2GO-kqPBFhRc/view?usp=sharing",
       "category": "document"
     },
     {
@@ -63,22 +140,6 @@
       "status": "available",
       "url": "https://docs.google.com/presentation/d/1DP8inS6OWSLFnz1Vyt1b0b9irdd04whN/edit?usp=sharing&ouid=108977970227173443123&rtpof=true&sd=true",
       "category": "presentation"
-    },
-    {
-      "id": "final-report",
-      "title": "Final Report — Main",
-      "description": "Main group final research report",
-      "status": "pending",
-      "url": "",
-      "category": "document"
-    },
-    {
-      "id": "research-paper",
-      "title": "Research Paper",
-      "description": "Published/submitted research paper",
-      "status": "available",
-      "url": "https://drive.google.com/file/d/10ATTDsl3P6_HPC7dHTwqw6uJLoO2TEzR/view?usp=sharing",
-      "category": "document"
     },
     {
       "id": "user-guide",
