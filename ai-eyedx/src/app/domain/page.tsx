@@ -469,6 +469,266 @@ export default function DomainPage() {
         </div>
       </section>
 
+      <section id="research-problem-solution" className="scroll-mt-24 bg-white py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <header className="mx-auto mb-12 max-w-4xl text-center">
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-sky-700">
+              RESEARCH PROBLEM &amp; SOLUTION
+            </p>
+            <h2 className="mt-4 text-3xl font-black tracking-[-0.05em] text-slate-900 sm:text-4xl lg:text-5xl">
+              Bridging the Gap Between AI-Based Eye Disease Detection and Explainable Assessment
+            </h2>
+            <p className="mt-5 text-base leading-relaxed text-slate-600 sm:text-lg">
+              Diabetes-related eye disorders can affect vision and may require timely clinical assessment. Although deep learning has demonstrated potential in ophthalmic image analysis, developing an integrated platform that supports multiple eye diseases, disease-specific assessment, and interpretable predictions remains a challenge.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-slate-600">
+              AI EyeDx addresses this research problem through a unified web-based framework containing four disease-specific modules: diabetic retinopathy, glaucoma, cataract, and diabetic macular edema (DME).
+            </p>
+          </header>
+
+          <section aria-labelledby="problem-heading" className="grid gap-6 lg:grid-cols-2">
+            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm sm:p-8">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">The Research Problem</p>
+              <h3 id="problem-heading" className="mt-3 text-2xl font-black tracking-tight text-slate-900">
+                Building a unified yet disease-aware platform
+              </h3>
+              <p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+                Existing AI-based ophthalmic systems often focus on individual diseases, specific imaging modalities, or narrowly defined classification tasks. As a result, their capabilities may be fragmented across separate systems.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+                Furthermore, a predicted disease label alone may not provide sufficient information about the image regions influencing the prediction, disease severity, retinal visibility, or the reliability of the result.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+                The main research problem is therefore how to integrate disease-specific deep learning models into a unified platform while preserving appropriate imaging methods, assessment strategies, and explainability features for each disease.
+              </p>
+            </div>
+
+            <div className="rounded-3xl border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-6 shadow-sm sm:p-8">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-700">Proposed Solution</p>
+              <h3 className="mt-3 text-2xl font-black tracking-tight text-slate-900">AI EyeDx</h3>
+              <p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+                AI EyeDx proposes an explainable multi-disease framework that integrates four disease-specific modules through a common web interface. Each module uses its appropriate input modality, model, and assessment approach; no single model is used for all four tasks.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {["Four specialist modules", "Fundus + OCT", "Explainable outputs"].map((item) => (
+                  <span key={item} className="rounded-full border border-blue-100 bg-white px-3 py-1.5 text-xs font-semibold text-blue-800">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section aria-labelledby="challenges-heading" className="mt-14">
+            <div className="mb-6">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">Research Challenges</p>
+              <h3 id="challenges-heading" className="mt-2 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
+                Key Challenges
+              </h3>
+            </div>
+            <div className="grid gap-5 sm:grid-cols-2">
+              {[
+                {
+                  number: "01",
+                  title: "Fragmented Disease Assessment",
+                  text: "Existing approaches may focus on individual eye diseases rather than providing access to multiple disease-specific assessment modules through one platform.",
+                },
+                {
+                  number: "02",
+                  title: "Different Imaging Requirements",
+                  text: "Fundus images and optical coherence tomography (OCT) images provide different information. Each disease requires an appropriate image-processing and analysis pipeline.",
+                },
+                {
+                  number: "03",
+                  title: "Limited Interpretability",
+                  text: "Deep learning models can behave as black-box systems, making it difficult for users to understand which image regions influenced a prediction.",
+                },
+                {
+                  number: "04",
+                  title: "Limited Disease-Specific Assessment and Reliability",
+                  text: "A simple disease label may not provide additional information such as severity, optic-disc/cup measurements, or cataract-related visibility degradation. Unfamiliar input images can also affect prediction reliability.",
+                },
+              ].map((challenge) => (
+                <article key={challenge.number} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-colors hover:border-sky-200 sm:p-6">
+                  <div className="flex items-start gap-4">
+                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-sm font-extrabold text-white" aria-hidden="true">
+                      {challenge.number}
+                    </span>
+                    <div>
+                      <h4 className="text-lg font-bold text-slate-900">{challenge.title}</h4>
+                      <p className="mt-2 text-sm leading-relaxed text-slate-600">{challenge.text}</p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section aria-labelledby="modules-heading" className="mt-14">
+            <div className="mb-6">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">Proposed Solution</p>
+              <h3 id="modules-heading" className="mt-2 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
+                Four Disease-Specific Modules
+              </h3>
+            </div>
+            <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+              {[
+                {
+                  title: "Diabetic Retinopathy (DR)",
+                  icon: "DR",
+                  details: [
+                    "Input: Retinal fundus images",
+                    "Model: EfficientNetV2-S",
+                    "Function: Five-class DR severity classification",
+                    "Additional features: Lesion-aware analysis, Grad-CAM visualization, and Mahalanobis-distance-based out-of-distribution assessment",
+                  ],
+                },
+                {
+                  title: "Glaucoma",
+                  icon: "G",
+                  details: [
+                    "Input: Retinal fundus images",
+                    "Function: U-Net-based optic-disc and optic-cup segmentation, cup-to-disc ratio extraction, and risk assessment",
+                  ],
+                },
+                {
+                  title: "Cataract",
+                  icon: "C",
+                  details: [
+                    "Input: Retinal fundus images",
+                    "Model: EfficientNet-B3",
+                    "Function: Four-class cataract severity classification",
+                    "Additional features: Visibility Degradation Score (VDS) and Grad-CAM visualization",
+                  ],
+                },
+                {
+                  title: "Diabetic Macular Edema (DME)",
+                  icon: "DME",
+                  details: [
+                    "Input: OCT images",
+                    "Model: EfficientNet-B0",
+                    "Function: OCT-based disease classification and assessment",
+                    "Additional feature: Grad-CAM visualization",
+                  ],
+                },
+              ].map((module) => (
+                <article key={module.title} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-colors hover:border-sky-200">
+                  <div className="mb-4 inline-flex h-10 min-w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 px-2 text-xs font-extrabold text-white" aria-hidden="true">
+                    {module.icon}
+                  </div>
+                  <h4 className="text-lg font-bold text-slate-900">{module.title}</h4>
+                  <ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-slate-600">
+                    {module.details.map((detail) => (
+                      <li key={detail} className="flex gap-2">
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600" aria-hidden="true" />
+                        <span>{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section aria-labelledby="mapping-heading" className="mt-14">
+            <div className="mb-6">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">Problem to Solution</p>
+              <h3 id="mapping-heading" className="mt-2 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
+                How the Solution Addresses the Challenges
+              </h3>
+            </div>
+            <div className="grid gap-4 lg:grid-cols-2">
+              {[
+                ["Fragmented assessment", "Four disease-specific modules accessible through one web platform."],
+                ["Different imaging requirements", "Fundus-based analysis for DR, glaucoma, and cataract, and OCT-based analysis for DME."],
+                ["Limited interpretability", "Grad-CAM visualizations highlight image regions that influence predictions."],
+                ["Limited disease-specific assessment", "Severity classification, glaucoma-related structural measurements, and cataract visibility assessment, where implemented."],
+                ["Reliability concerns", "Mahalanobis-distance-based out-of-distribution assessment in the DR module."],
+              ].map(([problem, response]) => (
+                <div key={problem} className="flex flex-col gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:flex-row sm:items-center sm:gap-4">
+                  <h4 className="shrink-0 text-sm font-bold text-slate-900">{problem}</h4>
+                  <span className="hidden text-lg font-bold text-blue-600 sm:inline" aria-hidden="true">→</span>
+                  <p className="text-sm leading-relaxed text-slate-600">{response}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section aria-labelledby="workflow-heading" className="mt-14">
+            <div className="mb-6">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">System Workflow</p>
+              <h3 id="workflow-heading" className="mt-2 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
+                From Image Input to Results
+              </h3>
+            </div>
+            <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+              {[
+                "Image Input",
+                "Preprocessing",
+                "Disease-Specific Model",
+                "Assessment Output",
+                "Explainability and Reliability Checks",
+                "Results Display",
+              ].map((step, index) => (
+                <li key={step} className="relative flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-50 text-sm font-extrabold text-blue-700">
+                    {index + 1}
+                  </span>
+                  <span className="text-sm font-semibold leading-snug text-slate-800">{step}</span>
+                  {index < 5 && <span className="ml-auto hidden text-lg font-bold text-blue-400 xl:inline" aria-hidden="true">→</span>}
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          <section aria-labelledby="contribution-heading" className="mt-14">
+            <div className="mb-6">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">Research Contribution</p>
+              <h3 id="contribution-heading" className="mt-2 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
+                What This Research Contributes
+              </h3>
+            </div>
+            <div className="grid gap-5 md:grid-cols-3">
+              {[
+                {
+                  title: "Unified Platform",
+                  text: "Integrates four disease-specific assessment modules in a common web interface.",
+                },
+                {
+                  title: "Disease-Specific Assessment",
+                  text: "Uses appropriate models, imaging modalities, and outputs for the selected condition.",
+                },
+                {
+                  title: "Explainability and Reliability",
+                  text: "Incorporates visual explanations and the implemented reliability assessment features.",
+                },
+              ].map((item, index) => (
+                <article key={item.title} className="rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white p-6 shadow-sm">
+                  <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white text-sm font-extrabold text-blue-700 shadow-sm" aria-hidden="true">
+                    0{index + 1}
+                  </span>
+                  <h4 className="text-lg font-bold text-slate-900">{item.title}</h4>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.text}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section aria-labelledby="scope-heading" className="mt-14 rounded-3xl bg-slate-950 p-6 text-white shadow-lg sm:p-8">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-300">Responsible Use</p>
+            <h3 id="scope-heading" className="mt-3 text-2xl font-black tracking-tight">Scope and Limitations</h3>
+            <div className="mt-4 grid gap-5 text-sm leading-relaxed text-slate-300 md:grid-cols-2">
+              <p>
+                AI EyeDx is an academic research prototype intended to support the investigation of AI-assisted ophthalmic screening. Its predictions depend on the training data, model implementation, and evaluation conditions. Further validation is required before clinical use.
+              </p>
+              <p>
+                The system does not replace professional eye examinations, diagnosis, or treatment by qualified healthcare professionals.
+              </p>
+            </div>
+          </section>
+        </div>
+      </section>
+
       <section id="contribution" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="rounded-3xl border border-sky-200 bg-gradient-to-br from-sky-50 to-white p-8 shadow-[0_20px_45px_rgba(14,116,144,0.08)]">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-700">I. Research Contribution</p>
