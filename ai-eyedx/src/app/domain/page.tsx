@@ -104,9 +104,10 @@ const methodology = [
   { phase: "01", title: "Problem and literature analysis", desc: "Reviewed diabetes-related eye disease challenges, current ophthalmic AI trends, and unresolved gaps in multimodal screening." },
   { phase: "02", title: "Dataset preparation", desc: "Collected disease-specific datasets, resized images, normalized inputs, and applied augmentation to improve generalizability." },
   { phase: "03", title: "Disease-specific model design", desc: "Developed specialized backbones such as EfficientNet variants and U-Net-based segmentation-driven glaucoma analysis." },
-  { phase: "04", title: "Assessment outputs", desc: "Produced disease-level severity, risk, confidence, structural biomarkers, and cataract visibility metrics." },
-  { phase: "05", title: "Explainability", desc: "Integrated Grad-CAM and segmentation-based overlays to visualize the retinal regions influencing classifications." },
-  { phase: "06", title: "System deployment", desc: "Connected independently optimized modules through Flask services and a React-based interface into a unified web platform." },
+  { phase: "04", title: "OOD detection and reliability analysis", desc: "Use Mahalanobis-distance scoring to flag unfamiliar inputs outside expected feature distributions and surface reliability warnings." },
+  { phase: "05", title: "Assessment outputs", desc: "Produced disease-level severity, risk, confidence, structural biomarkers, and cataract visibility metrics." },
+  { phase: "06", title: "Explainability", desc: "Integrated Grad-CAM and segmentation-based overlays to visualize the retinal regions influencing classifications." },
+  { phase: "07", title: "System deployment", desc: "Connected independently optimized modules through Flask services and a React-based interface into a unified web platform." },
 ];
 
 const technologies = [
