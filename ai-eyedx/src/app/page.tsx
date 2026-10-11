@@ -31,8 +31,8 @@ const highlights = [
       </svg>
     ),
     num: "02",
-    title: "Multi-Modal Imaging",
-    desc: "Analyzes both Retinal Fundus photographs and Optical Coherence Tomography (OCT) scans for comprehensive coverage.",
+    title: "Multiple Image Types",
+    desc: "Supports retinal fundus photographs and Optical Coherence Tomography (OCT) scans.",
     tags: ["Fundus", "OCT"],
   },
   {
