@@ -16,6 +16,7 @@ const navLinks = [
   { href: "/milestones", label: "Milestones" },
   { href: "/documents", label: "Documents" },
   { href: "/presentations", label: "Presentations" },
+  { href: "/achievements", label: "Achievements" },
   { href: "/research-modules", label: "Modules" },
   { href: "/about", label: "About Us" },
   { href: "/contact", label: "Contact" },
