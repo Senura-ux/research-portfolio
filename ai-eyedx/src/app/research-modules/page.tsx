@@ -37,10 +37,10 @@ const modules = [
     id: "glaucoma",
     name: "Glaucoma",
     icon: "🟡",
-    model: "U-Net + Classification Pipeline",
+    model: "EfficientNet-B0",
     modality: "Retinal Fundus Images",
-    accuracy: "96.05%",
-    accNum: 96.05,
+    accuracy: "95.48%",
+    accNum: 95.48,
     color: "#1d4ed8",
     framework: "PyTorch",
     dataset: "Public glaucoma fundus datasets, including REFUGE, RIM-ONE, and ODIR",
@@ -151,7 +151,7 @@ const modules = [
 
 const comparisonData = [
   { module: "Diabetic Retinopathy", input: "Fundus", model: "EfficientNetV2-S", function: "Detection / Severity", accuracy: "92.13%" },
-  { module: "Glaucoma", input: "Fundus", model: "U-Net + Assessment", function: "Segmentation / Biomarker / Risk", accuracy: "96.05%" },
+  { module: "Glaucoma", input: "Fundus", model: "EfficientNet-B0", function: "Segmentation / Biomarker / Risk", accuracy: "95.48%" },
   { module: "Cataract", input: "Fundus", model: "EfficientNet-B3", function: "Severity + VDS", accuracy: "88.19%" },
   { module: "DME", input: "OCT", model: "EfficientNet-B0", function: "Detection / Severity / Risk", accuracy: "92.67%" },
 ];

@@ -17,7 +17,7 @@ Official Academic Research Project Website for **Group R26-IT-043**, Sri Lanka I
 | Module | Imaging Modality | Model Architecture | Function | Experimental Validation Accuracy* |
 |---|---|---|---|:---:|
 | **Diabetic Retinopathy** | Fundus | EfficientNetV2-S | Detection & severity classification | **92.13%** |
-| **Glaucoma** | Fundus | U-Net + Classification Pipeline | Optic Disc/Cup segmentation, CDR & risk | **96.05%** |
+| **Glaucoma** | Fundus | EfficientNet-B0 | Optic Disc/Cup segmentation, CDR & risk | **95.48%** |
 | **Cataract** | Fundus | EfficientNet-B3 | Severity grading & Visibility Degradation (VDS) | **88.19%** |
 | **Diabetic Macular Edema (DME)** | Retinal OCT | EfficientNet-B0 | Classification, severity & risk grading | **92.67%** |
 

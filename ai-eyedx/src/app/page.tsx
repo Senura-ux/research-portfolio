@@ -74,8 +74,8 @@ const diseases = [
   {
     id: "glaucoma",
     name: "Glaucoma",
-    model: "U-Net + Assessment",
-    accuracy: "96.05%",
+    model: "EfficientNet-B0",
+    accuracy: "95.48%",
     modality: "Fundus",
     color: "#1d4ed8",
     bgColor: "#eff6ff",
@@ -223,7 +223,7 @@ export default function HomePage() {
                       </div>
                       <div className="mini-card">
                         <span className="label">Glaucoma</span>
-                        <strong>96.05%</strong>
+                        <strong>95.48%</strong>
                         <small>CDR Risk</small>
                       </div>
                       <div className="mini-card">
@@ -495,7 +495,7 @@ export default function HomePage() {
                   <div className="architecture-model-grid">
                     {[
                       { name: "DR", model: "EfficientNetV2-S", modality: "Fundus", tint: "rose" },
-                      { name: "Glaucoma", model: "U-Net + assessment", modality: "Fundus", tint: "violet" },
+                      { name: "Glaucoma", model: "EfficientNet-B0", modality: "Fundus", tint: "violet" },
                       { name: "Cataract", model: "EfficientNet-B3", modality: "Fundus", tint: "amber" },
                       { name: "DME", model: "EfficientNet-B0", modality: "OCT", tint: "teal" },
                     ].map((model) => (

@@ -4,7 +4,7 @@ export default function MilestonesPage() {
       id: 1,
       title: "Project Initiation",
       status: "completed",
-      date: "2024 — Semester 1",
+      date: "2025 October",
       marks: "—",
       items: [
         "Group registration",
@@ -19,7 +19,7 @@ export default function MilestonesPage() {
       id: 2,
       title: "Proposal Stage",
       status: "completed",
-      date: "2024 — Semester 1",
+      date: "2026 March",
       marks: "Allocated",
       items: [
         "Initial supervisor discussion",
@@ -35,7 +35,7 @@ export default function MilestonesPage() {
       id: 3,
       title: "Implementation Stage",
       status: "completed",
-      date: "2024 — Semester 2",
+      date: "2026 April",
       marks: "—",
       items: [
         "Dataset collection and preprocessing",
@@ -51,7 +51,7 @@ export default function MilestonesPage() {
       id: 4,
       title: "Progress Presentation 1 (PP1)",
       status: "completed",
-      date: "Date to be announced",
+      date: "2026 May",
       marks: "Not published",
       items: [
         "Initial implementation demonstration",
@@ -65,7 +65,7 @@ export default function MilestonesPage() {
       id: 5,
       title: "Model Development",
       status: "completed",
-      date: "2025 — Semester 1",
+      date: "2026 July",
       marks: "—",
       items: [
         "Model training and hyperparameter tuning",
@@ -74,13 +74,13 @@ export default function MilestonesPage() {
         "OOD detection analysis",
         "API integration for each module",
       ],
-      desc: "Advanced model development, achieving 92.13% (DR), 96.05% (Glaucoma), 88.19% (Cataract) and 92.67% (DME) experimental validation accuracies.",
+      desc: "Advanced model development, achieving 92.13% (DR), 95.48% (Glaucoma), 88.19% (Cataract) and 92.67% (DME) experimental validation accuracies.",
     },
     {
       id: 6,
       title: "Progress Presentation 2 (PP2)",
       status: "completed",
-      date: "Date to be announced",
+      date: "2026 September",
       marks: "Not published",
       items: [
         "Integrated system demonstration",
@@ -94,7 +94,7 @@ export default function MilestonesPage() {
       id: 7,
       title: "Final Stage",
       status: "upcoming",
-      date: "Date to be announced",
+      date: "2026 October",
       marks: "Not published",
       items: [
         "System testing and optimization",
@@ -108,9 +108,9 @@ export default function MilestonesPage() {
     },
     {
       id: 8,
-      title: "Publication",
+      title: "Research Publication",
       status: "upcoming",
-      date: "Date to be announced",
+      date: "2026 December",
       marks: "—",
       items: [
         "Research paper submission",
