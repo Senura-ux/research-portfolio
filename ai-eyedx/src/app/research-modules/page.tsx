@@ -32,20 +32,15 @@ const modules = [
       "Risk indication where available",
     ],
     metrics: ["Accuracy", "Precision", "Recall", "F1-score", "Confusion Matrix"],
-    limitations: [
-      "Performance depends on fundus image quality",
-      "Requires adequate image resolution",
-      "Results are experimental — not clinically validated",
-    ],
   },
   {
     id: "glaucoma",
     name: "Glaucoma",
     icon: "🟡",
-    model: "U-Net + Classification Pipeline",
+    model: "EfficientNet-B0",
     modality: "Retinal Fundus Images",
-    accuracy: "96.05%",
-    accNum: 96.05,
+    accuracy: "95.48%",
+    accNum: 95.48,
     color: "#1d4ed8",
     framework: "PyTorch",
     dataset: "Public glaucoma fundus datasets, including REFUGE, RIM-ONE, and ODIR",
@@ -73,11 +68,6 @@ const modules = [
       "Risk score visualization",
     ],
     metrics: ["Accuracy", "Precision", "Recall", "F1-score", "CDR correlation", "Segmentation accuracy"],
-    limitations: [
-      "Requires clear fundus image of optic nerve region",
-      "CDR is an indicator, not a standalone diagnostic criterion",
-      "Results are experimental — not clinically validated",
-    ],
     formula: { label: "CDR Formula", eq: "CDR = Diameter of Optic Cup / Diameter of Optic Disc" },
   },
   {
@@ -112,11 +102,6 @@ const modules = [
       "Severity prediction with confidence",
     ],
     metrics: ["Accuracy", "Precision", "Recall", "F1-score", "VDS correlation"],
-    limitations: [
-      "VDS coefficients are experimentally derived",
-      "Requires fundus images — not slit-lamp images",
-      "Results are experimental — not clinically validated",
-    ],
     formula: {
       label: "Visibility Degradation Score (VDS)",
       eq: "VDS = 0.4426 × Entropy + 0.2955 × Contrast + 0.2287 × Vessel Visibility + 0.0332 × Sharpness",
@@ -161,17 +146,12 @@ const modules = [
       "Risk classification with confidence",
     ],
     metrics: ["Accuracy", "Precision", "Recall", "F1-score", "ROC-AUC", "Confusion Matrix"],
-    limitations: [
-      "Designed for OCT images — not fundus images",
-      "Performance depends on OCT scan quality",
-      "Results are experimental — not clinically validated",
-    ],
   },
 ];
 
 const comparisonData = [
   { module: "Diabetic Retinopathy", input: "Fundus", model: "EfficientNetV2-S", function: "Detection / Severity", accuracy: "92.13%" },
-  { module: "Glaucoma", input: "Fundus", model: "U-Net + Assessment", function: "Segmentation / Biomarker / Risk", accuracy: "96.05%" },
+  { module: "Glaucoma", input: "Fundus", model: "EfficientNet-B0", function: "Segmentation / Biomarker / Risk", accuracy: "95.48%" },
   { module: "Cataract", input: "Fundus", model: "EfficientNet-B3", function: "Severity + VDS", accuracy: "88.19%" },
   { module: "DME", input: "OCT", model: "EfficientNet-B0", function: "Detection / Severity / Risk", accuracy: "92.67%" },
 ];
@@ -548,8 +528,8 @@ export default function ResearchModulesPage() {
                     </div>
                   )}
 
-                  {/* Metrics + Limitations */}
-                  <div className={`grid grid-cols-1 ${mod.id !== "dr" ? "md:grid-cols-2" : ""} gap-6`}>
+                  {/* Evaluation Metrics */}
+                  <div>
                     <div>
                       <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Evaluation Metrics</h3>
                       <div className="flex flex-wrap gap-2">
@@ -558,19 +538,6 @@ export default function ResearchModulesPage() {
                         ))}
                       </div>
                     </div>
-                    {mod.id !== "dr" && (
-                    <div>
-                      <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Current Limitations</h3>
-                      <ul className="space-y-1.5">
-                        {mod.limitations.map((l) => (
-                          <li key={l} className="flex items-start gap-2 text-xs text-gray-600">
-                            <span className="w-1.5 h-1.5 rounded-full bg-red-400 mt-1.5 flex-shrink-0" />
-                            {l}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    )}
                   </div>
                 </div>
               </div>

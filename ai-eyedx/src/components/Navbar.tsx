@@ -8,7 +8,7 @@ const navLinks = [
   { href: "/domain", label: "Domain", dropdown: [
     { href: "/domain#literature-survey", label: "Literature Survey" },
     { href: "/domain#research-gap", label: "Research Gap" },
-    { href: "/domain#research-problem-solution", label: "Research Problem & Solution" },
+    { href: "/domain#research-gap", label: "Research Problem & Solution" },
     { href: "/domain#research-objectives", label: "Research Objectives" },
     { href: "/domain#methodology", label: "Methodology" },
     { href: "/domain#technologies", label: "Technologies" },

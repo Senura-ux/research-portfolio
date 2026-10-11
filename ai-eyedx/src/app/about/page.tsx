@@ -76,7 +76,7 @@ const team = [
     skills: ["U-Net", "Segmentation", "CDR", "OpenCV", "Python", "PyTorch"],
     contributions: [
       "Structural glaucoma analysis",
-      "CDR-based assessment (96.05% validation accuracy)",
+      "CDR-based assessment (95.48% validation accuracy)",
       "U-Net optic disc/cup segmentation",
       "Explainable glaucoma risk assessment",
     ],
