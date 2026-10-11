@@ -9,21 +9,23 @@ interface LinkItem {
   status: "available" | "pending";
   url: string;
   category: string;
+  group: "Checklist" | "Proposal" | "Final";
 }
 
 const documentDefs: LinkItem[] = [
-  { id: "charter", title: "Project Charter", description: "Initial project charter document outlining scope, objectives, and team roles.", status: "pending", url: "", category: "document" },
-  { id: "proposal-main", title: "Proposal Document — Main", description: "Main group research proposal including literature review and methodology.", status: "pending", url: "", category: "document" },
-  { id: "proposal-cataract", title: "Individual Proposal — Cataract", description: "Binuri Perera's individual research proposal for the cataract severity module.", status: "pending", url: "", category: "document" },
-  { id: "proposal-dme", title: "Individual Proposal — DME", description: "S.D Kahawevithana's individual proposal for DME detection and risk assessment.", status: "pending", url: "", category: "document" },
-  { id: "proposal-glaucoma", title: "Individual Proposal — Glaucoma", description: "Chavindee M.A.P.'s individual proposal for glaucoma detection and risk assessment.", status: "pending", url: "", category: "document" },
-  { id: "proposal-dr", title: "Individual Proposal — DR", description: "Oshan Wijekoon's individual proposal for diabetic retinopathy detection.", status: "pending", url: "", category: "document" },
-  { id: "final-report", title: "Final Report — Main", description: "Main group final research report with complete results and analysis.", status: "pending", url: "", category: "document" },
-  { id: "research-paper", title: "Research Paper", description: "Published or submitted academic research paper.", status: "pending", url: "", category: "document" },
-  { id: "user-guide", title: "System User Guide", description: "User guide for the AI EyeDx diagnostic support system.", status: "pending", url: "", category: "document" },
-  { id: "checklists", title: "Checklists & Supporting Docs", description: "Supporting checklists, forms, and supplementary documentation.", status: "pending", url: "", category: "document" },
-  { id: "dataset-docs", title: "Dataset & Experiment Documentation", description: "Documentation of datasets used, preprocessing steps, and experiment logs.", status: "pending", url: "", category: "document" },
-  { id: "final-individual", title: "Final Reports — Individual Components", description: "Individual final reports for each research component (Cataract, DME, Glaucoma, DR).", status: "pending", url: "", category: "document" },
+  { id: "checklist-1", title: "Checklist 1", description: "Research project checklist — item 1.", status: "pending", url: "", category: "document", group: "Checklist" },
+  { id: "checklist-2", title: "Checklist 2", description: "Research project checklist — item 2.", status: "pending", url: "", category: "document", group: "Checklist" },
+  { id: "proposal-main", title: "TAF", description: "Team Assessment Form for the research project.", status: "pending", url: "", category: "document", group: "Proposal" },
+  { id: "proposal-cataract", title: "Individual Proposal — Cataract", description: "Binuri Perera's individual research proposal for the cataract severity module.", status: "pending", url: "", category: "document", group: "Proposal" },
+  { id: "proposal-dme", title: "Individual Proposal — DME", description: "S.D Kahawevithana's individual proposal for DME detection and risk assessment.", status: "pending", url: "", category: "document", group: "Proposal" },
+  { id: "proposal-glaucoma", title: "Individual Proposal — Glaucoma", description: "Chavindee M.A.P.'s individual proposal for glaucoma detection and risk assessment.", status: "pending", url: "", category: "document", group: "Proposal" },
+  { id: "proposal-dr", title: "Individual Proposal — DR", description: "Oshan Wijekoon's individual proposal for diabetic retinopathy detection.", status: "pending", url: "", category: "document", group: "Proposal" },
+  { id: "final-report", title: "Common Thesis", description: "The shared final thesis for the AI EyeDx research project.", status: "pending", url: "", category: "document", group: "Final" },
+  { id: "final-cataract", title: "Individual Thesis — Cataract", description: "Binuri Perera's individual final thesis for the cataract severity module.", status: "pending", url: "", category: "document", group: "Final" },
+  { id: "final-dme", title: "Individual Thesis — DME", description: "S.D Kahawevithana's individual final thesis for DME detection and risk assessment.", status: "pending", url: "", category: "document", group: "Final" },
+  { id: "final-glaucoma", title: "Individual Thesis — Glaucoma", description: "Chavindee M.A.P.'s individual final thesis for glaucoma detection and risk assessment.", status: "pending", url: "", category: "document", group: "Final" },
+  { id: "final-dr", title: "Individual Thesis — DR", description: "Oshan Wijekoon's individual final thesis for diabetic retinopathy detection.", status: "pending", url: "", category: "document", group: "Final" },
+  { id: "research-paper", title: "Research Paper", description: "The AI EyeDx research paper for academic submission or publication.", status: "pending", url: "", category: "document", group: "Final" },
 ];
 
 export default function DocumentsPage() {
@@ -36,7 +38,7 @@ export default function DocumentsPage() {
       .then((data: { documents?: LinkItem[] }) => {
         const merged = documentDefs.map((def) => {
           const found = data.documents?.find((d: LinkItem) => d.id === def.id);
-          return found ? { ...def, ...found } : def;
+          return found ? { ...def, status: found.status, url: found.url } : def;
         });
         setLinks(merged);
       })
@@ -46,6 +48,10 @@ export default function DocumentsPage() {
 
   const docs = links.filter((l) => l.category === "document");
   const availableCount = docs.filter((doc) => doc.status === "available" && doc.url).length;
+  const documentGroups = (["Checklist", "Proposal", "Final"] as const).map((group) => ({
+    name: group,
+    documents: docs.filter((doc) => doc.group === group),
+  }));
 
   return (
     <main className="documents-page">
@@ -59,12 +65,12 @@ export default function DocumentsPage() {
             <span className="documents-kicker"><span /> Research archive · Group R26-IT-043</span>
             <h1 className="mt-6 text-5xl font-black tracking-[-0.07em] sm:text-6xl lg:text-7xl">Project documents<span className="text-teal-300">.</span></h1>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-blue-100/85 sm:text-lg">
-              Browse the research project&apos;s proposals, reports, user guides, and supporting materials in one place.
+              Browse the project checklists, proposal documents, common thesis, individual theses, and research paper.
             </p>
             <div className="mt-8 flex flex-wrap gap-2">
-              <span className="documents-hero-tag">Research proposals</span>
-              <span className="documents-hero-tag">Reports &amp; papers</span>
-              <span className="documents-hero-tag">System resources</span>
+              <span className="documents-hero-tag">Checklists</span>
+              <span className="documents-hero-tag">Proposal documents</span>
+              <span className="documents-hero-tag">Final documents</span>
             </div>
           </div>
           <div className="documents-library-panel">
@@ -109,14 +115,22 @@ export default function DocumentsPage() {
               <p className="mt-3 text-sm">Loading documents...</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
-              {docs.map((doc, i) => (
-                <div
-                  key={doc.id}
-                  className={`document-card document-card-${(i % 4) + 1} flex flex-col`}
-                >
+            <div className="space-y-12">
+              {documentGroups.map(({ name, documents: groupDocuments }) => (
+                <section key={name} aria-labelledby={`documents-${name.toLowerCase()}`}>
+                  <div className="mb-5 flex items-center gap-3">
+                    <h3 id={`documents-${name.toLowerCase()}`} className="text-xl font-bold text-slate-100">{name}</h3>
+                    <span className="h-px flex-1 bg-white/10" />
+                    <span className="text-xs text-slate-400">{String(groupDocuments.length).padStart(2, "0")} documents</span>
+                  </div>
+                  <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+                    {groupDocuments.map((doc, i) => (
+                    <div
+                      key={doc.id}
+                      className={`document-card document-card-${(i % 4) + 1} flex flex-col`}
+                    >
                   <div className="document-card-top">
-                    <span className="document-card-index">DOCUMENT · {String(i + 1).padStart(2, "0")}</span>
+                    <span className="document-card-index">{name.toUpperCase()} · {String(i + 1).padStart(2, "0")}</span>
                     <div className="document-card-icon" aria-hidden="true">
                       <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M7 3.75h6.5L19 9.25v10A1.75 1.75 0 0117.25 21h-10A1.75 1.75 0 015.5 19.25v-13.75A1.75 1.75 0 017.25 3.75z" />
@@ -149,7 +163,10 @@ export default function DocumentsPage() {
                       <button disabled className="document-action document-action-disabled">Not yet available</button>
                     )}
                   </div>
-                </div>
+                    </div>
+                    ))}
+                  </div>
+                </section>
               ))}
             </div>
           )}
