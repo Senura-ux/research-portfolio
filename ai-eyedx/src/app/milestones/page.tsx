@@ -52,7 +52,7 @@ export default function MilestonesPage() {
       title: "Progress Presentation 1 (PP1)",
       status: "completed",
       date: "2026 May",
-      marks: "Not published",
+      marks: "Allocated",
       items: [
         "Initial implementation demonstration",
         "Baseline model results",
