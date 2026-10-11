@@ -52,16 +52,16 @@
       "id": "pp1",
       "title": "Progress Presentation 1",
       "description": "PP1 presentation document",
-      "status": "pending",
-      "url": "",
+      "status": "available",
+      "url": "https://docs.google.com/presentation/d/11Hsv37Nh0rWlISa4Lh7MOM0A8vX76ddj/edit?usp=sharing&ouid=108977970227173443123&rtpof=true&sd=true",
       "category": "presentation"
     },
     {
       "id": "pp2",
       "title": "Progress Presentation 2",
       "description": "PP2 presentation document",
-      "status": "pending",
-      "url": "",
+      "status": "available",
+      "url": "https://docs.google.com/presentation/d/1DP8inS6OWSLFnz1Vyt1b0b9irdd04whN/edit?usp=sharing&ouid=108977970227173443123&rtpof=true&sd=true",
       "category": "presentation"
     },
     {
@@ -93,7 +93,7 @@
       "title": "Proposal Presentation",
       "description": "Slides for proposal presentation",
       "status": "available",
-      "url": "https://docs.google.com/presentation/d/11Hsv37Nh0rWlISa4Lh7MOM0A8vX76ddj/edit?usp=sharing&ouid=108977970227173443123&rtpof=true&sd=true",
+      "url": "https://docs.google.com/presentation/d/1t3mrbRn4D8GBS6Xwzlt0CIadqdrrhmGm/edit?usp=sharing&ouid=108977970227173443123&rtpof=true&sd=true",
       "category": "presentation"
     },
     {
