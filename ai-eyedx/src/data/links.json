@@ -13,8 +13,8 @@
       "id": "checklist-2",
       "title": "Checklist 2",
       "description": "Research project checklist — item 2.",
-      "status": "pending",
-      "url": "",
+      "status": "available",
+      "url": "https://docs.google.com/spreadsheets/d/1fTYeYIIZXxdn4zk7e1JzgoZAKanLOSuw/edit?usp=sharing&ouid=108977970227173443123&rtpof=true&sd=true",
       "category": "document",
       "group": "Checklist"
     },
@@ -161,16 +161,16 @@
       "id": "final-presentation",
       "title": "Final Presentation",
       "description": "Final project presentation slides",
-      "status": "pending",
-      "url": "",
+      "status": "available",
+      "url": "https://docs.google.com/presentation/d/1sqG58McQuGevr1X2QicvYPrWprBAHIit/edit?usp=sharing&ouid=108977970227173443123&rtpof=true&sd=true",
       "category": "presentation"
     },
     {
       "id": "viva",
       "title": "PP2 Demo presentation",
       "description": "Viva voce presentation materials",
-      "status": "pending",
-      "url": "",
+      "status": "available",
+      "url": "https://docs.google.com/presentation/d/1eh1fhqDXOpiZltIbt-bfJK31HmeFyyE1/edit?usp=sharing&ouid=108977970227173443123&rtpof=true&sd=true",
       "category": "presentation"
     }
   ]
