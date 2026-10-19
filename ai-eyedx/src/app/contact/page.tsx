@@ -128,6 +128,24 @@ export default function ContactPage() {
               </div>
             </div>
 
+            <div className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm">
+              <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-blue-800">Supervisors</h3>
+              <ul className="mt-4 space-y-4">
+                {[
+                  { role: "Supervisor", name: "Prof. Sanvitha Kasthuriarachchi", email: "sanvitha.k@sliit.lk" },
+                  { role: "Co-Supervisor", name: "Chathurya Kumarapperuma", email: "chathurya.k@sliit.lk" },
+                ].map((person) => (
+                  <li key={person.email}>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">{person.role}</p>
+                    <p className="mt-1 text-sm font-bold text-slate-900">{person.name}</p>
+                    <a href={`mailto:${person.email}`} className="text-sm text-blue-700 hover:underline">
+                      {person.email}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
             <div className="rounded-[1.5rem] border border-blue-100 bg-gradient-to-br from-blue-50 to-white p-6">
               <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-blue-800">What we can discuss</h3>
               <ul className="mt-4 space-y-3">
