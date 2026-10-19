@@ -1,23 +1,36 @@
 "use client";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/domain", label: "Domain" },
+  { href: "/domain", label: "Domain", dropdown: [
+    { href: "/domain#literature-survey", label: "Literature Survey" },
+    { href: "/domain#research-gap", label: "Research Gap" },
+    { href: "/domain#research-problem-solution", label: "Research Problem & Solution" },
+    { href: "/domain#research-objectives", label: "Research Objectives" },
+    { href: "/domain#methodology", label: "Methodology" },
+    { href: "/domain#technologies", label: "Technologies" },
+  ] },
   { href: "/milestones", label: "Milestones" },
   { href: "/documents", label: "Documents" },
   { href: "/presentations", label: "Presentations" },
+  { href: "/achievements", label: "Achievements" },
   { href: "/research-modules", label: "Modules" },
-  { href: "/about", label: "About Us" },
+  { href: "/about", label: "About Us", dropdown: [
+    { href: "/about#research-members", label: "Research members" },
+    { href: "/about#academic-supervisors", label: "Academic supervisors" },
+  ] },
   { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const navDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -25,14 +38,32 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const closeNavDropdown = (event: PointerEvent) => {
+      if (!navDropdownRef.current?.contains(event.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpenDropdown(null);
+    };
+
+    document.addEventListener("pointerdown", closeNavDropdown);
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("pointerdown", closeNavDropdown);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, []);
+
   return (
     <nav
-      className={`sticky top-0 z-50 transition-all duration-300 ${
+      ref={navDropdownRef}
+      className={`sticky top-0 z-50 -mb-16 transition-all duration-300 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-md border-b border-gray-200"
-          : "bg-white/80 backdrop-blur-sm border-b border-gray-100"
+          ? "bg-slate-950/75 backdrop-blur-xl shadow-[0_12px_40px_rgba(15,23,42,0.18)] border-b border-white/10"
+          : "border-b border-transparent bg-transparent"
       }`}
-      style={{ backgroundColor: "rgba(255,255,255,0.95)" }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
@@ -47,10 +78,10 @@ export default function Navbar() {
               </svg>
             </div>
             <div className="flex flex-col leading-tight">
-              <span className="text-base font-bold" style={{ color: "#1e3a8a" }}>
+              <span className="text-base font-bold text-white">
                 AI EyeDx
               </span>
-              <span className="text-xs" style={{ color: "#6b7280", fontSize: "10px" }}>
+              <span className="text-[10px] text-slate-300">
                 R26-IT-043 · SLIIT
               </span>
             </div>
@@ -60,15 +91,70 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => {
               const active = pathname === link.href;
+              const dropdown = link.dropdown;
+
+              if (dropdown) {
+                return (
+                  <div
+                    key={link.href}
+                    className="relative"
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setOpenDropdown((prev) => prev === link.label ? null : link.label)}
+                      aria-expanded={openDropdown === link.label}
+                      aria-haspopup="true"
+                      className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                        active || openDropdown === link.label
+                          ? "text-white bg-white/10 font-semibold shadow-[0_0_0_1px_rgba(255,255,255,0.08)]"
+                          : "text-slate-200 hover:text-white hover:bg-white/5"
+                      }`}
+                    >
+                      {link.label}
+                      <svg className={`h-4 w-4 transition-transform ${openDropdown === link.label ? "rotate-180" : ""}`} viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+                      </svg>
+                    </button>
+
+                    <div
+                      className={`absolute left-0 top-full z-50 w-72 pt-2 transition-all duration-150 ${
+                        openDropdown === link.label
+                          ? "visible translate-y-0 opacity-100"
+                          : "invisible -translate-y-1 opacity-0"
+                      }`}
+                    >
+                      <div className="overflow-hidden rounded-2xl border border-white/10 bg-slate-950/95 p-2 shadow-[0_25px_60px_rgba(2,6,23,0.55)] backdrop-blur-xl">
+                        {dropdown.map((item) => (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            onClick={() => {
+                              setOpenDropdown(null);
+                              setMenuOpen(false);
+                            }}
+                            className="block rounded-xl px-3 py-2.5 text-sm text-slate-200 transition-colors hover:bg-white/5 hover:text-white focus:bg-white/10 focus:text-white focus:outline-none"
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                  onClick={() => {
+                    setMenuOpen(false);
+                    setOpenDropdown(null);
+                  }}
+                  className={`px-3 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                     active
-                      ? "text-blue-600 bg-blue-50 font-semibold"
-                      : "text-gray-600 hover:text-blue-600 hover:bg-blue-50"
+                      ? "text-white bg-white/10 font-semibold shadow-[0_0_0_1px_rgba(255,255,255,0.08)]"
+                      : "text-slate-200 hover:text-white hover:bg-white/5"
                   }`}
                 >
                   {link.label}
@@ -77,38 +163,26 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* CTA + Hamburger */}
+          {/* Hamburger */}
           <div className="flex items-center gap-3">
-            <Link
-              href="/domain"
-              className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-white px-4 py-2 rounded-lg transition-all hover:opacity-90 hover:shadow-md"
-              style={{ background: "linear-gradient(135deg, #1e3a8a, #3b82f6)" }}
-            >
-              Explore Research
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
-
-            {/* Hamburger */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="lg:hidden p-2 rounded-md text-gray-600 hover:bg-gray-100 transition-colors"
+              className="lg:hidden rounded-full border border-white/10 bg-white/5 p-2 text-slate-200 transition-colors hover:bg-white/10"
               aria-label="Toggle menu"
             >
-              <div className="w-5 h-4 flex flex-col justify-between">
+              <div className="flex h-4 w-5 flex-col justify-between">
                 <span
-                  className={`block h-0.5 bg-gray-600 transition-all duration-300 ${
+                  className={`block h-0.5 bg-white transition-all duration-300 ${
                     menuOpen ? "rotate-45 translate-y-1.5" : ""
                   }`}
                 />
                 <span
-                  className={`block h-0.5 bg-gray-600 transition-all duration-300 ${
+                  className={`block h-0.5 bg-white transition-all duration-300 ${
                     menuOpen ? "opacity-0" : ""
                   }`}
                 />
                 <span
-                  className={`block h-0.5 bg-gray-600 transition-all duration-300 ${
+                  className={`block h-0.5 bg-white transition-all duration-300 ${
                     menuOpen ? "-rotate-45 -translate-y-2" : ""
                   }`}
                 />
@@ -122,35 +196,66 @@ export default function Navbar() {
       <div
         className={`lg:hidden mobile-menu ${menuOpen ? "open" : ""}`}
         style={{
-          borderTop: menuOpen ? "1px solid #e5e7eb" : "none",
-          backgroundColor: "white",
+          borderTop: menuOpen ? "1px solid rgba(255,255,255,0.08)" : "none",
+          backgroundColor: "rgba(2,6,23,0.82)",
         }}
       >
-        <div className="px-4 py-3 space-y-1">
+        <div className="space-y-1 px-4 py-3">
           {navLinks.map((link) => {
             const active = pathname === link.href;
+
+            if (link.dropdown) {
+              return (
+                <div key={link.href} className="rounded-xl border border-white/10 bg-white/5 p-2">
+                  <button
+                    type="button"
+                    onClick={() => setOpenDropdown((prev) => prev === link.label ? null : link.label)}
+                    aria-expanded={openDropdown === link.label}
+                    aria-haspopup="true"
+                    className="flex w-full items-center justify-between rounded-lg px-2 py-2 text-sm font-semibold text-white"
+                  >
+                    <span>{link.label}</span>
+                    <svg className={`h-4 w-4 text-slate-300 transition-transform ${openDropdown === link.label ? "rotate-180" : ""}`} viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+                    </svg>
+                  </button>
+                  <div className={`${openDropdown === link.label ? "mt-1 space-y-1" : "hidden"}`}>
+                    {link.dropdown.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => {
+                          setMenuOpen(false);
+                          setOpenDropdown(null);
+                        }}
+                        className="block rounded-lg px-3 py-2 text-sm text-slate-200 transition-colors hover:bg-white/5 hover:text-white"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              );
+            }
+
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                onClick={() => {
+                  setMenuOpen(false);
+                  setOpenDropdown(null);
+                }}
+                className={`block rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
                   active
-                    ? "bg-blue-50 text-blue-600 font-semibold"
-                    : "text-gray-700 hover:bg-gray-50 hover:text-blue-600"
+                    ? "bg-white/10 text-white font-semibold"
+                    : "text-slate-200 hover:bg-white/5 hover:text-white"
                 }`}
               >
                 {link.label}
               </Link>
             );
           })}
-          <Link
-            href="/domain"
-            onClick={() => setMenuOpen(false)}
-            className="block mt-2 text-center text-sm font-semibold text-white px-4 py-2.5 rounded-lg"
-            style={{ background: "linear-gradient(135deg, #1e3a8a, #3b82f6)" }}
-          >
-            Explore Research →
-          </Link>
         </div>
       </div>
     </nav>

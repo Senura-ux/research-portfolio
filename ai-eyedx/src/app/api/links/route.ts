@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import { NextResponse } from "next/server";
 import bundledLinks from "@/data/links.json";
+import { documentDefinitions, mergeDocumentDefinitions } from "@/data/document-definitions";
 
 interface LinkItem {
   id: string;
@@ -78,11 +79,20 @@ function readBundledLinks(): LinksData {
 
   const parsed = parseLinksData(bundledLinks);
   if (parsed) {
-    inMemoryCache = parsed;
-    return parsed;
+    inMemoryCache = normalizeLinksData(parsed);
+    return inMemoryCache;
   }
 
   return { documents: [] };
+}
+
+function normalizeLinksData(data: LinksData): LinksData {
+  const documents = mergeDocumentDefinitions(data.documents);
+  const knownIds = new Set(documentDefinitions.map((definition) => definition.id));
+  const additionalLinks = data.documents.filter(
+    (item) => item.category === "presentation" || !knownIds.has(item.id)
+  );
+  return { documents: [...documents, ...additionalLinks] };
 }
 
 async function readLinksData(): Promise<LinksData> {
@@ -91,7 +101,7 @@ async function readLinksData(): Promise<LinksData> {
       const result = await redisCommand(["GET", LINKS_KEY]);
       if (typeof result === "string") {
         const parsed = parseLinksData(JSON.parse(result));
-        if (parsed) return parsed;
+        if (parsed) return normalizeLinksData(parsed);
       }
     } catch (error) {
       console.error("Error reading links from Redis:", error);
@@ -170,7 +180,7 @@ export async function POST(request: Request) {
       }
     }
 
-    const data = await readLinksData();
+    const data = normalizeLinksData(await readLinksData());
     const index = data.documents.findIndex((document) => document.id === target.id);
     if (index === -1) data.documents.push(target);
     else data.documents[index] = { ...data.documents[index], ...target };
@@ -182,7 +192,10 @@ export async function POST(request: Request) {
       );
     }
 
-    return NextResponse.json({ success: true, documents: data.documents });
+    return NextResponse.json({
+      success: true,
+      documents: normalizeLinksData(data).documents,
+    });
   } catch (error) {
     console.error("API error updating link:", error);
     return NextResponse.json({ error: "Failed to update link" }, { status: 500 });

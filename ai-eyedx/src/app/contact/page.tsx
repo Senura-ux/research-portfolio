@@ -1,26 +1,41 @@
 "use client";
-import { useState } from "react";
+
+import { useState, type FormEvent } from "react";
+
+type ContactForm = {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+};
 
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [form, setForm] = useState<ContactForm>({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     setStatus("sending");
     setErrorMessage("");
+
     try {
-      const res = await fetch("/api/contact", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      if (res.ok) {
+
+      if (response.ok) {
         setStatus("success");
         setForm({ name: "", email: "", subject: "", message: "" });
       } else {
-        const result = (await res.json()) as { error?: string };
+        const result = (await response.json()) as { error?: string };
         setErrorMessage(result.error || "Something went wrong. Please try again later.");
         setStatus("error");
       }
@@ -30,198 +45,230 @@ export default function ContactPage() {
     }
   };
 
+  const fieldClassName =
+    "w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-100";
+
   return (
-    <div>
-      {/* Header */}
-      <section
-        className="py-20 text-white"
-        style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #2563eb 100%)" }}
-      >
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <span className="inline-block text-xs font-semibold uppercase tracking-widest text-blue-200 bg-white/10 px-3 py-1 rounded-full mb-4">Get in Touch</span>
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4">Contact Us</h1>
-          <p className="text-blue-100 text-lg max-w-xl mx-auto">
-            Academic enquiries about the AI EyeDx research project are welcome. This form is for research purposes only and cannot provide medical advice.
-          </p>
-        </div>
-      </section>
+    <main className="bg-slate-50 text-slate-800">
+      <section className="relative isolate overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(96,165,250,0.25),_transparent_28%),linear-gradient(135deg,#020817_0%,#0f172a_20%,#172554_48%,#1d4ed8_78%,#2563eb_100%)] text-white">
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(148,163,184,0.07)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.07)_1px,transparent_1px)] bg-[size:32px_32px]" />
+        <div className="absolute -right-24 -top-28 -z-10 h-96 w-96 rounded-full bg-blue-300/10 blur-3xl" />
+        <div className="absolute -bottom-36 left-0 -z-10 h-96 w-96 rounded-full bg-cyan-400/10 blur-3xl" />
 
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
-            {/* Left info */}
-            <div className="lg:col-span-2 space-y-6">
-              {/* Project Info */}
-              <div className="bg-gray-50 rounded-2xl border border-gray-200 p-6">
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold mb-4"
-                  style={{ background: "linear-gradient(135deg, #1e3a8a, #3b82f6)" }}
-                >
-                  👁️
-                </div>
-                <h3 className="font-bold text-gray-900 mb-1">AI EyeDx Research</h3>
-                <p className="text-xs text-gray-500 mb-4">Group R26-IT-043 · SLIIT Research Project</p>
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+          <div className="max-w-3xl">
+            <span className="inline-flex items-center gap-2 rounded-full border border-blue-200/20 bg-white/10 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.26em] text-blue-100 backdrop-blur-sm">
+              <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_16px_rgba(52,211,153,0.9)]" />
+              Academic enquiries
+            </span>
+            <h1 className="mt-7 text-4xl font-black tracking-[-0.06em] sm:text-5xl lg:text-7xl">
+              Let&apos;s connect
+              <span className="mt-2 block bg-gradient-to-r from-blue-200 via-cyan-100 to-blue-400 bg-clip-text text-transparent">
+                around research.
+              </span>
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-blue-100/90">
+              Have a question about AI EyeDx, our research methodology, or a potential academic collaboration? Send the team a message.
+            </p>
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-blue-100/70">
+              This channel is for academic and research enquiries only. It cannot provide medical advice, diagnosis, or interpretation of personal health information.
+            </p>
+          </div>
 
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3">
-                    <svg className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                    </svg>
-                    <div>
-                      <p className="text-xs font-medium text-gray-700">Institution</p>
-                      <p className="text-xs text-gray-500">Sri Lanka Institute of Information Technology (SLIIT)</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                    <div>
-                      <p className="text-xs font-medium text-gray-700">Department</p>
-                      <p className="text-xs text-gray-500">Department of Information Technology</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    <div>
-                      <p className="text-xs font-medium text-gray-700">Group Email</p>
-                      <p className="text-xs text-gray-500">Use the contact form</p>
-                    </div>
-                  </div>
-                </div>
+          <div className="mt-10 grid max-w-3xl gap-3 sm:grid-cols-3">
+            {[
+              { value: "01", label: "Research enquiries" },
+              { value: "02", label: "Academic collaboration" },
+              { value: "03", label: "Technical discussion" },
+            ].map((item) => (
+              <div key={item.value} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur-md">
+                <div className="text-xs font-bold tracking-[0.2em] text-cyan-200">{item.value}</div>
+                <div className="mt-2 text-sm font-semibold text-white">{item.label}</div>
               </div>
-
-              {/* Research Scope */}
-              <div className="bg-blue-50 rounded-2xl border border-blue-100 p-6">
-                <h4 className="font-semibold text-blue-900 text-sm mb-3">Research Scope</h4>
-                <ul className="space-y-2">
-                  {[
-                    "AI & deep learning research discussions",
-                    "Academic collaboration enquiries",
-                    "Ophthalmology domain questions",
-                    "Technical methodology discussions",
-                    "Potential research extensions",
-                  ].map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-xs text-blue-800">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Not For */}
-              <div className="bg-amber-50 rounded-2xl border border-amber-100 p-5">
-                <h4 className="font-semibold text-amber-900 text-sm mb-2 flex items-center gap-2">
-                  ⚠️ Please Note
-                </h4>
-                <p className="text-xs text-amber-800 leading-relaxed">
-                  This contact form is for academic and research enquiries only. We cannot provide medical advice, diagnosis, or clinical interpretations of personal health conditions.
-                </p>
-              </div>
-            </div>
-
-            {/* Contact Form */}
-            <div className="lg:col-span-3">
-              <div className="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Send a Message</h2>
-
-                {status === "success" && (
-                  <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-start gap-3">
-                    <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <div>
-                      <p className="font-semibold text-green-800 text-sm">Message received!</p>
-                      <p className="text-xs text-green-700 mt-0.5">Thank you for your enquiry. The team will respond as soon as possible.</p>
-                    </div>
-                  </div>
-                )}
-
-                {status === "error" && (
-                  <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
-                    <p className="text-sm text-red-700">{errorMessage}</p>
-                  </div>
-                )}
-
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-xs font-semibold text-gray-700 mb-1.5">Full Name *</label>
-                      <input
-                        type="text"
-                        required
-                        value={form.name}
-                        onChange={(e) => setForm({ ...form, name: e.target.value })}
-                        placeholder="Your full name"
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-50 transition-all"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-semibold text-gray-700 mb-1.5">Email Address *</label>
-                      <input
-                        type="email"
-                        required
-                        value={form.email}
-                        onChange={(e) => setForm({ ...form, email: e.target.value })}
-                        placeholder="your@email.com"
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-50 transition-all"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-gray-700 mb-1.5">Subject *</label>
-                    <input
-                      type="text"
-                      required
-                      value={form.subject}
-                      onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                      placeholder="Research inquiry / collaboration / question"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-50 transition-all"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-gray-700 mb-1.5">Message *</label>
-                    <textarea
-                      required
-                      rows={6}
-                      value={form.message}
-                      onChange={(e) => setForm({ ...form, message: e.target.value })}
-                      placeholder="Please describe your enquiry..."
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-50 transition-all resize-none"
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={status === "sending"}
-                    className="w-full py-3.5 rounded-xl font-semibold text-white text-sm transition-all hover:opacity-90 hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                    style={{ background: "linear-gradient(135deg, #1e3a8a, #3b82f6)" }}
-                  >
-                    {status === "sending" ? (
-                      <>
-                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                        </svg>
-                        Send Message
-                      </>
-                    )}
-                  </button>
-                </form>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
-    </div>
+
+      <section className="relative px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          <aside className="space-y-5">
+            <div className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_70px_rgba(15,23,42,0.07)]">
+              <div className="bg-gradient-to-br from-slate-900 via-blue-950 to-blue-800 p-7 text-white">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-2xl shadow-lg backdrop-blur-sm">
+                  👁️
+                </div>
+                <p className="mt-6 text-[10px] font-bold uppercase tracking-[0.24em] text-blue-200">Research group</p>
+                <h2 className="mt-2 text-2xl font-black tracking-tight">AI EyeDx</h2>
+                <p className="mt-1 text-sm text-blue-100/80">R26-IT-043 · SLIIT Research Project</p>
+              </div>
+
+              <div className="space-y-5 p-7">
+                <div className="flex gap-4">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-700">⌂</span>
+                  <div>
+                    <h3 className="text-sm font-bold text-slate-900">Institution</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-slate-600">Sri Lanka Institute of Information Technology (SLIIT)</p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700">▤</span>
+                  <div>
+                    <h3 className="text-sm font-bold text-slate-900">Department</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-slate-600">Department of Information Technology</p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-50 text-cyan-700">✉</span>
+                  <div>
+                    <h3 className="text-sm font-bold text-slate-900">How to reach us</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-slate-600">Send your enquiry using the secure contact form.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-[1.5rem] border border-blue-100 bg-gradient-to-br from-blue-50 to-white p-6">
+              <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-blue-800">What we can discuss</h3>
+              <ul className="mt-4 space-y-3">
+                {[
+                  "AI and deep learning research",
+                  "Academic collaboration enquiries",
+                  "Ophthalmology domain and methodology",
+                  "Technical approaches and future extensions",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-slate-700">
+                    <span className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-blue-600 text-[10px] font-bold text-white">✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="rounded-2xl border border-amber-200/80 bg-amber-50/80 p-5">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-amber-900">Please note</p>
+              <p className="mt-2 text-sm leading-relaxed text-amber-900/80">
+                Do not submit personal medical records or request clinical advice through this research contact form.
+              </p>
+            </div>
+          </aside>
+
+          <section className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-[0_24px_70px_rgba(15,23,42,0.07)] sm:p-9">
+            <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-blue-700">Contact the team</p>
+                <h2 className="mt-2 text-2xl font-black tracking-[-0.04em] text-slate-900 sm:text-3xl">Send a message</h2>
+                <p className="mt-2 text-sm text-slate-500">Fields marked with * are required.</p>
+              </div>
+              <div className="rounded-2xl bg-slate-50 px-4 py-3 text-right">
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">Project</p>
+                <p className="mt-1 text-sm font-bold text-slate-700">AI EyeDx</p>
+              </div>
+            </div>
+
+            {status === "success" && (
+              <div role="status" className="mb-6 flex items-start gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-100 font-bold text-emerald-700">✓</span>
+                <div>
+                  <p className="text-sm font-bold text-emerald-900">Message received</p>
+                  <p className="mt-1 text-sm text-emerald-800">Thank you for your enquiry. The team will respond as soon as possible.</p>
+                </div>
+              </div>
+            )}
+
+            {status === "error" && (
+              <div role="alert" className="mb-6 rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">
+                {errorMessage}
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid gap-5 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="contact-name" className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-slate-700">Full name *</label>
+                  <input
+                    id="contact-name"
+                    type="text"
+                    required
+                    maxLength={100}
+                    autoComplete="name"
+                    value={form.name}
+                    onChange={(event) => setForm({ ...form, name: event.target.value })}
+                    placeholder="Your full name"
+                    className={fieldClassName}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="contact-email" className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-slate-700">Email address *</label>
+                  <input
+                    id="contact-email"
+                    type="email"
+                    required
+                    maxLength={254}
+                    autoComplete="email"
+                    value={form.email}
+                    onChange={(event) => setForm({ ...form, email: event.target.value })}
+                    placeholder="you@example.com"
+                    className={fieldClassName}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="contact-subject" className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-slate-700">Subject *</label>
+                <input
+                  id="contact-subject"
+                  type="text"
+                  required
+                  maxLength={160}
+                  value={form.subject}
+                  onChange={(event) => setForm({ ...form, subject: event.target.value })}
+                  placeholder="Research enquiry, collaboration, or question"
+                  className={fieldClassName}
+                />
+              </div>
+
+              <div>
+                <label htmlFor="contact-message" className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-slate-700">Message *</label>
+                <textarea
+                  id="contact-message"
+                  required
+                  maxLength={5000}
+                  rows={7}
+                  value={form.message}
+                  onChange={(event) => setForm({ ...form, message: event.target.value })}
+                  placeholder="Tell us a little about your enquiry..."
+                  className={`${fieldClassName} resize-y`}
+                />
+                <p className="mt-2 text-right text-xs text-slate-400">{form.message.length}/5000</p>
+              </div>
+
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                className="group flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-700 to-indigo-600 px-5 py-4 text-sm font-bold text-white shadow-[0_12px_28px_rgba(37,99,235,0.25)] transition-all hover:-translate-y-0.5 hover:shadow-[0_16px_34px_rgba(37,99,235,0.32)] disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {status === "sending" ? (
+                  <>
+                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                    Sending message...
+                  </>
+                ) : (
+                  <>
+                    Send message
+                    <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                    </svg>
+                  </>
+                )}
+              </button>
+              <p className="text-center text-xs leading-relaxed text-slate-400">
+                Your details will only be used to respond to this research enquiry.
+              </p>
+            </form>
+          </section>
+        </div>
+      </section>
+    </main>
   );
 }

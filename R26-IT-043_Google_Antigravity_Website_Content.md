@@ -993,7 +993,7 @@ Current research contribution:
 | Binuri Perera | IT22151292 | Cataract Severity + Visibility Degradation |
 | Sanduni D. Kahawevithana | IT22191342 | DME Detection + Severity + Risk |
 | Chavindee M.A.P. | IT22127778 | Glaucoma Detection + Risk Assessment |
-| Oshan Wijekoon | Confirm | DR Detection + Severity + System Integration |
+| Oshan Wijekoon | IT22265388 | DR Detection + Severity + System Integration |
 
 Each profile should have:
 - Professional photograph
