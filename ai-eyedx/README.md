@@ -76,9 +76,10 @@ Copy `.env.example` to `.env.local` and replace its example values before testin
    - The repository-level `vercel.json` builds the nested `ai-eyedx` application automatically.
 3. In Project Settings > **Environment Variables**, add:
    - `ADMIN_PASSWORD`: A long, unique admin password (admin access is disabled when unset)
-   - `RESEND_API_KEY`: Resend API key used by the contact form
-   - `CONTACT_FROM_EMAIL`: Sender on a domain verified in Resend
-   - `CONTACT_TO_EMAIL`: Research-team inbox that receives enquiries
+   - `SMTP_USER` and `SMTP_PASS`: SMTP account the contact form sends through via Nodemailer (for Gmail, the address plus an [App Password](https://myaccount.google.com/apppasswords))
+   - `SMTP_HOST` / `SMTP_PORT` (optional): Default to `smtp.gmail.com` / `465`
+   - `CONTACT_TO_EMAIL` (optional): Inbox that receives enquiries, defaults to `senuradinilka5@gmail.com`
+   - `CONTACT_FROM_EMAIL` (optional): Sender shown on enquiry emails, defaults to `SMTP_USER`
    - `KV_REST_API_URL` and `KV_REST_API_TOKEN`: Upstash Redis REST credentials for durable admin edits
 4. Connect an Upstash Redis database from the Vercel Marketplace if the admin panel will be used in production.
 5. Click **Deploy**.

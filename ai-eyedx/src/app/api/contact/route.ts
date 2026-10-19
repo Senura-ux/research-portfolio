@@ -1,4 +1,7 @@
 import { NextResponse } from "next/server";
+import nodemailer, { type Transporter } from "nodemailer";
+
+export const runtime = "nodejs";
 
 interface ContactRequest {
   name: string;
@@ -8,6 +11,9 @@ interface ContactRequest {
 }
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const DEFAULT_CONTACT_TO_EMAIL = "senuradinilka5@gmail.com";
+
+let transporter: Transporter | null = null;
 
 function parseContactRequest(value: unknown): ContactRequest | null {
   if (!value || typeof value !== "object") return null;
@@ -34,9 +40,35 @@ function parseContactRequest(value: unknown): ContactRequest | null {
   return { name, email, subject, message };
 }
 
+function getTransporter(): Transporter | null {
+  if (transporter) return transporter;
+
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASS;
+  if (!user || !pass) return null;
+
+  const port = Number(process.env.SMTP_PORT) || 465;
+  transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST || "smtp.gmail.com",
+    port,
+    secure: process.env.SMTP_SECURE ? process.env.SMTP_SECURE === "true" : port === 465,
+    auth: { user, pass },
+  });
+  return transporter;
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 export async function POST(request: Request) {
   try {
-    const contact = parseContactRequest(await request.json());
+    const contact = parseContactRequest(await request.json().catch(() => null));
     if (!contact) {
       return NextResponse.json(
         { error: "Please provide valid contact details and a message." },
@@ -44,27 +76,25 @@ export async function POST(request: Request) {
       );
     }
 
-    const apiKey = process.env.RESEND_API_KEY;
-    const to = process.env.CONTACT_TO_EMAIL;
-    const from = process.env.CONTACT_FROM_EMAIL;
-
-    if (!apiKey || !to || !from) {
+    const mailer = getTransporter();
+    if (!mailer) {
+      console.error("Contact delivery is not configured: set SMTP_USER and SMTP_PASS.");
       return NextResponse.json(
         { error: "Contact delivery is not configured." },
         { status: 503 }
       );
     }
 
-    const response = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+    const to = process.env.CONTACT_TO_EMAIL || DEFAULT_CONTACT_TO_EMAIL;
+    // Gmail and most SMTP providers reject or rewrite a From address that isn't
+    // the authenticated account, so send as the site and reply to the visitor.
+    const from = process.env.CONTACT_FROM_EMAIL || `"AI EyeDx Website" <${process.env.SMTP_USER}>`;
+
+    try {
+      await mailer.sendMail({
         from,
-        to: [to],
-        reply_to: contact.email,
+        to,
+        replyTo: { name: contact.name, address: contact.email },
         subject: `[AI EyeDx] ${contact.subject}`,
         text: [
           `Name: ${contact.name}`,
@@ -73,12 +103,17 @@ export async function POST(request: Request) {
           "",
           contact.message,
         ].join("\n"),
-      }),
-      cache: "no-store",
-    });
-
-    if (!response.ok) {
-      console.error("Contact delivery failed with status", response.status);
+        html: `
+          <h2>New AI EyeDx contact enquiry</h2>
+          <p><strong>Name:</strong> ${escapeHtml(contact.name)}</p>
+          <p><strong>Email:</strong> <a href="mailto:${escapeHtml(contact.email)}">${escapeHtml(contact.email)}</a></p>
+          <p><strong>Subject:</strong> ${escapeHtml(contact.subject)}</p>
+          <hr />
+          <p style="white-space: pre-wrap">${escapeHtml(contact.message)}</p>
+        `,
+      });
+    } catch (error) {
+      console.error("Contact delivery failed:", error);
       return NextResponse.json(
         { error: "The message could not be delivered. Please try again later." },
         { status: 502 }
